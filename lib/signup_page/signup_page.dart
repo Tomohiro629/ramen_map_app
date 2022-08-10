@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ramen_map_app/home_page/signup_page/signup_controller.dart';
+import 'package:ramen_map_app/signup_page/signup_controller.dart';
 
 class SignupPage extends ConsumerWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -15,18 +15,34 @@ class SignupPage extends ConsumerWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFormField(
-              decoration: const InputDecoration(labelText: "メールアドレス"),
-              onChanged: (value) {
-                newEmail = value;
-              },
+            Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 20.0, horizontal: 50.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(labelText: "メールアドレス"),
+                    onChanged: (value) {
+                      newEmail = value;
+                    },
+                  ),
+                ),
+              ],
             ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: "パスワード"),
-              onChanged: (value) {
-                newPassword = value;
-              },
+            Container(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 50.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(labelText: "パスワード"),
+                  onChanged: (value) {
+                    newPassword = value;
+                  },
+                )),
+            const SizedBox(
+              height: 20,
             ),
             MaterialButton(
               child: InkWell(
@@ -46,7 +62,7 @@ class SignupPage extends ConsumerWidget {
                       height: 50.0,
                       width: 150.0,
                       padding: const EdgeInsets.symmetric(
-                          vertical: 15.0, horizontal: 40.0),
+                          vertical: 15.0, horizontal: 20.0),
                       decoration: const BoxDecoration(
                           color: Colors.blueAccent,
                           borderRadius: BorderRadius.only(
@@ -59,10 +75,10 @@ class SignupPage extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(
-                      width: 40.0,
+                      width: 30.0,
                       child: Icon(
                         Icons.login_outlined,
-                        color: Colors.orange,
+                        color: Colors.blueAccent,
                       ),
                     )
                   ]),
@@ -76,7 +92,7 @@ class SignupPage extends ConsumerWidget {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("サインアップエラー"),
+                      content: Text("エラー"),
                       backgroundColor: Colors.red,
                     ),
                   );
