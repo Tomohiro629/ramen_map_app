@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "849922676924",
+    "project_id": "ramenmap629",
+    "storage_bucket": "ramenmap629.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849922676924:android:f00d50636f045415bed8b9",
+        "android_client_info": {
+          "package_name": "com.example.ramen_map_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849922676924-oge1j72pcjp8csvb8oroemltfkiejjdv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqzZdzqeIOmQZq4SmWzj9csal_hEQZqYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849922676924-oge1j72pcjp8csvb8oroemltfkiejjdv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
