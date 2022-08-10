@@ -24,7 +24,16 @@ class SignupPage extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(
                       vertical: 20.0, horizontal: 50.0),
                   child: TextFormField(
-                    decoration: const InputDecoration(labelText: "メールアドレス"),
+                    cursorColor: Colors.blueAccent,
+                    decoration: const InputDecoration(
+                      labelText: "メールアドレス",
+                      labelStyle: TextStyle(color: Colors.blueAccent),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blueAccent,
+                        ),
+                      ),
+                    ),
                     onChanged: (value) {
                       newEmail = value;
                     },
@@ -36,14 +45,20 @@ class SignupPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
-                  decoration: const InputDecoration(labelText: "パスワード"),
+                  cursorColor: Colors.blueAccent,
+                  decoration: const InputDecoration(
+                    labelText: "パスワード",
+                    labelStyle: TextStyle(color: Colors.blueAccent),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                  ),
                   onChanged: (value) {
                     newPassword = value;
                   },
                 )),
-            const SizedBox(
-              height: 20,
-            ),
             MaterialButton(
               child: InkWell(
                 child: Container(
