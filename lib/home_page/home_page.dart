@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ramen_map_app/login_page/login_page.dart';
+import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/signup_page/signup_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -122,7 +123,13 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ],
-            )
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const MapPage()));
+                },
+                child: const Text("Map"))
           ],
         ),
       ),
