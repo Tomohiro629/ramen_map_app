@@ -21,51 +21,68 @@ class MapPage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Center(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Expanded(
-              child: GoogleMap(
-                mapType: MapType.hybrid,
-                initialCameraPosition: mapService.position,
-                onMapCreated: (GoogleMapController controller) {
-                  mapController.conpleter;
-                },
-              ),
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Expanded(
+            child: GoogleMap(
+              mapType: MapType.hybrid,
+              initialCameraPosition: mapService.position,
+              onMapCreated: (GoogleMapController controller) {
+                mapController.conpleter;
+              },
             ),
-            Column(
-              children: [
-                const SizedBox(
-                  height: 20.0,
-                ),
-                SizedBox(
-                  width: 300.0,
-                  child: TextFormField(
-                    controller: inputAddress,
-                    textCapitalization: TextCapitalization.words,
-                    decoration: InputDecoration(
-                      hintText: "検索",
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 15,
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.search_outlined),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: 20.0,
+              ),
+              SizedBox(
+                width: 300.0,
+                child: TextFormField(
+                  controller: inputAddress,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: InputDecoration(
+                    hintText: "検索",
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 15,
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.search_outlined),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100),
                     ),
                   ),
+                  maxLength: 50,
+                  maxLines: null,
                 ),
-              ],
-            )
-          ],
-        ),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: const [
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  // FloatingActionButton(
+                  //     backgroundColor: Colors.white,
+                  //     onPressed: () {},
+                  //     child: const Icon(Icons.map)),
+                  // const SizedBox(
+                  //   height: 10.0,
+                  // ),
+                ]),
+          ),
+        ],
       ),
     );
   }

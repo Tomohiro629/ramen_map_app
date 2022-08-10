@@ -12,10 +12,4 @@ class MapController extends ChangeNotifier {
   final Reader reader;
   MapController(this.reader);
   Completer<GoogleMapController> conpleter = Completer();
-
-  void changeMapType() {
-    MapType currentMapType = MapType.hybrid;
-    currentMapType == MapType.hybrid ? MapType.normal : MapType.hybrid;
-    notifyListeners();
-  }
 }
