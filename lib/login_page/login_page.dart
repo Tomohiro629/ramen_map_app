@@ -24,7 +24,9 @@ class LoginPage extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 20.0, horizontal: 50.0),
                     child: TextFormField(
-                      decoration: const InputDecoration(labelText: "メールアドレス"),
+                      decoration: const InputDecoration(
+                          labelText: "メールアドレス",
+                          labelStyle: TextStyle(color: Colors.orange)),
                       onChanged: (value) {
                         email = value;
                       },
@@ -36,7 +38,9 @@ class LoginPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
-                  decoration: const InputDecoration(labelText: "パスワード"),
+                  decoration: const InputDecoration(
+                      labelText: "パスワード",
+                      labelStyle: TextStyle(color: Colors.orange)),
                   onChanged: (value) {
                     password = value;
                   },
