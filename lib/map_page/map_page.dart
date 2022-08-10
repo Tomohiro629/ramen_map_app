@@ -42,7 +42,6 @@ class MapPage extends ConsumerWidget {
                 width: 300.0,
                 child: TextFormField(
                   controller: inputAddress,
-                  textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     hintText: "検索",
                     contentPadding: const EdgeInsets.symmetric(
@@ -52,8 +51,21 @@ class MapPage extends ConsumerWidget {
                     fillColor: Colors.white,
                     filled: true,
                     suffixIcon: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (inputAddress.text.isNotEmpty) {
+                          mapController.predictions = [];
+                          mapController.autoCompleteSearch(inputAddress.text);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("住所を入力してください"),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
+                      },
                       icon: const Icon(Icons.search_outlined),
+                      hoverColor: Colors.amber,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
@@ -61,6 +73,28 @@ class MapPage extends ConsumerWidget {
                   ),
                   maxLength: 50,
                   maxLines: null,
+                ),
+              ),
+              SizedBox(
+                height: 200.0,
+                width: 400.0,
+                child: Flexible(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: mapController.predictions.length,
+                      itemBuilder: ((context, index) {
+                        return Card(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: Text(mapController
+                                .predictions[index].description
+                                .toString()),
+                            onTap: () {
+                              mapController.moveSearchAddress();
+                            },
+                          ),
+                        );
+                      })),
                 ),
               ),
             ],
