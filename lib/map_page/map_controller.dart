@@ -9,11 +9,9 @@ final mapControllerProvider = ChangeNotifierProvider<MapController>((ref) {
 });
 
 class MapController extends ChangeNotifier {
-  final Reader _reader;
-  MapController(this._reader);
+  final Reader reader;
+  MapController(this.reader);
   Completer<GoogleMapController> conpleter = Completer();
-  final position =
-      const CameraPosition(target: LatLng(34.985409, 135.758102), zoom: 15);
 
   void changeMapType() {
     MapType currentMapType = MapType.hybrid;
