@@ -13,6 +13,10 @@ class MapPage extends ConsumerWidget {
     final mapService = ref.watch(googleMapServiceProvider);
     final inputAddress = TextEditingController();
 
+    if (mapController.loading) {
+      const Center(child: CircularProgressIndicator());
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -25,13 +29,17 @@ class MapPage extends ConsumerWidget {
         alignment: Alignment.topCenter,
         children: [
           Expanded(
-            child: GoogleMap(
-              mapType: MapType.hybrid,
-              initialCameraPosition: mapService.position,
-              onMapCreated: (GoogleMapController controller) {
-                mapController.conpleter;
-              },
-            ),
+            child: mapController.initialPosition != null
+                ? GoogleMap(
+                    mapType: MapType.hybrid,
+                    myLocationEnabled: true,
+                    initialCameraPosition: CameraPosition(
+                        target: mapController.initialPosition!, zoom: 15.0),
+                    onMapCreated: (GoogleMapController controller) {
+                      mapController.conpleter;
+                    },
+                  )
+                : Container(),
           ),
           Column(
             children: [
@@ -89,8 +97,10 @@ class MapPage extends ConsumerWidget {
                             title: Text(mapController
                                 .predictions[index].description
                                 .toString()),
-                            onTap: () {
-                              mapController.moveSearchAddress();
+                            onTap: () async {
+                              // mapController.moveSearchAddress(index);
+                              print(mapController.predictions[index].description
+                                  .toString());
                             },
                           ),
                         );
