@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:ramen_map_app/login_page/login_page.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
+import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 import 'package:ramen_map_app/signup_page/signup_page.dart';
-import 'package:ramen_map_app/store_set_page/store_set_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -136,7 +135,7 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const StoreSetPage()));
+                          builder: (context) => const SetStorePage()));
                 },
                 child: const Text("Store Set"))
           ],
