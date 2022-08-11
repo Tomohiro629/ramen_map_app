@@ -4,9 +4,12 @@ import 'package:ramen_map_app/set_store_page/components/set_button.dart';
 import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
 
 class SetStorePage extends ConsumerWidget {
-  const SetStorePage({
-    Key? key,
-  }) : super(key: key);
+  const SetStorePage(
+      {Key? key, required this.latitude, required this.longitude})
+      : super(key: key);
+
+  final double latitude;
+  final double longitude;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,44 +30,45 @@ class SetStorePage extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const CircleAvatar(
-                radius: 80,
-                // foregroundImage: imagePickerService.imagePath != null
-                //     ? FileImage(
-                //         imagePickerService.imagePath!,
-                //       )
-                //     : null,
-                backgroundColor: Color.fromARGB(188, 242, 225, 199),
-                child: Text("画像を追加"),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        side: const BorderSide(color: Colors.orange)),
-                    onPressed: () {
-                      // imagePickerService.takeCamera();
-                    },
-                    child: const Icon(
-                      Icons.camera_alt,
-                      color: Colors.orange,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 100.0),
+                    child: MaterialButton(
+                      shape: const CircleBorder(
+                          side: BorderSide(color: Colors.orange)),
+                      onPressed: () {
+                        // imagePickerService.takeCamera();
+                      },
+                      child: const Icon(
+                        Icons.camera_alt,
+                        color: Colors.orange,
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 40,
+                  const CircleAvatar(
+                    radius: 70,
+                    // foregroundImage: imagePickerService.imagePath != null
+                    //     ? FileImage(
+                    //         imagePickerService.imagePath!,
+                    //       )
+                    //     : null,
+                    backgroundColor: Color.fromARGB(188, 242, 225, 199),
+                    child: Text("画像を追加"),
                   ),
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        side: const BorderSide(color: Colors.orange)),
-                    onPressed: () {
-                      // imagePickerService.takeGallery();
-                    },
-                    child: const Icon(
-                      Icons.photo,
-                      color: Colors.orange,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 100.0),
+                    child: MaterialButton(
+                      shape: const CircleBorder(
+                          side: BorderSide(color: Colors.orange)),
+                      onPressed: () {
+                        // imagePickerService.takeGallery();
+                      },
+                      child: const Icon(
+                        Icons.photo,
+                        color: Colors.orange,
+                      ),
                     ),
                   ),
                 ],
@@ -94,6 +98,7 @@ class SetStorePage extends ConsumerWidget {
               SizedBox(
                 width: 350.0,
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   controller: price,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(
@@ -174,14 +179,15 @@ class SetStorePage extends ConsumerWidget {
               ),
               MaterialButton(
                 onPressed: () {
+                  print(latitude);
                   try {
                     storeSetController.setStore(
                         name: storeName.text,
                         price: price.text,
                         memo: memo.text,
                         area: area,
-                        latitude: 10,
-                        longitude: 20);
+                        latitude: latitude,
+                        longitude: longitude);
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

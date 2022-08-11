@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class Store {
@@ -47,8 +48,7 @@ class Store {
       'price': price,
       'memo': memo,
       'area': area,
-      'latitude': latitude,
-      'longitube': longitude,
+      'location': GeoPoint(latitude, longitude)
     };
   }
 
