@@ -4,6 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
+import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class MapPage extends ConsumerWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class MapPage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Map",
+          "地図",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -100,9 +101,19 @@ class MapPage extends ConsumerWidget {
                                   .predictions[index].description
                                   .toString()),
                               onTap: () async {
-                                mapController.getSelectedAddress(mapController
-                                    .predictions[index].description
-                                    .toString());
+                                List location = await locationFromAddress(
+                                    mapController.predictions[index].description
+                                        .toString());
+                                // ignore: use_build_context_synchronously
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SetStorePage(
+                                        latitude: location.first.latitude,
+                                        longitude: location.first.longitude,
+                                      ),
+                                    ));
+                                mapController.predictions = [];
                               }),
                         );
                       })),

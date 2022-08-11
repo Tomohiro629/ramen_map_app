@@ -130,14 +130,6 @@ class HomePage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const MapPage()));
                 },
                 child: const Text("Map")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SetStorePage()));
-                },
-                child: const Text("Store Set"))
           ],
         ),
       ),

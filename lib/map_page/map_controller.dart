@@ -29,9 +29,7 @@ class MapController extends ChangeNotifier {
   List<Store> stores = [];
   bool loading = true;
 
-  void addMarker(Store store, location) async {
-    final locations = await locationFromAddress(location);
-
+  void addMarker(Store store) async {
     final marker = Marker(
         markerId: MarkerId(store.storeId),
         position: LatLng(store.latitude, store.longitude),
