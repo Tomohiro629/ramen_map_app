@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
@@ -18,8 +19,8 @@ class MapController extends ChangeNotifier {
     loading = false;
   }
 
-  Completer<GoogleMapController> conpleter = Completer();
   List<AutocompletePrediction> predictions = [];
+  List getLatLng = [];
   LatLng? initialPosition;
   bool loading = true;
 
@@ -28,7 +29,7 @@ class MapController extends ChangeNotifier {
         .googlePlace
         .autocomplete
         .get(inputAddress);
-    print(predictions);
+
     try {
       if (address != null && address.predictions != null) {
         predictions = address.predictions!;
@@ -47,17 +48,14 @@ class MapController extends ChangeNotifier {
 
       initialPosition = LatLng(positon.latitude, positon.longitude);
       notifyListeners();
-      print(positon);
     } catch (e) {
       initialPosition = const LatLng(35.010362, 135.768735);
       notifyListeners();
     }
   }
 
-  Future<void> moveSearchAddress(int index) async {
-    predictions = [];
-
-    {}
-    notifyListeners();
+  Future<void> getSelectedAddress(String location) async {
+    List locations = await locationFromAddress(location);
+    print(locations);
   }
 }

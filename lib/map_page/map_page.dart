@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
@@ -36,7 +37,7 @@ class MapPage extends ConsumerWidget {
                     initialCameraPosition: CameraPosition(
                         target: mapController.initialPosition!, zoom: 15.0),
                     onMapCreated: (GoogleMapController controller) {
-                      mapController.conpleter;
+                      mapService.conpleter;
                     },
                   )
                 : Container(),
@@ -84,8 +85,8 @@ class MapPage extends ConsumerWidget {
                 ),
               ),
               SizedBox(
-                height: 200.0,
-                width: 400.0,
+                height: 150.0,
+                width: 300.0,
                 child: Flexible(
                   child: ListView.builder(
                       shrinkWrap: true,
@@ -94,15 +95,14 @@ class MapPage extends ConsumerWidget {
                         return Card(
                           color: Colors.white,
                           child: ListTile(
-                            title: Text(mapController
-                                .predictions[index].description
-                                .toString()),
-                            onTap: () async {
-                              // mapController.moveSearchAddress(index);
-                              print(mapController.predictions[index].description
-                                  .toString());
-                            },
-                          ),
+                              title: Text(mapController
+                                  .predictions[index].description
+                                  .toString()),
+                              onTap: () async {
+                                mapController.getSelectedAddress(mapController
+                                    .predictions[index].description
+                                    .toString());
+                              }),
                         );
                       })),
                 ),
