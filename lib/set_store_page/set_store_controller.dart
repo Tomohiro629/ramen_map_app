@@ -16,6 +16,7 @@ class SetStoreController extends ChangeNotifier {
     required String name,
     required String price,
     required String memo,
+    required String area,
     required double latitude,
     required double longitude,
   }) async {
@@ -23,6 +24,7 @@ class SetStoreController extends ChangeNotifier {
         name: name,
         price: price,
         memo: memo,
+        area: area,
         latitude: latitude,
         longitude: longitude);
     await _reader(storeRepositoryProvider).setStore(store: store);

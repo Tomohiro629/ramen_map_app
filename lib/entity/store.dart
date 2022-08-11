@@ -6,6 +6,7 @@ class Store {
     required this.name,
     required this.price,
     required this.memo,
+    required this.area,
     required this.latitude,
     required this.longitude,
   });
@@ -14,6 +15,7 @@ class Store {
     required String name,
     required String price,
     required String memo,
+    required String area,
     required double latitude,
     required double longitude,
   }) {
@@ -22,6 +24,7 @@ class Store {
         name: name,
         price: price,
         memo: memo,
+        area: area,
         latitude: latitude,
         longitude: longitude);
   }
@@ -32,6 +35,7 @@ class Store {
         name: map['name'],
         price: map['price'],
         memo: map['memo'],
+        area: map['area'],
         latitude: map['latitude'],
         longitude: map['longitube']);
   }
@@ -42,6 +46,7 @@ class Store {
       'name': name,
       'price': price,
       'memo': memo,
+      'area': area,
       'latitude': latitude,
       'longitube': longitude,
     };
@@ -51,6 +56,7 @@ class Store {
   final String name;
   final String price;
   final String memo;
+  final String area;
   final double latitude;
   final double longitude;
 }

@@ -10,6 +10,7 @@ class PriceField extends StatelessWidget {
       width: 350.0,
       child: TextFormField(
         controller: price,
+        keyboardType: TextInputType.number,
         decoration: const InputDecoration(
             border: OutlineInputBorder(
                 borderSide: BorderSide(
