@@ -39,6 +39,7 @@ class MapPage extends ConsumerWidget {
                     onMapCreated: (GoogleMapController controller) {
                       mapService.conpleter;
                     },
+                    markers: mapController.markers,
                   )
                 : Container(),
           ),

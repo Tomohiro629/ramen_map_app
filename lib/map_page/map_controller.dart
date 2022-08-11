@@ -6,6 +6,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
+import 'package:ramen_map_app/entity/store.dart';
+import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 
 final mapControllerProvider = ChangeNotifierProvider<MapController>((ref) {
@@ -16,13 +18,30 @@ class MapController extends ChangeNotifier {
   final Reader reader;
   MapController(this.reader) {
     getUserLocation();
+    addMarker;
     loading = false;
   }
 
   List<AutocompletePrediction> predictions = [];
   List getLatLng = [];
   LatLng? initialPosition;
+  Set<Marker> markers = {};
+  List<Store> stores = [];
   bool loading = true;
+
+  void addMarker(Store store, location) async {
+    final locations = await locationFromAddress(location);
+
+    final marker = Marker(
+        markerId: MarkerId(store.storeId),
+        position: LatLng(store.latitude, store.longitude),
+        infoWindow: InfoWindow(title: store.name, snippet: store.price));
+    notifyListeners();
+    reader(storeRepositoryProvider).fetchStoresStream().listen((store) {
+      this.stores = stores;
+    });
+    markers.add(marker);
+  }
 
   Future<void> autoCompleteSearch(String inputAddress) async {
     final address = await reader(googleMapServiceProvider)
