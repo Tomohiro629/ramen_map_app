@@ -27,7 +27,8 @@ class StoreRepository {
               price: price,
               memo: memo,
               area: area,
-              location: "");
+              location: "",
+              timeStamp: DateTime.now());
         }).toList());
   }
 
@@ -45,7 +46,8 @@ class StoreRepository {
   }
 
   Query<Store> queryStore() {
-    final query = _firestore.collection("stores");
+    final query =
+        _firestore.collection("stores").orderBy('timeStamp', descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
         toFirestore: (store, _) => store.toJson());
