@@ -23,20 +23,7 @@ class StoreListPage extends ConsumerWidget {
         query: storeListController.storeQuery(),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
-          return ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              Column(
-                children: [
-                  Card(
-                    child: ListTile(
-                      title: Text(store.name),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          );
+          return StoreData(store: store);
         },
       )),
     );
