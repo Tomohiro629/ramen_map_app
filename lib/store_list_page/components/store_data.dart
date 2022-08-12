@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/entity/store.dart';
+import 'package:ramen_map_app/service/common_method.dart';
 
 class StoreData extends ConsumerWidget {
   const StoreData({Key? key, required this.store}) : super(key: key);
@@ -36,7 +37,7 @@ class StoreData extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: Text(
                         store.name,
                         style: const TextStyle(fontSize: 25.0),
@@ -44,6 +45,13 @@ class StoreData extends ConsumerWidget {
                     ),
                     Column(
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            " 追加日:${getDateString(store.timeStamp)}",
+                            style: const TextStyle(fontSize: 15.0),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Text(
