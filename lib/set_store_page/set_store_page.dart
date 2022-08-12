@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/set_store_page/components/set_button.dart';
 import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
+import 'package:ramen_map_app/store_list_page/store_list_page.dart';
 
 class SetStorePage extends ConsumerWidget {
   const SetStorePage(
@@ -188,6 +189,11 @@ class SetStorePage extends ConsumerWidget {
                         area: area,
                         latitude: latitude,
                         longitude: longitude);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const StoreListPage(),
+                        ));
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

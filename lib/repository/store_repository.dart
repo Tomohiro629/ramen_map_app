@@ -22,14 +22,12 @@ class StoreRepository {
           final String area = data['area'];
 
           return Store(
-            storeId: id,
-            name: storename,
-            price: price,
-            memo: memo,
-            area: area,
-            latitude: 0.0,
-            longitude: 0.0,
-          );
+              storeId: id,
+              name: storename,
+              price: price,
+              memo: memo,
+              area: area,
+              location: "");
         }).toList());
   }
 
@@ -44,5 +42,12 @@ class StoreRepository {
         child: Text("Set Error"),
       );
     }
+  }
+
+  Query<Store> queryStore() {
+    final query = _firestore.collection("stores");
+    return query.withConverter(
+        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
+        toFirestore: (store, _) => store.toJson());
   }
 }

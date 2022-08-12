@@ -8,8 +8,7 @@ class Store {
     required this.price,
     required this.memo,
     required this.area,
-    required this.latitude,
-    required this.longitude,
+    required this.location,
   });
 
   factory Store.create({
@@ -26,8 +25,7 @@ class Store {
         price: price,
         memo: memo,
         area: area,
-        latitude: latitude,
-        longitude: longitude);
+        location: GeoPoint(latitude, longitude));
   }
 
   factory Store.fromJson(Map<String, dynamic> map) {
@@ -37,8 +35,7 @@ class Store {
         price: map['price'],
         memo: map['memo'],
         area: map['area'],
-        latitude: map['latitude'],
-        longitude: map['longitube']);
+        location: map['location']);
   }
 
   Map<String, dynamic> toJson() {
@@ -48,7 +45,7 @@ class Store {
       'price': price,
       'memo': memo,
       'area': area,
-      'location': GeoPoint(latitude, longitude)
+      'location': location,
     };
   }
 
@@ -57,6 +54,5 @@ class Store {
   final String price;
   final String memo;
   final String area;
-  final double latitude;
-  final double longitude;
+  final location;
 }

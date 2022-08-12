@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterfire_ui/firestore.dart';
+import 'package:ramen_map_app/entity/store.dart';
+import 'package:ramen_map_app/store_list_page/components/store_data.dart';
+import 'package:ramen_map_app/store_list_page/store_list_controller.dart';
+
+class StoreListPage extends ConsumerWidget {
+  const StoreListPage({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final storeListController = ref.watch(storeListProvider);
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "店一覧",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: Center(
+          child: FirestoreListView<Store>(
+        query: storeListController.storeQuery(),
+        itemBuilder: (context, snapshot) {
+          final store = snapshot.data();
+          return StoreData(store: store);
+        },
+      )),
+    );
+  }
+}
