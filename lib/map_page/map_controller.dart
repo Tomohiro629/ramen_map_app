@@ -32,7 +32,7 @@ class MapController extends ChangeNotifier {
   void addMarker(Store store) async {
     final marker = Marker(
         markerId: MarkerId(store.storeId),
-        position: LatLng(store.latitude, store.longitude),
+        position: LatLng(store.location[0], store.location[1]),
         infoWindow: InfoWindow(title: store.name, snippet: store.price));
     notifyListeners();
     reader(storeRepositoryProvider).fetchStoresStream().listen((store) {

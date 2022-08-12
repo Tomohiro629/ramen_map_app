@@ -23,29 +23,20 @@ class StoreListPage extends ConsumerWidget {
         query: storeListController.storeQuery(),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
-          return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: Colors.grey.shade200,
-                        offset: const Offset(2, 4),
-                        blurRadius: 5,
-                        spreadRadius: 2)
-                  ],
-                  gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color.fromARGB(159, 93, 248, 240),
-                        Color.fromARGB(248, 9, 19, 217)
-                      ])),
-              child: ListView(
-                shrinkWrap: true,
-                children: <Widget>[StoreData(store: store)],
-              ));
+          return ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              Column(
+                children: [
+                  Card(
+                    child: ListTile(
+                      title: Text(store.name),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          );
         },
       )),
     );

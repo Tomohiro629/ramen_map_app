@@ -23,6 +23,7 @@ class StoreData extends ConsumerWidget {
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Stack(
                   alignment: Alignment.center,
