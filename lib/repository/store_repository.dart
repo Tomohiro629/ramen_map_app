@@ -45,4 +45,11 @@ class StoreRepository {
       );
     }
   }
+
+  Query<Store> queryStore() {
+    final query = _firestore.collection("stores");
+    return query.withConverter(
+        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
+        toFirestore: (store, _) => store.toJson());
+  }
 }
