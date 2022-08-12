@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class Store {
-  Store({
-    required this.storeId,
-    required this.name,
-    required this.price,
-    required this.memo,
-    required this.area,
-    required this.location,
-  });
+  Store(
+      {required this.storeId,
+      required this.name,
+      required this.price,
+      required this.memo,
+      required this.area,
+      required this.location,
+      required this.timeStamp});
 
   factory Store.create({
     required String name,
@@ -25,17 +25,20 @@ class Store {
         price: price,
         memo: memo,
         area: area,
-        location: GeoPoint(latitude, longitude));
+        location: GeoPoint(latitude, longitude),
+        timeStamp: DateTime.now());
   }
 
   factory Store.fromJson(Map<String, dynamic> map) {
     return Store(
-        storeId: map['id'],
-        name: map['name'],
-        price: map['price'],
-        memo: map['memo'],
-        area: map['area'],
-        location: map['location']);
+      storeId: map['id'],
+      name: map['name'],
+      price: map['price'],
+      memo: map['memo'],
+      area: map['area'],
+      location: map['location'],
+      timeStamp: (map['timeStamp']! as Timestamp).toDate(),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -46,6 +49,7 @@ class Store {
       'memo': memo,
       'area': area,
       'location': location,
+      'timeStamp': timeStamp,
     };
   }
 
@@ -55,4 +59,5 @@ class Store {
   final String memo;
   final String area;
   final location;
+  final DateTime timeStamp;
 }
