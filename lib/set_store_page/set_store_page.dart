@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramen_map_app/service/coloud_storage_service.dart';
+import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/set_store_page/components/set_button.dart';
 import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
 import 'package:ramen_map_app/store_list_page/store_list_page.dart';
@@ -15,6 +17,8 @@ class SetStorePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storeSetController = ref.watch(setStoreControllerProvider);
+    final imagePickerService = ref.watch(imagePickerServiceProvider);
+    final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
     final price = TextEditingController();
     final memo = TextEditingController();
@@ -40,7 +44,7 @@ class SetStorePage extends ConsumerWidget {
                       shape: const CircleBorder(
                           side: BorderSide(color: Colors.orange)),
                       onPressed: () {
-                        // imagePickerService.takeCamera();
+                        imagePickerService.takeCamera();
                       },
                       child: const Icon(
                         Icons.camera_alt,
@@ -48,15 +52,15 @@ class SetStorePage extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 70,
-                    // foregroundImage: imagePickerService.imagePath != null
-                    //     ? FileImage(
-                    //         imagePickerService.imagePath!,
-                    //       )
-                    //     : null,
+                    foregroundImage: imagePickerService.imagePath != null
+                        ? FileImage(
+                            imagePickerService.imagePath!,
+                          )
+                        : null,
                     backgroundColor: Color.fromARGB(188, 242, 225, 199),
-                    child: Text("画像を追加"),
+                    child: const Text("画像を追加"),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 100.0),
@@ -64,7 +68,7 @@ class SetStorePage extends ConsumerWidget {
                       shape: const CircleBorder(
                           side: BorderSide(color: Colors.orange)),
                       onPressed: () {
-                        // imagePickerService.takeGallery();
+                        imagePickerService.takeGallery();
                       },
                       child: const Icon(
                         Icons.photo,
@@ -179,9 +183,10 @@ class SetStorePage extends ConsumerWidget {
                     }),
               ),
               MaterialButton(
-                onPressed: () {
-                  print(latitude);
+                onPressed: () async {
                   try {
+                    storageService.uploadPostImageAndGetUrl(
+                        file: imagePickerService.imagePath!);
                     storeSetController.setStore(
                         name: storeName.text,
                         price: price.text,
@@ -189,7 +194,7 @@ class SetStorePage extends ConsumerWidget {
                         area: area,
                         latitude: latitude,
                         longitude: longitude,
-                        ramenImage: ramenImage);
+                        ramenImage: storageService.imageURL!);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
