@@ -52,16 +52,13 @@ class SetStorePage extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  CircleAvatar(
-                    radius: 70,
-                    foregroundImage: imagePickerService.imagePath != null
-                        ? FileImage(
-                            imagePickerService.imagePath!,
-                          )
-                        : null,
-                    backgroundColor: Color.fromARGB(188, 242, 225, 199),
-                    child: const Text("画像を追加"),
-                  ),
+                  imagePickerService.imagePath != null
+                      ? Image.file(
+                          imagePickerService.imagePath!,
+                          width: 200.0,
+                          height: 150.0,
+                        )
+                      : const Text("写真を追加"),
                   Padding(
                     padding: const EdgeInsets.only(top: 100.0),
                     child: MaterialButton(
@@ -195,11 +192,11 @@ class SetStorePage extends ConsumerWidget {
                         latitude: latitude,
                         longitude: longitude,
                         ramenImage: storageService.imageURL!);
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StoreListPage(),
-                        ));
+                            builder: (context) => const StoreListPage()),
+                        (_) => false);
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
