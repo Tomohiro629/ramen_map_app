@@ -19,6 +19,7 @@ class SetStoreController extends ChangeNotifier {
     required String area,
     required double latitude,
     required double longitude,
+    required String ramenImage,
   }) async {
     final store = Store.create(
         name: name,
@@ -26,7 +27,8 @@ class SetStoreController extends ChangeNotifier {
         memo: memo,
         area: area,
         latitude: latitude,
-        longitude: longitude);
+        longitude: longitude,
+        ramenImage: ramenImage);
     await _reader(storeRepositoryProvider).setStore(store: store);
   }
 }

@@ -35,10 +35,12 @@ dependencies:
   flutterfire_ui: ^0.4.3+5
   firebase_auth: ^3.6.2
   firebase_core: ^1.20.0
+  firebase_storage: ^10.3.5
   geocoding: ^2.0.4
   geolocator: ^9.0.1
   google_maps_flutter: ^2.1.10
   google_place: ^0.4.7
+  image_picker: ^0.8.5+3
   intl: ^0.17.0
   uuid: 3.0.6
 
