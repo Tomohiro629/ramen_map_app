@@ -188,7 +188,8 @@ class SetStorePage extends ConsumerWidget {
                         memo: memo.text,
                         area: area,
                         latitude: latitude,
-                        longitude: longitude);
+                        longitude: longitude,
+                        ramenImage: ramenImage);
                     Navigator.push(
                         context,
                         MaterialPageRoute(

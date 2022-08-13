@@ -20,6 +20,7 @@ class StoreRepository {
           final String price = data['price'];
           final String memo = data['memo'];
           final String area = data['area'];
+          final String ramenImage = data['ramenImage'];
 
           return Store(
               storeId: id,
@@ -28,7 +29,8 @@ class StoreRepository {
               memo: memo,
               area: area,
               location: "",
-              timeStamp: DateTime.now());
+              timeStamp: DateTime.now(),
+              ramenImage: ramenImage);
         }).toList());
   }
 

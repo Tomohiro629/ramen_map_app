@@ -9,7 +9,8 @@ class Store {
       required this.memo,
       required this.area,
       required this.location,
-      required this.timeStamp});
+      required this.timeStamp,
+      required this.ramenImage});
 
   factory Store.create({
     required String name,
@@ -18,15 +19,18 @@ class Store {
     required String area,
     required double latitude,
     required double longitude,
+    required String ramenImage,
   }) {
     return Store(
-        storeId: const Uuid().v4(),
-        name: name,
-        price: price,
-        memo: memo,
-        area: area,
-        location: GeoPoint(latitude, longitude),
-        timeStamp: DateTime.now());
+      storeId: const Uuid().v4(),
+      name: name,
+      price: price,
+      memo: memo,
+      area: area,
+      location: GeoPoint(latitude, longitude),
+      timeStamp: DateTime.now(),
+      ramenImage: ramenImage,
+    );
   }
 
   factory Store.fromJson(Map<String, dynamic> map) {
@@ -38,6 +42,7 @@ class Store {
       area: map['area'],
       location: map['location'],
       timeStamp: (map['timeStamp']! as Timestamp).toDate(),
+      ramenImage: map['ramenImage'],
     );
   }
 
@@ -50,6 +55,7 @@ class Store {
       'area': area,
       'location': location,
       'timeStamp': timeStamp,
+      'ramenImage': ramenImage,
     };
   }
 
@@ -60,4 +66,5 @@ class Store {
   final String area;
   final location;
   final DateTime timeStamp;
+  final String ramenImage;
 }
