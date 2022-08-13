@@ -20,10 +20,8 @@ class StoreData extends ConsumerWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MapPage(store: store)));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MapPage()));
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,

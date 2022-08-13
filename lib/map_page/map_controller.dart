@@ -37,15 +37,6 @@ class MapController extends ChangeNotifier {
     markers.add(marker);
   }
 
-  Set<Marker> createMarker(Store store) {
-    return {
-      Marker(
-          markerId: MarkerId(store.storeId),
-          position: LatLng(store.latitude, store.longitude),
-          infoWindow: InfoWindow(title: store.name))
-    };
-  }
-
   Future<void> autoCompleteSearch(String inputAddress) async {
     final address = await reader(googleMapServiceProvider)
         .googlePlace

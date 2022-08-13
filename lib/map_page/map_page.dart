@@ -8,8 +8,9 @@ import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class MapPage extends ConsumerWidget {
-  const MapPage({Key? key, required this.store}) : super(key: key);
-  final Store store;
+  const MapPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,7 +43,7 @@ class MapPage extends ConsumerWidget {
                     onMapCreated: (GoogleMapController controller) {
                       mapService.conpleter;
                     },
-                    markers: mapController.createMarker(store),
+                    markers: mapController.markers,
                   )
                 : Container(),
           ),
