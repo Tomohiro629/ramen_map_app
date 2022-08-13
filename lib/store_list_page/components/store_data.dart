@@ -22,6 +22,13 @@ class StoreData extends ConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    store.name,
+                    style: const TextStyle(fontSize: 25.0),
+                  ),
+                ),
                 Stack(
                   alignment: Alignment.center,
                   children: [
@@ -32,40 +39,29 @@ class StoreData extends ConsumerWidget {
                     )
                   ],
                 ),
+                Container(
+                  child: Text(
+                    "メモ： ${store.memo}",
+                    style: const TextStyle(fontSize: 15.0),
+                  ),
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Text(
+                      getDateString(store.timeStamp),
+                      style: const TextStyle(fontSize: 15.0),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: Text(
-                        store.name,
-                        style: const TextStyle(fontSize: 25.0),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          " ${store.price}円",
+                          style: const TextStyle(fontSize: 25.0),
+                        ),
                       ),
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                            " 追加日:${getDateString(store.timeStamp)}",
-                            style: const TextStyle(fontSize: 15.0),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                            " ${store.price}円",
-                            style: const TextStyle(fontSize: 20.0),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                            store.memo,
-                            style: const TextStyle(fontSize: 15.0),
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
