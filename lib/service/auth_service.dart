@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterfire_ui/auth.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) {
   return AuthService();
@@ -8,6 +9,7 @@ final authServiceProvider = Provider<AuthService>((ref) {
 class AuthService {
   final _auth = FirebaseAuth.instance;
   String get userId => _auth.currentUser!.uid; //カレントユーザーのIDをuserIdへ
+  Stream<User?> get getAuthState => _auth.authStateChanges();
 
   Future<void> signupUser(
       {required String newEmail, required String newPassword}) async {
