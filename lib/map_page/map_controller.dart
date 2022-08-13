@@ -32,13 +32,15 @@ class MapController extends ChangeNotifier {
   void addMarker(Store store) async {
     final marker = Marker(
         markerId: MarkerId(store.storeId),
-        position: LatLng(store.location[0], store.location[1]),
+        position: LatLng(store.latitude, store.longitude),
         infoWindow: InfoWindow(title: store.name, snippet: store.price));
     notifyListeners();
     reader(storeRepositoryProvider).fetchStoresStream().listen((store) {
       this.stores = stores;
     });
+    notifyListeners();
     markers.add(marker);
+    notifyListeners();
   }
 
   Future<void> autoCompleteSearch(String inputAddress) async {

@@ -28,6 +28,8 @@ class StoreRepository {
               price: price,
               memo: memo,
               area: area,
+              latitude: 0.0,
+              longitude: 0.0,
               location: "",
               timeStamp: DateTime.now(),
               ramenImage: ramenImage);
