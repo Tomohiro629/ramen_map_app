@@ -26,7 +26,6 @@ class MapController extends ChangeNotifier {
   List getLatLng = [];
   LatLng? initialPosition;
   Set<Marker> markers = {};
-  List<Store> stores = [];
   bool loading = true;
 
   void addMarker(Store store) async {
@@ -35,12 +34,16 @@ class MapController extends ChangeNotifier {
         position: LatLng(store.latitude, store.longitude),
         infoWindow: InfoWindow(title: store.name, snippet: store.price));
     notifyListeners();
-    reader(storeRepositoryProvider).fetchStoresStream().listen((store) {
-      this.stores = stores;
-    });
-    notifyListeners();
     markers.add(marker);
-    notifyListeners();
+  }
+
+  Set<Marker> createMarker(Store store) {
+    return {
+      Marker(
+          markerId: MarkerId(store.storeId),
+          position: LatLng(store.latitude, store.longitude),
+          infoWindow: InfoWindow(title: store.name))
+    };
   }
 
   Future<void> autoCompleteSearch(String inputAddress) async {

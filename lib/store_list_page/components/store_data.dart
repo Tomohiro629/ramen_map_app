@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/entity/store.dart';
+import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/service/common_method.dart';
 
 class StoreData extends ConsumerWidget {
@@ -18,7 +19,12 @@ class StoreData extends ConsumerWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MapPage(store: store)));
+            },
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

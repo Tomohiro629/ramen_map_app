@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class MapPage extends ConsumerWidget {
-  const MapPage({Key? key}) : super(key: key);
+  const MapPage({Key? key, required this.store}) : super(key: key);
+  final Store store;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,7 +42,7 @@ class MapPage extends ConsumerWidget {
                     onMapCreated: (GoogleMapController controller) {
                       mapService.conpleter;
                     },
-                    markers: mapController.markers,
+                    markers: mapController.createMarker(store),
                   )
                 : Container(),
           ),

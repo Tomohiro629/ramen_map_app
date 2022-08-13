@@ -13,27 +13,8 @@ class StoreRepository {
   Stream<List<Store>> fetchStoresStream() {
     final snapshot = _firestore.collection('stores').snapshots();
 
-    return snapshot.map((qs) => qs.docs.map((doc) {
-          Map<String, dynamic> data = doc.data();
-          final String id = data['id'];
-          final String storename = data['store'];
-          final String price = data['price'];
-          final String memo = data['memo'];
-          final String area = data['area'];
-          final String ramenImage = data['ramenImage'];
-
-          return Store(
-              storeId: id,
-              name: storename,
-              price: price,
-              memo: memo,
-              area: area,
-              latitude: 0.0,
-              longitude: 0.0,
-              location: "",
-              timeStamp: DateTime.now(),
-              ramenImage: ramenImage);
-        }).toList());
+    return snapshot
+        .map((qs) => qs.docs.map((doc) => Store.fromJson(doc.data())).toList());
   }
 
   Future<void> setStore({required Store store}) async {
