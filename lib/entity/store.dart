@@ -10,7 +10,9 @@ class Store {
       required this.area,
       required this.location,
       required this.timeStamp,
-      required this.ramenImage});
+      required this.ramenImage,
+      required this.latitude,
+      required this.longitude});
 
   factory Store.create({
     required String name,
@@ -27,6 +29,8 @@ class Store {
       price: price,
       memo: memo,
       area: area,
+      latitude: latitude,
+      longitude: longitude,
       location: GeoPoint(latitude, longitude),
       timeStamp: DateTime.now(),
       ramenImage: ramenImage,
@@ -40,6 +44,8 @@ class Store {
       price: map['price'],
       memo: map['memo'],
       area: map['area'],
+      latitude: map['latitude'],
+      longitude: map['longitude'],
       location: map['location'],
       timeStamp: (map['timeStamp']! as Timestamp).toDate(),
       ramenImage: map['ramenImage'],
@@ -54,6 +60,8 @@ class Store {
       'memo': memo,
       'area': area,
       'location': location,
+      'latitude': latitude,
+      'longitude': longitude,
       'timeStamp': timeStamp,
       'ramenImage': ramenImage,
     };
@@ -64,6 +72,8 @@ class Store {
   final String price;
   final String memo;
   final String area;
+  final double latitude;
+  final double longitude;
   final location;
   final DateTime timeStamp;
   final String ramenImage;
