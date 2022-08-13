@@ -4,8 +4,8 @@ import 'package:ramen_map_app/bottom_bar/bottom_bar_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/store_list_page/store_list_page.dart';
 
-class BottomNavigationBarPage extends ConsumerWidget {
-  BottomNavigationBarPage({
+class BottomBarPage extends ConsumerWidget {
+  BottomBarPage({
     Key? key,
   }) : super(key: key);
 
