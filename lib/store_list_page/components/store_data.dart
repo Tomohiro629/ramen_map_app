@@ -27,8 +27,7 @@ class StoreData extends ConsumerWidget {
                   children: [
                     Ink.image(
                       height: 250.0,
-                      image: const NetworkImage(
-                          "https://th.bing.com/th/id/OIP.ah0wDB6kaCKldChTg1evsQHaFj?w=250&h=187&c=7&r=0&o=5&dpr=1.5&pid=1.7"),
+                      image: NetworkImage(store.ramenImage),
                       fit: BoxFit.fitWidth,
                     )
                   ],
