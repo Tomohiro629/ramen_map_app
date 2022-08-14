@@ -32,6 +32,7 @@ class SetStorePage extends ConsumerWidget {
             style: TextStyle(color: Colors.white),
           ),
           widgets: [],
+          color: Colors.orange,
         ),
         body: Center(
           child: Column(
@@ -202,8 +203,12 @@ class SetStorePage extends ConsumerWidget {
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("登録エラー"),
+                        content: Text(
+                          "登録エラー\n再度試してください。",
+                          textAlign: TextAlign.center,
+                        ),
                         backgroundColor: Colors.red,
+                        duration: Duration(seconds: 1),
                       ),
                     );
                   }

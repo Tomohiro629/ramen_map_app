@@ -20,6 +20,7 @@ class SignupPage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
+        color: Colors.greenAccent,
       ),
       body: Center(
         child: Column(
@@ -115,8 +116,12 @@ class SignupPage extends ConsumerWidget {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("エラー"),
+                      content: Text(
+                        "登録エラー",
+                        textAlign: TextAlign.center,
+                      ),
                       backgroundColor: Colors.red,
+                      duration: Duration(seconds: 1),
                     ),
                   );
                 }

@@ -29,6 +29,7 @@ class MapPage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
+        color: Colors.orange,
       ),
       body: Stack(
         alignment: Alignment.topCenter,
