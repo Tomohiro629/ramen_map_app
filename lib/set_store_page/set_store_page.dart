@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/set_store_page/components/set_button.dart';
 import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
-import 'package:ramen_map_app/store_list_page/store_list_page.dart';
 
 class SetStorePage extends ConsumerWidget {
   const SetStorePage(
@@ -195,7 +195,7 @@ class SetStorePage extends ConsumerWidget {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const StoreListPage()),
+                            builder: (context) => BottomBarPage()),
                         (_) => false);
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
