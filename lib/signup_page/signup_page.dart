@@ -55,6 +55,7 @@ class SignupPage extends ConsumerWidget {
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
                   cursorColor: Colors.greenAccent,
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                     labelText: "パスワード",
                     labelStyle: TextStyle(color: Colors.greenAccent),

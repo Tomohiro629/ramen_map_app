@@ -47,6 +47,7 @@ class LoginPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       labelText: "パスワード",
                       labelStyle: TextStyle(color: Colors.orange)),
