@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
@@ -25,12 +26,13 @@ class SetStorePage extends ConsumerWidget {
     String area = "";
 
     return Scaffold(
-        appBar: AppBar(
-            title: const Text(
-              'お店登録',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true),
+        appBar: const BaseAppBar(
+          title: Text(
+            "登録",
+            style: TextStyle(color: Colors.white),
+          ),
+          widgets: [],
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

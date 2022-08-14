@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/signup_page/signup_controller.dart';
 
 class SignupPage extends ConsumerWidget {
@@ -13,6 +14,13 @@ class SignupPage extends ConsumerWidget {
     String newPassword = "";
 
     return Scaffold(
+      appBar: const BaseAppBar(
+        title: Text(
+          "アカウント作成",
+          style: TextStyle(color: Colors.white),
+        ),
+        widgets: [],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
