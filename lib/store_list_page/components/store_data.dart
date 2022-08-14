@@ -51,27 +51,29 @@ class StoreData extends ConsumerWidget {
                     )
                   ],
                 ),
-                Text(
-                  "メモ： ${store.memo}",
-                  style: const TextStyle(fontSize: 15.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "追加日： ${getDateString(store.timeStamp)}",
+                      style: const TextStyle(fontSize: 15.0),
+                    ),
+                    Text(
+                      "メモ： ${store.memo}",
+                      style: const TextStyle(fontSize: 15.0),
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      getDateString(store.timeStamp),
-                      style: const TextStyle(fontSize: 15.0),
+                      " 地域：${store.area}",
+                      style: const TextStyle(fontSize: 20.0),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: Text(
-                          " ${store.price}円",
-                          style: const TextStyle(fontSize: 25.0),
-                        ),
-                      ),
+                    Text(
+                      " 価格：${store.price}円",
+                      style: const TextStyle(fontSize: 20.0),
                     ),
                   ],
                 ),

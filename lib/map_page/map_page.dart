@@ -45,7 +45,7 @@ class MapPage extends ConsumerWidget {
               ? Column(
                   children: [
                     const SizedBox(
-                      height: 20.0,
+                      height: 60.0,
                     ),
                     SizedBox(
                       width: 300.0,
