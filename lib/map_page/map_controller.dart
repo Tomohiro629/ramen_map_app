@@ -7,8 +7,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
-import 'package:ramen_map_app/entity/store.dart';
-import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 
 final mapControllerProvider = ChangeNotifierProvider<MapController>((ref) {
@@ -19,7 +17,9 @@ class MapController extends ChangeNotifier {
   final Reader reader;
   MapController(this.reader) {
     getUserLocation();
+    predictions = [];
     loading = false;
+    notifyListeners();
   }
 
   List<AutocompletePrediction> predictions = [];
@@ -74,5 +74,10 @@ class MapController extends ChangeNotifier {
   Future<void> getSelectedAddress(String location) async {
     List locations = await locationFromAddress(location);
     print(locations);
+  }
+
+  void resetAddress() {
+    predictions = [];
+    notifyListeners();
   }
 }

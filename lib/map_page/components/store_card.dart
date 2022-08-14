@@ -17,11 +17,15 @@ class StoreCard extends ConsumerWidget {
         final store = snapshot.data;
         if (snapshot.hasData) {
           return Stack(
-            alignment: Alignment.center,
             children: [
-              CircleAvatar(
-                radius: 100.0,
-                foregroundImage: NetworkImage(store!.ramenImage),
+              InkWell(
+                onTap: () {
+                  //moveCamera
+                },
+                child: CircleAvatar(
+                  radius: 100.0,
+                  foregroundImage: NetworkImage(store!.ramenImage),
+                ),
               ),
             ],
           );

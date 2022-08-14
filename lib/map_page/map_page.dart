@@ -41,91 +41,102 @@ class MapPage extends ConsumerWidget {
                         target: mapController.initialPosition!, zoom: 15.0),
                     onMapCreated: (GoogleMapController controller) {
                       mapService.conpleter;
+                      mapController.predictions = [];
                     },
                     markers: mapController.markers,
                   )
                 : Container(),
           ),
-          Column(
-            children: [
-              const SizedBox(
-                height: 20.0,
-              ),
-              SizedBox(
-                width: 300.0,
-                child: TextFormField(
-                  controller: inputAddress,
-                  decoration: InputDecoration(
-                    hintText: "検索",
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 15,
+          storeId.isEmpty
+              ? Column(
+                  children: [
+                    const SizedBox(
+                      height: 20.0,
                     ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        if (inputAddress.text.isNotEmpty) {
-                          mapController.predictions = [];
-                          mapController.autoCompleteSearch(inputAddress.text);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("住所を入力してください"),
-                              backgroundColor: Colors.red,
+                    SizedBox(
+                      width: 300.0,
+                      child: TextFormField(
+                        controller: inputAddress,
+                        decoration: InputDecoration(
+                          hintText: "検索",
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 15,
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              if (inputAddress.text.isNotEmpty) {
+                                mapController
+                                    .autoCompleteSearch(inputAddress.text);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("住所を入力してください"),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              }
+                            },
+                            icon: const Icon(Icons.search_outlined),
+                            hoverColor: Colors.amber,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        ),
+                        maxLength: 50,
+                        maxLines: null,
+                      ),
+                    ),
+                    mapController.predictions.isNotEmpty
+                        ? SizedBox(
+                            height: 150.0,
+                            width: 300.0,
+                            child: Flexible(
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: mapController.predictions.length,
+                                  itemBuilder: ((context, index) {
+                                    return Card(
+                                      color: Colors.white,
+                                      child: ListTile(
+                                          title: Text(mapController
+                                              .predictions[index].description
+                                              .toString()),
+                                          onTap: () async {
+                                            List location =
+                                                await locationFromAddress(
+                                                    mapController
+                                                        .predictions[index]
+                                                        .description
+                                                        .toString());
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SetStorePage(
+                                                  latitude:
+                                                      location.first.latitude,
+                                                  longitude:
+                                                      location.first.longitude,
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                    );
+                                  })),
                             ),
-                          );
-                        }
-                      },
-                      icon: const Icon(Icons.search_outlined),
-                      hoverColor: Colors.amber,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                  ),
-                  maxLength: 50,
-                  maxLines: null,
-                ),
-              ),
-              SizedBox(
-                height: 150.0,
-                width: 300.0,
-                child: Flexible(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: mapController.predictions.length,
-                      itemBuilder: ((context, index) {
-                        return Card(
-                          color: Colors.white,
-                          child: ListTile(
-                              title: Text(mapController
-                                  .predictions[index].description
-                                  .toString()),
-                              onTap: () async {
-                                List location = await locationFromAddress(
-                                    mapController.predictions[index].description
-                                        .toString());
-                                // ignore: use_build_context_synchronously
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SetStorePage(
-                                        latitude: location.first.latitude,
-                                        longitude: location.first.longitude,
-                                      ),
-                                    ));
-                                mapController.predictions = [];
-                              }),
-                        );
-                      })),
-                ),
-              ),
-            ],
-          ),
+                          )
+                        : const Text(""),
+                  ],
+                )
+              : const Text(""),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
                 padding: const EdgeInsets.all(50.0),
                 child: storeId.isNotEmpty
                     ? SizedBox(
@@ -133,9 +144,22 @@ class MapPage extends ConsumerWidget {
                         height: 200.0,
                         child: StoreCard(
                           storeId: storeId,
-                        ))
-                    : null,
-              )),
+                        ),
+                      )
+                    : Align(
+                        alignment: Alignment.bottomLeft,
+                        child: FloatingActionButton(
+                          backgroundColor: Colors.white,
+                          onPressed: () {
+                            mapController.resetAddress();
+                          },
+                          child: const Icon(
+                            Icons.autorenew_rounded,
+                            color: Colors.orange,
+                          ),
+                        ),
+                      )),
+          ),
         ],
       ),
     );
