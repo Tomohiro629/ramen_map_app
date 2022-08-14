@@ -23,14 +23,6 @@ class MapPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: const BaseAppBar(
-        title: Text(
-          "地図",
-          style: TextStyle(color: Colors.white),
-        ),
-        widgets: [],
-        color: Colors.orange,
-      ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
