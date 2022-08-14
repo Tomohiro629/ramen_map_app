@@ -12,6 +12,10 @@ class StoreListController extends ChangeNotifier {
   final Reader reader;
   StoreListController(this.reader);
 
+  Future<void> deleteStore(String storeId) async {
+    reader(storeRepositoryProvider).deleteStore(storeId);
+  }
+
   Query<Store> storeQuery() {
     return reader(storeRepositoryProvider).queryStore();
   }

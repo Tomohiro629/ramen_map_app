@@ -10,6 +10,10 @@ final storeRepositoryProvider = Provider(((ref) {
 class StoreRepository {
   final _firestore = FirebaseFirestore.instance;
 
+  Future<void> deleteStore(String storeId) async {
+    await _firestore.collection('stores').doc(storeId).delete();
+  }
+
   Stream<List<Store>> fetchStoresStream() {
     final snapshot = _firestore.collection('stores').snapshots();
 
