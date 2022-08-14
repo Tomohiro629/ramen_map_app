@@ -17,6 +17,11 @@ class StoreRepository {
         .map((qs) => qs.docs.map((doc) => Store.fromJson(doc.data())).toList());
   }
 
+  Future<Store> getStore() async {
+    final snapshot = await _firestore.collection('stores').doc().get();
+    return Store.fromJson(snapshot.data()!);
+  }
+
   Future<void> setStore({required Store store}) async {
     try {
       await _firestore

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/entity/store.dart';
+import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/service/common_method.dart';
 
@@ -10,6 +11,8 @@ class StoreData extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final mapController = ref.watch(mapControllerProvider);
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -20,6 +23,7 @@ class StoreData extends ConsumerWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
           child: InkWell(
             onTap: () {
+              mapController.addMarker(store);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const MapPage()));
             },
