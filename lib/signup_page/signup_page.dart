@@ -24,13 +24,13 @@ class SignupPage extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(
                       vertical: 20.0, horizontal: 50.0),
                   child: TextFormField(
-                    cursorColor: Colors.blueAccent,
+                    cursorColor: Colors.greenAccent,
                     decoration: const InputDecoration(
                       labelText: "メールアドレス",
-                      labelStyle: TextStyle(color: Colors.blueAccent),
+                      labelStyle: TextStyle(color: Colors.greenAccent),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.blueAccent,
+                          color: Colors.greenAccent,
                         ),
                       ),
                     ),
@@ -45,13 +45,13 @@ class SignupPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
-                  cursorColor: Colors.blueAccent,
+                  cursorColor: Colors.greenAccent,
                   decoration: const InputDecoration(
                     labelText: "パスワード",
-                    labelStyle: TextStyle(color: Colors.blueAccent),
+                    labelStyle: TextStyle(color: Colors.greenAccent),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blueAccent,
+                        color: Colors.greenAccent,
                       ),
                     ),
                   ),
@@ -79,13 +79,13 @@ class SignupPage extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 15.0, horizontal: 20.0),
                       decoration: const BoxDecoration(
-                          color: Colors.blueAccent,
+                          color: Colors.greenAccent,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(95.0),
                               topLeft: Radius.circular(95.0),
                               bottomRight: Radius.circular(200.0))),
                       child: Text(
-                        'サインアップ',
+                        'アカウント作成',
                         style: Theme.of(context).textTheme.button,
                       ),
                     ),
@@ -93,7 +93,7 @@ class SignupPage extends ConsumerWidget {
                       width: 30.0,
                       child: Icon(
                         Icons.login_outlined,
-                        color: Colors.blueAccent,
+                        color: Colors.greenAccent,
                       ),
                     )
                   ]),
