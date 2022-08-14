@@ -4,6 +4,7 @@ import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/service/common_method.dart';
+import 'package:ramen_map_app/store_list_page/components/delete_store_dialog.dart';
 
 class StoreData extends ConsumerWidget {
   const StoreData({Key? key, required this.store}) : super(key: key);
@@ -77,7 +78,41 @@ class StoreData extends ConsumerWidget {
                     ),
                   ],
                 ),
-                ButtonBar(),
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    MaterialButton(
+                        color: Colors.blueAccent,
+                        child: Row(
+                          children: const [
+                            Icon(Icons.edit_note_outlined),
+                            Text(
+                              "編集",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        onPressed: () {}),
+                    MaterialButton(
+                        color: Colors.redAccent,
+                        child: Row(
+                          children: const [
+                            Icon(Icons.delete_outline),
+                            Text(
+                              "削除",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (childContext) {
+                                return DeleteCheckDialog(store: store);
+                              });
+                        }),
+                  ],
+                ),
               ],
             ),
           ),
