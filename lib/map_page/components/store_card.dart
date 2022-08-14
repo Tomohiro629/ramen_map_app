@@ -22,10 +22,35 @@ class StoreCard extends ConsumerWidget {
                 onTap: () {
                   //moveCamera
                 },
-                child: CircleAvatar(
-                  radius: 100.0,
-                  foregroundImage: NetworkImage(store!.ramenImage),
-                ),
+                child: Stack(children: [
+                  CircleAvatar(
+                    radius: 200.0,
+                    foregroundImage: NetworkImage(store!.ramenImage),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 3.0),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        width: 150.0,
+                        height: 25.0,
+                        decoration: const BoxDecoration(
+                            color: Color.fromARGB(147, 45, 39, 39),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        child: Center(
+                          child: Text(
+                            store.name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyle(
+                                color: Colors.orange[700], fontSize: 12.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
             ],
           );
