@@ -27,6 +27,7 @@ class MapController extends ChangeNotifier {
   bool loading = true;
 
   Future<void> addMarker(store) async {
+    markers = {};
     final marker = Marker(
       markerId: MarkerId(store.storeId),
       position: LatLng(store.latitude, store.longitude),
