@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Text title;
   final List<Widget> widgets;
-  const BaseAppBar({Key? key, required this.title, required this.widgets})
+  final Color color;
+  const BaseAppBar(
+      {Key? key,
+      required this.title,
+      required this.widgets,
+      required this.color})
       : super(key: key);
 
   @override
@@ -18,6 +23,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       excludeHeaderSemantics: true,
       centerTitle: true,
       actions: widgets,
+      backgroundColor: color,
     );
   }
 

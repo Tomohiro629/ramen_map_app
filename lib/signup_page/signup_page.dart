@@ -20,6 +20,7 @@ class SignupPage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
+        color: Colors.greenAccent,
       ),
       body: Center(
         child: Column(

@@ -18,6 +18,7 @@ class StoreListPage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
+        color: Colors.orange,
       ),
       body: Center(
           child: FirestoreListView<Store>(

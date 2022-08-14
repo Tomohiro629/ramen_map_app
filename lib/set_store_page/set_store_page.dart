@@ -32,6 +32,7 @@ class SetStorePage extends ConsumerWidget {
             style: TextStyle(color: Colors.white),
           ),
           widgets: [],
+          color: Colors.orange,
         ),
         body: Center(
           child: Column(
