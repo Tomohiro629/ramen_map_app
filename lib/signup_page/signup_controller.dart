@@ -15,9 +15,13 @@ class SignUpController extends ChangeNotifier {
     required String newEmail,
     required String newPassword,
   }) async {
-    await _reader(authServiceProvider).signupUser(
-      newEmail: newEmail,
-      newPassword: newPassword,
-    );
+    try {
+      await _reader(authServiceProvider).signupUser(
+        newEmail: newEmail,
+        newPassword: newPassword,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }

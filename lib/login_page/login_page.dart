@@ -64,8 +64,12 @@ class LoginPage extends ConsumerWidget {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text("エラー"),
+                          content: Text(
+                            "ログインエラー",
+                            textAlign: TextAlign.center,
+                          ),
                           backgroundColor: Colors.red,
+                          duration: Duration(seconds: 1),
                         ),
                       );
                     }
