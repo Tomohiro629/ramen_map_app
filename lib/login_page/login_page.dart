@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/login_page/login_page_controller.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -13,6 +14,13 @@ class LoginPage extends ConsumerWidget {
     String password = "";
 
     return Scaffold(
+      appBar: const BaseAppBar(
+        title: Text(
+          "ログイン",
+          style: TextStyle(color: Colors.white),
+        ),
+        widgets: [],
+      ),
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
