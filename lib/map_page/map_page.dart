@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ramen_map_app/map_page/components/store_card.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class MapPage extends ConsumerWidget {
-  const MapPage({
-    Key? key,
-  }) : super(key: key);
+  const MapPage({Key? key, required this.storeId}) : super(key: key);
+  final String storeId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -124,22 +124,18 @@ class MapPage extends ConsumerWidget {
             ],
           ),
           Align(
-            alignment: Alignment.topRight,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  // FloatingActionButton(
-                  //     backgroundColor: Colors.white,
-                  //     onPressed: () {},
-                  //     child: const Icon(Icons.map)),
-                  // const SizedBox(
-                  //   height: 10.0,
-                  // ),
-                ]),
-          ),
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: storeId.isNotEmpty
+                    ? SizedBox(
+                        width: 200.0,
+                        height: 200.0,
+                        child: StoreCard(
+                          storeId: storeId,
+                        ))
+                    : null,
+              )),
         ],
       ),
     );

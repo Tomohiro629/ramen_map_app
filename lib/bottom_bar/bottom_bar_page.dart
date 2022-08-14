@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter_platform_interface/src/types/marker.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_controller.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
@@ -12,11 +13,17 @@ class BottomBarPage extends ConsumerWidget {
     Key? key,
   }) : super(key: key);
 
-  final pages = [const StoreListPage(), const MapPage()];
+  final pages = [
+    const StoreListPage(),
+    const MapPage(
+      storeId: "",
+    )
+  ];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //currentIndexを定義
     final currentIndex = ref.watch(bottomBarControllerProvider);
+    final mapContoroller = ref.watch(mapControllerProvider);
 
     return Scaffold(
       body: pages[currentIndex],
@@ -29,6 +36,7 @@ class BottomBarPage extends ConsumerWidget {
           ],
           currentIndex: currentIndex,
           onTap: (int i) {
+            mapContoroller.markers = {};
             ref.watch(bottomBarControllerProvider.notifier).changeIndex(i);
           }),
     );

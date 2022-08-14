@@ -24,8 +24,12 @@ class StoreData extends ConsumerWidget {
           child: InkWell(
             onTap: () {
               mapController.addMarker(store);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MapPage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MapPage(
+                            storeId: store.storeId,
+                          )));
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -47,11 +51,9 @@ class StoreData extends ConsumerWidget {
                     )
                   ],
                 ),
-                Container(
-                  child: Text(
-                    "メモ： ${store.memo}",
-                    style: const TextStyle(fontSize: 15.0),
-                  ),
+                Text(
+                  "メモ： ${store.memo}",
+                  style: const TextStyle(fontSize: 15.0),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
