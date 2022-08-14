@@ -15,14 +15,11 @@ class DeleteCheckDialog extends ConsumerWidget {
     final storeListController = ref.watch(storeListProvider);
 
     return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: Text("『${store.name}』を削除しますか？"),
       actions: <Widget>[
         MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          color: const Color.fromARGB(255, 240, 124, 116),
+          color: Colors.redAccent,
           child: const Text("はい"),
           onPressed: () async {
             storeListController.deleteStore(store.storeId);
@@ -30,10 +27,7 @@ class DeleteCheckDialog extends ConsumerWidget {
           },
         ),
         MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          color: const Color.fromARGB(255, 137, 196, 244),
+          color: Colors.blueAccent,
           child: const Text("いいえ"),
           onPressed: () async {
             Navigator.of(context).pop();
