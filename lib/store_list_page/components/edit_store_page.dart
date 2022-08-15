@@ -213,33 +213,32 @@ class EditStorePage extends ConsumerWidget {
                 ),
                 MaterialButton(
                   onPressed: () async {
-                    // try {
-
-                    storeEditController.updateStore(
-                      storeId: store.storeId,
-                      editStoreName: storeName.text,
-                      editPrice: price.text,
-                      editMemo: memo.text,
-                      editArea: area.isEmpty ? store.area : area,
-                    );
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BottomBarPage()),
-                        (_) => false);
-                    // } catch (e) {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //     const SnackBar(
-                    //       content: Text(
-                    //         "変更エラー\n再度試してください。",
-                    //         textAlign: TextAlign.center,
-                    //       ),
-                    //       backgroundColor: Colors.red,
-                    //       duration: Duration(seconds: 1),
-                    //     ),
-                    //   );
-                    //   print(e);
-                    // }
+                    try {
+                      storeEditController.updateStore(
+                        storeId: store.storeId,
+                        editStoreName: storeName.text,
+                        editPrice: price.text,
+                        editMemo: memo.text,
+                        editArea: area.isEmpty ? store.area : area,
+                      );
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BottomBarPage()),
+                          (_) => false);
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            "変更エラー\n再度試してください。",
+                            textAlign: TextAlign.center,
+                          ),
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                      print(e);
+                    }
                   },
                   child: const EditButton(),
                 ),
