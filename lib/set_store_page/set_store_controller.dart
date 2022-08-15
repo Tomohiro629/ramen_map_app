@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
