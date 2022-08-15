@@ -17,6 +17,7 @@ class SetStoreController extends ChangeNotifier {
     required String price,
     required String memo,
     required String area,
+    required String taste,
     required double latitude,
     required double longitude,
     required String ramenImage,
@@ -26,6 +27,7 @@ class SetStoreController extends ChangeNotifier {
         price: price,
         memo: memo,
         area: area,
+        taste: taste,
         latitude: latitude,
         longitude: longitude,
         ramenImage: ramenImage);

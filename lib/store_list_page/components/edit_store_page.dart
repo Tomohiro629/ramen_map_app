@@ -22,6 +22,7 @@ class EditStorePage extends ConsumerWidget {
     final price = TextEditingController();
     final memo = TextEditingController();
     String area = "";
+    String taste = "";
 
     storeName.text = store.name;
     price.text = store.price;
@@ -171,44 +172,97 @@ class EditStorePage extends ConsumerWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: SizedBox(
-                    width: 350.0,
-                    child: DropdownButtonFormField(
-                        value: store.area,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.lightBlue,
-                              width: 2,
-                            )),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.lightBlue,
-                              width: 2,
-                            )),
-                            hintText: "エリア選択",
-                            prefixIcon: Icon(
-                              Icons.map_outlined,
-                              color: Colors.blue,
-                            )),
-                        items: const [
-                          DropdownMenuItem(value: "北区", child: Text("北区")),
-                          DropdownMenuItem(value: "左京区", child: Text("左京区")),
-                          DropdownMenuItem(value: "右京区", child: Text("右京区")),
-                          DropdownMenuItem(value: "上京区", child: Text("上京区")),
-                          DropdownMenuItem(value: "中京区", child: Text("中京区")),
-                          DropdownMenuItem(value: "下京区", child: Text("下京区")),
-                          DropdownMenuItem(value: "南区", child: Text("南区")),
-                          DropdownMenuItem(value: "西京区", child: Text("西京区")),
-                          DropdownMenuItem(value: "東山区", child: Text("東山区")),
-                          DropdownMenuItem(value: "山科区", child: Text("山科区")),
-                          DropdownMenuItem(value: "伏見区", child: Text("伏見区")),
-                          DropdownMenuItem(value: "京都市外", child: Text("京都市外")),
-                        ],
-                        onChanged: (String? value) {
-                          area = value!;
-                        }),
+                  padding: const EdgeInsets.only(
+                    left: 30.0,
+                    top: 20.0,
+                    bottom: 20.0,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 170.0,
+                        child: DropdownButtonFormField(
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                  color: Colors.orange,
+                                  width: 2,
+                                )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                  color: Colors.deepOrange,
+                                  width: 2,
+                                )),
+                                hintText: "エリア選択",
+                                prefixIcon: Icon(
+                                  Icons.map_outlined,
+                                  color: Colors.orangeAccent,
+                                )),
+                            items: const [
+                              DropdownMenuItem(value: "北区", child: Text("北区")),
+                              DropdownMenuItem(
+                                  value: "左京区", child: Text("左京区")),
+                              DropdownMenuItem(
+                                  value: "右京区", child: Text("右京区")),
+                              DropdownMenuItem(
+                                  value: "上京区", child: Text("上京区")),
+                              DropdownMenuItem(
+                                  value: "中京区", child: Text("中京区")),
+                              DropdownMenuItem(
+                                  value: "下京区", child: Text("下京区")),
+                              DropdownMenuItem(value: "南区", child: Text("南区")),
+                              DropdownMenuItem(
+                                  value: "西京区", child: Text("西京区")),
+                              DropdownMenuItem(
+                                  value: "東山区", child: Text("東山区")),
+                              DropdownMenuItem(
+                                  value: "山科区", child: Text("山科区")),
+                              DropdownMenuItem(
+                                  value: "伏見区", child: Text("伏見区")),
+                              DropdownMenuItem(
+                                  value: "京都市外", child: Text("京都市外")),
+                            ],
+                            onChanged: (String? value) {
+                              area = value!;
+                            }),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      SizedBox(
+                        width: 170.0,
+                        child: DropdownButtonFormField(
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                  color: Colors.orange,
+                                  width: 2,
+                                )),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                  color: Colors.deepOrange,
+                                  width: 2,
+                                )),
+                                hintText: "味",
+                                prefixIcon: Icon(
+                                  Icons.map_outlined,
+                                  color: Colors.orangeAccent,
+                                )),
+                            items: const [
+                              DropdownMenuItem(value: "醤油", child: Text("醤油")),
+                              DropdownMenuItem(value: "豚骨", child: Text("豚骨")),
+                              DropdownMenuItem(
+                                  value: "豚骨醤油", child: Text("豚骨醤油")),
+                              DropdownMenuItem(value: "味噌", child: Text("味噌")),
+                              DropdownMenuItem(value: "塩", child: Text("塩")),
+                              DropdownMenuItem(
+                                  value: "その他", child: Text("その他")),
+                            ],
+                            onChanged: (String? value) {
+                              taste = value!;
+                            }),
+                      ),
+                    ],
                   ),
                 ),
                 MaterialButton(
@@ -220,6 +274,7 @@ class EditStorePage extends ConsumerWidget {
                         editPrice: price.text,
                         editMemo: memo.text,
                         editArea: area.isEmpty ? store.area : area,
+                        editTaste: taste.isEmpty ? store.taste : taste,
                       );
                       Navigator.pushAndRemoveUntil(
                           context,

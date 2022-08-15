@@ -53,12 +53,14 @@ class StoreRepository {
     required String editPrice,
     required String editMemo,
     required String editArea,
+    required String editTaste,
   }) async {
     _firestore.collection('stores').doc(storeId).update({
       "name": editStoreName,
       "price": editPrice,
       "memo": editMemo,
       "area": editArea,
+      "taste": editTaste,
     });
   }
 }
