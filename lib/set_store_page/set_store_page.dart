@@ -138,7 +138,9 @@ class SetStorePage extends ConsumerWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  padding: const EdgeInsets.only(
+                    top: 20.0,
+                  ),
                   child: SizedBox(
                     width: 350.0,
                     child: TextFormField(
@@ -158,14 +160,14 @@ class SetStorePage extends ConsumerWidget {
                             color: Colors.deepOrange,
                             width: 2,
                           )),
-                          labelText: "メモ"),
+                          labelText: "一言メモ(30文字以内)"),
+                      maxLength: 30,
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 30.0,
-                    top: 20.0,
                     bottom: 20.0,
                   ),
                   child: Row(

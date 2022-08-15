@@ -144,37 +144,36 @@ class EditStorePage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: SizedBox(
-                    width: 350.0,
-                    child: TextFormField(
-                      controller: memo,
-                      cursorColor: Colors.indigo,
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.note_outlined,
-                            color: Colors.lightBlue,
-                          ),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            color: Colors.lightBlue,
-                            width: 2,
-                          )),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            color: Colors.blue,
-                            width: 2,
-                          )),
-                          labelText: "メモ",
-                          labelStyle: TextStyle(color: Colors.lightBlue)),
-                    ),
+
+                SizedBox(
+                  width: 350.0,
+                  child: TextFormField(
+                    controller: memo,
+                    cursorColor: Colors.indigo,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.note_outlined,
+                          color: Colors.lightBlue,
+                        ),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.lightBlue,
+                          width: 2,
+                        )),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.blue,
+                          width: 2,
+                        )),
+                        labelText: "一言メモ",
+                        labelStyle: TextStyle(color: Colors.lightBlue)),
+                    maxLength: 30,
                   ),
                 ),
+
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 30.0,
-                    top: 20.0,
                     bottom: 20.0,
                   ),
                   child: Row(
@@ -182,21 +181,22 @@ class EditStorePage extends ConsumerWidget {
                       SizedBox(
                         width: 170.0,
                         child: DropdownButtonFormField(
+                            value: store.area,
                             decoration: const InputDecoration(
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                  color: Colors.orange,
+                                  color: Colors.lightBlue,
                                   width: 2,
                                 )),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                  color: Colors.deepOrange,
+                                  color: Colors.blue,
                                   width: 2,
                                 )),
                                 hintText: "エリア選択",
                                 prefixIcon: Icon(
-                                  Icons.map_outlined,
-                                  color: Colors.orangeAccent,
+                                  Icons.pin_drop_outlined,
+                                  color: Colors.lightBlue,
                                 )),
                             items: const [
                               DropdownMenuItem(value: "北区", child: Text("北区")),
@@ -232,21 +232,22 @@ class EditStorePage extends ConsumerWidget {
                       SizedBox(
                         width: 170.0,
                         child: DropdownButtonFormField(
+                            value: store.taste,
                             decoration: const InputDecoration(
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                  color: Colors.orange,
+                                  color: Colors.lightBlue,
                                   width: 2,
                                 )),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                  color: Colors.deepOrange,
+                                  color: Colors.blue,
                                   width: 2,
                                 )),
                                 hintText: "味",
                                 prefixIcon: Icon(
-                                  Icons.map_outlined,
-                                  color: Colors.orangeAccent,
+                                  Icons.dining_outlined,
+                                  color: Colors.lightBlue,
                                 )),
                             items: const [
                               DropdownMenuItem(value: "醤油", child: Text("醤油")),
