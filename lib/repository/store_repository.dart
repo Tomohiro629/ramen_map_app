@@ -53,23 +53,12 @@ class StoreRepository {
     required String editPrice,
     required String editMemo,
     required String editArea,
-    required String editRamenImage,
-    required double latitude,
-    required double longitude,
   }) async {
-    try {
-      final store = Store.create(
-          name: editStoreName,
-          price: editPrice,
-          memo: editPrice,
-          area: editArea,
-          latitude: latitude,
-          longitude: longitude,
-          ramenImage: editRamenImage);
-
-      await setStore(store: store);
-    } catch (e) {
-      print(e);
-    }
+    _firestore.collection('stores').doc(storeId).update({
+      "name": editStoreName,
+      "price": editPrice,
+      "memo": editMemo,
+      "area": editArea,
+    });
   }
 }

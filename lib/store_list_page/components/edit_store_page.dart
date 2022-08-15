@@ -8,7 +8,6 @@ import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/store_list_page/components/edit_button.dart';
 
-
 class EditStorePage extends ConsumerWidget {
   const EditStorePage({Key? key, required this.store}) : super(key: key);
 
@@ -41,54 +40,54 @@ class EditStorePage extends ConsumerWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 80.0),
-                      child: MaterialButton(
-                        shape: const CircleBorder(
-                            side: BorderSide(color: Colors.blue)),
-                        onPressed: () {
-                          imagePickerService.takeCamera();
-                        },
-                        child: const Icon(
-                          Icons.camera_alt,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                    imagePickerService.imagePath != null
-                        ? Image.file(
-                            imagePickerService.imagePath!,
-                            width: 220.0,
-                            height: 120.0,
-                          )
-                        : Stack(alignment: Alignment.center, children: [
-                            const CircularProgressIndicator(
-                              color: Colors.blue,
-                            ),
-                            SizedBox(
-                                width: 220.0,
-                                height: 120.0,
-                                child: Image.network(store.ramenImage)),
-                          ]),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 80.0),
-                      child: MaterialButton(
-                        shape: const CircleBorder(
-                            side: BorderSide(color: Colors.blue)),
-                        onPressed: () {
-                          imagePickerService.takeGallery();
-                        },
-                        child: const Icon(
-                          Icons.photo,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(top: 80.0),
+                //       child: MaterialButton(
+                //         shape: const CircleBorder(
+                //             side: BorderSide(color: Colors.blue)),
+                //         onPressed: () {
+                //           imagePickerService.takeCamera();
+                //         },
+                //         child: const Icon(
+                //           Icons.camera_alt,
+                //           color: Colors.blue,
+                //         ),
+                //       ),
+                //     ),
+                //     imagePickerService.imagePath != null
+                //         ? Image.file(
+                //             imagePickerService.imagePath!,
+                //             width: 220.0,
+                //             height: 120.0,
+                //           )
+                //         : Stack(alignment: Alignment.center, children: [
+                //             const CircularProgressIndicator(
+                //               color: Colors.blue,
+                //             ),
+                //             SizedBox(
+                //                 width: 220.0,
+                //                 height: 120.0,
+                //                 child: Image.network(store.ramenImage)),
+                //           ]),
+                //     Padding(
+                //       padding: const EdgeInsets.only(top: 80.0),
+                //       child: MaterialButton(
+                //         shape: const CircleBorder(
+                //             side: BorderSide(color: Colors.blue)),
+                //         onPressed: () {
+                //           imagePickerService.takeGallery();
+                //         },
+                //         child: const Icon(
+                //           Icons.photo,
+                //           color: Colors.blue,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: SizedBox(
@@ -214,39 +213,33 @@ class EditStorePage extends ConsumerWidget {
                 ),
                 MaterialButton(
                   onPressed: () async {
-                    try {
-                      storageService.uploadPostImageAndGetUrl(
-                          file: imagePickerService.imagePath!);
-                      storeEditController.updateStore(
-                        storeId: store.storeId,
-                        editStoreName: storeName.text,
-                        editPrice: price.text,
-                        editMemo: memo.text,
-                        editArea: area,
-                        editRamenImage: storageService.imageURL!.isEmpty
-                            ? store.ramenImage
-                            : storageService.imageURL!,
-                        latitude: store.latitude,
-                        longitude: store.longitude,
-                      );
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BottomBarPage()),
-                          (_) => false);
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "変更エラー\n再度試してください。",
-                            textAlign: TextAlign.center,
-                          ),
-                          backgroundColor: Colors.red,
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
-                      print(e);
-                    }
+                    // try {
+
+                    storeEditController.updateStore(
+                      storeId: store.storeId,
+                      editStoreName: storeName.text,
+                      editPrice: price.text,
+                      editMemo: memo.text,
+                      editArea: area.isEmpty ? store.area : area,
+                    );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BottomBarPage()),
+                        (_) => false);
+                    // } catch (e) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(
+                    //       content: Text(
+                    //         "変更エラー\n再度試してください。",
+                    //         textAlign: TextAlign.center,
+                    //       ),
+                    //       backgroundColor: Colors.red,
+                    //       duration: Duration(seconds: 1),
+                    //     ),
+                    //   );
+                    //   print(e);
+                    // }
                   },
                   child: const EditButton(),
                 ),
