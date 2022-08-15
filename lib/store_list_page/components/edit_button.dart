@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SetButton extends StatelessWidget {
-  const SetButton({
+class EditButton extends StatelessWidget {
+  const EditButton({
     Key? key,
   }) : super(key: key);
 
@@ -20,26 +20,26 @@ class SetButton extends StatelessWidget {
         ], color: Colors.white, borderRadius: BorderRadius.circular(22.0)),
         child: Row(children: <Widget>[
           Container(
-            height: 50.0,
+            height: 45.0,
             width: 120.0,
             padding:
-                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
             decoration: const BoxDecoration(
-                color: Colors.redAccent,
+                color: Colors.blueAccent,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(95.0),
                     topLeft: Radius.circular(95.0),
                     bottomRight: Radius.circular(200.0))),
-            child: Text(
-              '登録',
-              style: Theme.of(context).textTheme.button,
+            child: const Text(
+              '変更',
+              style: TextStyle(color: Colors.white),
             ),
           ),
           const SizedBox(
             width: 30.0,
             child: Icon(
-              Icons.add_outlined,
-              color: Colors.redAccent,
+              Icons.edit_note_outlined,
+              color: Colors.blueAccent,
             ),
           )
         ]),

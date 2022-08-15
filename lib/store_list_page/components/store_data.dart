@@ -5,6 +5,7 @@ import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/service/common_method.dart';
 import 'package:ramen_map_app/store_list_page/components/delete_store_dialog.dart';
+import 'package:ramen_map_app/store_list_page/components/edit_store_page.dart';
 
 class StoreData extends ConsumerWidget {
   const StoreData({Key? key, required this.store}) : super(key: key);
@@ -92,7 +93,13 @@ class StoreData extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      EditStorePage(store: store)));
+                        }),
                     MaterialButton(
                         color: Colors.redAccent,
                         child: Row(
