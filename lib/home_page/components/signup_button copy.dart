@@ -35,7 +35,7 @@ class SignupButton extends StatelessWidget {
             ),
             const SizedBox(
               width: 40.0,
-              child: Icon(Icons.edit_outlined, color: Colors.green),
+              child: Icon(Icons.person_add_alt_1_outlined, color: Colors.green),
             )
           ]),
         ),

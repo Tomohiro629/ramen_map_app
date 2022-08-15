@@ -8,6 +8,7 @@ class Store {
       required this.price,
       required this.memo,
       required this.area,
+      required this.taste,
       required this.location,
       required this.timeStamp,
       required this.ramenImage,
@@ -19,6 +20,7 @@ class Store {
     required String price,
     required String memo,
     required String area,
+    required String taste,
     required double latitude,
     required double longitude,
     required String ramenImage,
@@ -29,6 +31,7 @@ class Store {
       price: price,
       memo: memo,
       area: area,
+      taste: taste,
       latitude: latitude,
       longitude: longitude,
       location: GeoPoint(latitude, longitude),
@@ -44,6 +47,7 @@ class Store {
       price: map['price'],
       memo: map['memo'],
       area: map['area'],
+      taste: map['taste'],
       latitude: map['latitude'],
       longitude: map['longitude'],
       location: map['location'],
@@ -59,6 +63,7 @@ class Store {
       'price': price,
       'memo': memo,
       'area': area,
+      'taste': taste,
       'location': location,
       'latitude': latitude,
       'longitude': longitude,
@@ -72,6 +77,7 @@ class Store {
   final String price;
   final String memo;
   final String area;
+  final String taste;
   final double latitude;
   final double longitude;
   final location;
