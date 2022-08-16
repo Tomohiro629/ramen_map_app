@@ -90,7 +90,7 @@ class EditStorePage extends ConsumerWidget {
                 //   ],
                 // ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 60.0),
                   child: SizedBox(
                     width: 350.0,
                     child: TextFormField(
@@ -117,7 +117,7 @@ class EditStorePage extends ConsumerWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
+                  padding: const EdgeInsets.only(bottom: 60.0),
                   child: SizedBox(
                     width: 350.0,
                     child: TextFormField(
@@ -173,8 +173,9 @@ class EditStorePage extends ConsumerWidget {
 
                 Padding(
                   padding: const EdgeInsets.only(
+                    top: 40.0,
                     left: 30.0,
-                    bottom: 20.0,
+                    bottom: 60.0,
                   ),
                   child: Row(
                     children: [

@@ -32,15 +32,6 @@ class HomePage extends StatelessWidget {
                 SignupButton()
               ],
             ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TasteListPage()));
-              },
-              color: Colors.amber,
-            )
           ],
         ),
       ),
