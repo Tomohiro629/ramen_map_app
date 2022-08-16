@@ -10,6 +10,6 @@ final googleMapServiceProvider = Provider<GoogleMapService>((ref) {
 
 class GoogleMapService {
   final googlePlace = GooglePlace("AIzaSyBS_B-VRHZqZIXgItX6ylwU-cwsEZ7P94Y");
-  final googleMapController = Completer<GoogleMapController>();
+
   Completer<GoogleMapController> conpleter = Completer();
 }
