@@ -30,6 +30,7 @@ class LoginPage extends ConsumerWidget {
               Column(
                 children: [
                   Container(
+                    width: 400.0,
                     padding: const EdgeInsets.symmetric(
                         vertical: 20.0, horizontal: 50.0),
                     child: TextFormField(
@@ -44,6 +45,7 @@ class LoginPage extends ConsumerWidget {
                 ],
               ),
               Container(
+                width: 400.0,
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
@@ -77,7 +79,7 @@ class LoginPage extends ConsumerWidget {
                   },
                   child: InkWell(
                     child: Container(
-                      width: 200.0,
+                      width: 190.0,
                       decoration: BoxDecoration(
                           boxShadow: const [
                             BoxShadow(
@@ -90,7 +92,7 @@ class LoginPage extends ConsumerWidget {
                       child: Row(children: <Widget>[
                         Container(
                           height: 50.0,
-                          width: 150.0,
+                          width: 140.0,
                           padding: const EdgeInsets.symmetric(
                               vertical: 15.0, horizontal: 40.0),
                           decoration: const BoxDecoration(

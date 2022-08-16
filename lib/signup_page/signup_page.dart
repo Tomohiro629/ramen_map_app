@@ -30,6 +30,7 @@ class SignupPage extends ConsumerWidget {
             Column(
               children: [
                 Container(
+                  width: 400.0,
                   padding: const EdgeInsets.symmetric(
                       vertical: 20.0, horizontal: 50.0),
                   child: TextFormField(
@@ -51,6 +52,7 @@ class SignupPage extends ConsumerWidget {
               ],
             ),
             Container(
+                width: 400.0,
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: TextFormField(
