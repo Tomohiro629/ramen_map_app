@@ -33,73 +33,104 @@ class StoreData extends ConsumerWidget {
                 ),
               ],
             ),
-            Container(
-              height: 290.0,
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                elevation: 14.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)),
-                child: InkWell(
-                  onTap: () {
-                    mapController.addMarker(store);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MapPage(
-                                  storeId: store.storeId,
-                                )));
-                  },
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          Ink.image(
-                            height: 250.0,
-                            image: NetworkImage(store.ramenImage),
-                            fit: BoxFit.fitHeight,
+            SizedBox(
+              height: 300.0,
+              child: Stack(
+                children: [
+                  Card(
+                    color: Colors.amber[100],
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 14.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Column(
+                            children: <Widget>[
+                              Stack(
+                                children: <Widget>[
+                                  Ink(
+                                    height: 250.0,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                        image: DecorationImage(
+                                          image: NetworkImage(store.ramenImage),
+                                          fit: BoxFit.cover,
+                                        )),
+                                    child: InkWell(
+                                      splashColor: const Color.fromARGB(
+                                          119, 255, 184, 77),
+                                      onTap: () {
+                                        mapController.addMarker(store);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => MapPage(
+                                                      storeId: store.storeId,
+                                                    )));
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 190.0, left: 5.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          store.name,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20.0),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "味分類： ${store.taste}",
+                                              style: const TextStyle(
+                                                  color: Colors.orange,
+                                                  fontSize: 15.0),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.black87),
+                                              child: Text(
+                                                " 価格：${store.price}円",
+                                                style: const TextStyle(
+                                                  fontSize: 18.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: Text(
+                                  "一言メモ:${store.memo}",
+                                  maxLines: 2,
+                                ),
+                              )
+                            ],
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 190.0, left: 5.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  store.name,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 20.0),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "味分類： ${store.taste}",
-                                      style: const TextStyle(
-                                          color: Colors.orange, fontSize: 15.0),
-                                    ),
-                                    Text(
-                                      " 価格：${store.price}円",
-                                      style: const TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.white,
-                                          backgroundColor: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Text(
-                        "一言メモ:${store.memo}",
-                        maxLines: 2,
-                      )
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             Row(
