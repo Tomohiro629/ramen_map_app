@@ -16,7 +16,7 @@ class StoreListController extends ChangeNotifier {
     reader(storeRepositoryProvider).deleteStore(storeId);
   }
 
-  Query<Store> storeQuery() {
-    return reader(storeRepositoryProvider).queryStore();
+  Query<Store> storeQuery(String taste) {
+    return reader(storeRepositoryProvider).queryStore(taste);
   }
 }

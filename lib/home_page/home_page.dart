@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramen_map_app/home_page/components/login_button.dart';
 import 'package:ramen_map_app/home_page/components/signup_button%20copy.dart';
+import 'package:ramen_map_app/taste_list/taste_list_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -31,6 +32,15 @@ class HomePage extends StatelessWidget {
                 SignupButton()
               ],
             ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TasteListPage()));
+              },
+              color: Colors.amber,
+            )
           ],
         ),
       ),

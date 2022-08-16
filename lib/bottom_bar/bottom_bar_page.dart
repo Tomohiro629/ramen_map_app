@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter_platform_interface/src/types/marker.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_controller.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
-import 'package:ramen_map_app/repository/store_repository.dart';
 
 import 'package:ramen_map_app/store_list_page/store_list_page.dart';
+import 'package:ramen_map_app/taste_list/components/taste_list.dart';
+import 'package:ramen_map_app/taste_list/taste_list_page.dart';
 
 class BottomBarPage extends ConsumerWidget {
   BottomBarPage({
@@ -14,7 +14,7 @@ class BottomBarPage extends ConsumerWidget {
   }) : super(key: key);
 
   final pages = [
-    const StoreListPage(),
+    const TasteListPage(),
     const MapPage(
       storeId: "",
     )
