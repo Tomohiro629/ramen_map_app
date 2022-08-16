@@ -10,8 +10,7 @@ class TasteListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authSevice = ref.watch(authServiceProvider);
-    String taste = "";
-    var List = [
+    final tasteList = [
       const TasteList(
         taste: "醤油",
         imageURL: "images/syoyu.jpg",
@@ -62,7 +61,7 @@ class TasteListPage extends ConsumerWidget {
         body: Center(
             child: GridView.count(
           crossAxisCount: 2,
-          children: List,
+          children: tasteList,
         )));
   }
 }
