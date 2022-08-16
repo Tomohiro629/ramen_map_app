@@ -75,7 +75,7 @@ class StoreData extends ConsumerWidget {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 190.0, left: 5.0),
+                                        top: 210.0, left: 5.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
