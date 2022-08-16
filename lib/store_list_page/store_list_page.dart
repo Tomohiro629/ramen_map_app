@@ -7,7 +7,8 @@ import 'package:ramen_map_app/store_list_page/components/store_data.dart';
 import 'package:ramen_map_app/store_list_page/store_list_controller.dart';
 
 class StoreListPage extends ConsumerWidget {
-  const StoreListPage({Key? key}) : super(key: key);
+  const StoreListPage({Key? key, required this.taste}) : super(key: key);
+  final String taste;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storeListController = ref.watch(storeListProvider);
@@ -15,7 +16,7 @@ class StoreListPage extends ConsumerWidget {
     return Scaffold(
       appBar: const BaseAppBar(
         title: Text(
-          "一覧",
+          "お店一覧",
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
@@ -23,7 +24,7 @@ class StoreListPage extends ConsumerWidget {
       ),
       body: Center(
           child: FirestoreListView<Store>(
-        query: storeListController.storeQuery(),
+        query: storeListController.storeQuery(taste),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
           return StoreData(store: store);

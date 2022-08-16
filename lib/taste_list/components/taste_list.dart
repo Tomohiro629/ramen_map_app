@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ramen_map_app/store_list_page/store_list_page.dart';
 
 class TasteList extends StatelessWidget {
   const TasteList({Key? key, required this.taste, required this.imageURL})
       : super(key: key);
   final String taste;
   final String imageURL;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,6 +20,17 @@ class TasteList extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(imageURL), fit: BoxFit.cover)),
+          child: InkWell(
+            splashColor: const Color.fromARGB(119, 255, 184, 77),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => StoreListPage(
+                            taste: taste,
+                          ))));
+            },
+          ),
         ),
         Align(
             alignment: Alignment.bottomCenter,

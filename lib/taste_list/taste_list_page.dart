@@ -44,7 +44,7 @@ class TasteListPage extends ConsumerWidget {
             "味一覧",
             style: TextStyle(color: Colors.white),
           ),
-          color: Colors.orangeAccent,
+          color: Colors.orange,
           widgets: [
             Padding(
               padding: const EdgeInsets.only(right: 10.0),

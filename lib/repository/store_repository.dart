@@ -39,9 +39,11 @@ class StoreRepository {
     }
   }
 
-  Query<Store> queryStore() {
-    final query =
-        _firestore.collection("stores").orderBy('timeStamp', descending: false);
+  Query<Store> queryStore(String taste) {
+    final query = _firestore
+        .collection("stores")
+        .orderBy('timeStamp', descending: false)
+        .where('taste', isEqualTo: taste);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
         toFirestore: (store, _) => store.toJson());
