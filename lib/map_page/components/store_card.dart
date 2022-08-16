@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/entity/store.dart';
+import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 
 class StoreCard extends ConsumerWidget {
@@ -18,40 +22,41 @@ class StoreCard extends ConsumerWidget {
         if (snapshot.hasData) {
           return Stack(
             children: [
-              InkWell(
-                onTap: () {
-                  //moveCamera
-                },
-                child: Stack(children: [
-                  CircleAvatar(
+              Stack(children: [
+                InkWell(
+                  onTap: () async {
+                    await ref.read(mapControllerProvider).moveStoreCamera(
+                        latitude: store!.latitude, longitude: store.longitude);
+                  },
+                  child: CircleAvatar(
                     radius: 200.0,
                     foregroundImage: NetworkImage(store!.ramenImage),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 3.0),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        width: 150.0,
-                        height: 25.0,
-                        decoration: const BoxDecoration(
-                            color: Color.fromARGB(147, 45, 39, 39),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                        child: Center(
-                          child: Text(
-                            store.name,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                color: Colors.orange[700], fontSize: 12.0),
-                          ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 3.0),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      width: 150.0,
+                      height: 25.0,
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(147, 45, 39, 39),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
+                      child: Center(
+                        child: Text(
+                          store.name,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                              color: Colors.orange[700], fontSize: 12.0),
                         ),
                       ),
                     ),
                   ),
-                ]),
-              ),
+                ),
+              ]),
             ],
           );
         }

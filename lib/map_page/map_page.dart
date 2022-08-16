@@ -14,7 +14,6 @@ class MapPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = ref.watch(mapControllerProvider);
-    final mapService = ref.watch(googleMapServiceProvider);
     final inputAddress = TextEditingController();
 
     if (mapController.loading) {
@@ -33,8 +32,7 @@ class MapPage extends ConsumerWidget {
                     initialCameraPosition: CameraPosition(
                         target: mapController.initialPosition!, zoom: 15.0),
                     onMapCreated: (GoogleMapController controller) {
-                      mapService.conpleter;
-                      mapController.predictions = [];
+                      controller = controller;
                     },
                     markers: mapController.markers,
                   )

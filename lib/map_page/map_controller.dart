@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class MapController extends ChangeNotifier {
     notifyListeners();
   }
 
+  final googleMapController = Completer<GoogleMapController>();
   List<AutocompletePrediction> predictions = [];
   List getLatLng = [];
   LatLng? initialPosition;
@@ -78,6 +80,19 @@ class MapController extends ChangeNotifier {
 
   void resetAddress() {
     predictions = [];
+    notifyListeners();
+  }
+
+  Future<void> moveStoreCamera(
+      {required double latitude, required double longitude}) async {
+    final GoogleMapController mapController = await googleMapController.future;
+    final zoomLevel = await mapController.getZoomLevel();
+
+    mapController.moveCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(latitude, longitude), zoom: zoomLevel),
+      ),
+    );
     notifyListeners();
   }
 }
