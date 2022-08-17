@@ -20,7 +20,7 @@ class LoginButton extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: 50.0,
-                width: 120.0,
+                width: 140.0,
                 padding: const EdgeInsets.symmetric(
                     vertical: 15.0, horizontal: 40.0),
                 decoration: const BoxDecoration(
