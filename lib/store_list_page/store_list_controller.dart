@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
+import 'package:ramen_map_app/service/auth_service.dart';
 
 final storeListProvider = ChangeNotifierProvider<StoreListController>((ref) {
   return StoreListController(ref.read);
@@ -17,6 +18,8 @@ class StoreListController extends ChangeNotifier {
   }
 
   Query<Store> storeQuery(String taste) {
-    return reader(storeRepositoryProvider).queryStore(taste);
+    final userId = reader(authServiceProvider).userId;
+    return reader(storeRepositoryProvider)
+        .queryStore(taste: taste, userId: userId);
   }
 }

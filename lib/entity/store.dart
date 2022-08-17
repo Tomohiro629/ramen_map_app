@@ -2,18 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class Store {
-  Store(
-      {required this.storeId,
-      required this.name,
-      required this.price,
-      required this.memo,
-      required this.area,
-      required this.taste,
-      required this.location,
-      required this.timeStamp,
-      required this.ramenImage,
-      required this.latitude,
-      required this.longitude});
+  Store({
+    required this.storeId,
+    required this.name,
+    required this.price,
+    required this.memo,
+    required this.area,
+    required this.taste,
+    required this.location,
+    required this.timeStamp,
+    required this.ramenImage,
+    required this.latitude,
+    required this.longitude,
+    required this.userId,
+  });
 
   factory Store.create({
     required String name,
@@ -24,6 +26,7 @@ class Store {
     required double latitude,
     required double longitude,
     required String ramenImage,
+    required String userId,
   }) {
     return Store(
       storeId: const Uuid().v4(),
@@ -37,6 +40,7 @@ class Store {
       location: GeoPoint(latitude, longitude),
       timeStamp: DateTime.now(),
       ramenImage: ramenImage,
+      userId: userId,
     );
   }
 
@@ -53,6 +57,7 @@ class Store {
       location: map['location'],
       timeStamp: (map['timeStamp']! as Timestamp).toDate(),
       ramenImage: map['ramenImage'],
+      userId: map['userId'],
     );
   }
 
@@ -69,6 +74,7 @@ class Store {
       'longitude': longitude,
       'timeStamp': timeStamp,
       'ramenImage': ramenImage,
+      'userId': userId,
     };
   }
 
@@ -83,4 +89,5 @@ class Store {
   final location;
   final DateTime timeStamp;
   final String ramenImage;
+  final String userId;
 }

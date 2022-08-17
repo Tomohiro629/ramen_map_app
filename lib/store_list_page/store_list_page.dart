@@ -38,13 +38,14 @@ class StoreListPage extends ConsumerWidget {
         color: Colors.orange,
       ),
       body: Center(
-          child: FirestoreListView<Store>(
-        query: storeListController.storeQuery(taste),
-        itemBuilder: (context, snapshot) {
-          final store = snapshot.data();
-          return StoreData(store: store);
-        },
-      )),
+        child: FirestoreListView<Store>(
+          query: storeListController.storeQuery(taste),
+          itemBuilder: (context, snapshot) {
+            final store = snapshot.data();
+            return StoreData(store: store);
+          },
+        ),
+      ),
     );
   }
 }

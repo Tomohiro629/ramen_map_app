@@ -4,6 +4,7 @@ import 'package:flutterfire_ui/firestore.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
+import 'package:ramen_map_app/service/auth_service.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data.dart';
 
 class StoreAreaListPage extends ConsumerWidget {
@@ -26,7 +27,10 @@ class StoreAreaListPage extends ConsumerWidget {
       ),
       body: Center(
           child: FirestoreListView<Store>(
-        query: storeRepository.queryAreaStore(taste: taste, area: area),
+        query: storeRepository.queryAreaStore(
+            taste: taste,
+            area: area,
+            userId: ref.watch(authServiceProvider).userId),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
           return StoreData(store: store);

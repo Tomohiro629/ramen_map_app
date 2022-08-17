@@ -39,22 +39,25 @@ class StoreRepository {
     }
   }
 
-  Query<Store> queryStore(String taste) {
+  Query<Store> queryStore({required String taste, required String userId}) {
     final query = _firestore
         .collection("stores")
-        .orderBy('timeStamp', descending: false)
-        .where('taste', isEqualTo: taste);
+        .where('userId', isEqualTo: userId)
+        .where('taste', isEqualTo: taste)
+        .orderBy('timeStamp', descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
         toFirestore: (store, _) => store.toJson());
   }
 
-  Query<Store> queryAreaStore({required String taste, required String area}) {
+  Query<Store> queryAreaStore(
+      {required String taste, required String area, required String userId}) {
     final query = _firestore
         .collection("stores")
-        .orderBy('timeStamp', descending: false)
+        .where('userId', isEqualTo: userId)
         .where('taste', isEqualTo: taste)
-        .where('area', isEqualTo: area);
+        .where('area', isEqualTo: area)
+        .orderBy('timeStamp', descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
         toFirestore: (store, _) => store.toJson());
