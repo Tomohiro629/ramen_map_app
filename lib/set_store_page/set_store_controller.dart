@@ -18,21 +18,22 @@ class SetStoreController extends ChangeNotifier {
     required String memo,
     required String area,
     required String taste,
-    required double latitude,
-    required double longitude,
+    required double? latitude,
+    required double? longitude,
     required String ramenImage,
     required String userId,
   }) async {
     final store = Store.create(
-        name: name,
-        price: price,
-        memo: memo,
-        area: area,
-        taste: taste,
-        latitude: latitude,
-        longitude: longitude,
-        ramenImage: ramenImage,
-        userId: userId);
+      name: name,
+      price: price,
+      memo: memo,
+      area: area,
+      taste: taste,
+      latitude: latitude!,
+      longitude: longitude!,
+      ramenImage: ramenImage,
+      userId: userId,
+    );
     await _reader(storeRepositoryProvider).setStore(store: store);
   }
 }

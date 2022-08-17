@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/service/auth_service.dart';
@@ -9,9 +10,11 @@ import 'package:ramen_map_app/set_store_page/components/set_button.dart';
 import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
 
 class SetStorePage extends ConsumerWidget {
-  const SetStorePage(
-      {Key? key, required this.latitude, required this.longitude})
-      : super(key: key);
+  const SetStorePage({
+    Key? key,
+    required this.latitude,
+    required this.longitude,
+  }) : super(key: key);
 
   final double latitude;
   final double longitude;
@@ -257,10 +260,9 @@ class SetStorePage extends ConsumerWidget {
               onPressed: () async {
                 await Future.delayed(
                   const Duration(
-                    seconds: 2,
+                    seconds: 3,
                   ),
                 );
-                const Center(child: CircularProgressIndicator());
                 try {
                   storageService.uploadPostImageAndGetUrl(
                       file: imagePickerService.imagePath!);
@@ -280,6 +282,7 @@ class SetStorePage extends ConsumerWidget {
                       MaterialPageRoute(builder: (context) => BottomBarPage()),
                       (_) => false);
                 } catch (e) {
+                  // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(

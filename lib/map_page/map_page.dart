@@ -4,7 +4,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/map_page/components/store_card.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
-import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class MapPage extends ConsumerWidget {
@@ -35,6 +34,20 @@ class MapPage extends ConsumerWidget {
                       controller = controller;
                     },
                     markers: mapController.markers,
+                    onLongPress: ((location) {
+                      location = location;
+                      // ignore: use_build_context_synchronously
+                      print(location);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SetStorePage(
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                          ),
+                        ),
+                      );
+                    }),
                   )
                 : Container(),
           ),
