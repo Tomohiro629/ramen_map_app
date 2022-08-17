@@ -80,7 +80,7 @@ class LoginPage extends ConsumerWidget {
                   },
                   child: InkWell(
                     child: Container(
-                      width: 190.0.w,
+                      width: 170.0.w,
                       decoration: BoxDecoration(
                           boxShadow: const [
                             BoxShadow(
@@ -93,7 +93,7 @@ class LoginPage extends ConsumerWidget {
                       child: Row(children: <Widget>[
                         Container(
                           height: 50.0.h,
-                          width: 140.0.w,
+                          width: 120.0.w,
                           padding: const EdgeInsets.symmetric(
                               vertical: 15.0, horizontal: 40.0),
                           decoration: const BoxDecoration(
