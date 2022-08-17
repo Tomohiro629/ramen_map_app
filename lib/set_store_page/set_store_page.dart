@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
+import 'package:ramen_map_app/service/auth_service.dart';
 import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/set_store_page/components/set_button.dart';
@@ -254,6 +255,12 @@ class SetStorePage extends ConsumerWidget {
             ),
             MaterialButton(
               onPressed: () async {
+                await Future.delayed(
+                  const Duration(
+                    seconds: 2,
+                  ),
+                );
+                const Center(child: CircularProgressIndicator());
                 try {
                   storageService.uploadPostImageAndGetUrl(
                       file: imagePickerService.imagePath!);
@@ -265,7 +272,9 @@ class SetStorePage extends ConsumerWidget {
                       taste: taste,
                       latitude: latitude,
                       longitude: longitude,
-                      ramenImage: storageService.imageURL!);
+                      ramenImage: storageService.imageURL!,
+                      userId: ref.watch(authServiceProvider).userId);
+                  // ignore: use_build_context_synchronously
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => BottomBarPage()),
