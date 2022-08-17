@@ -56,7 +56,7 @@ class AreaDialog extends StatelessWidget {
               ),
               color: Colors.white,
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) {
                       return StoreAreaListPage(
