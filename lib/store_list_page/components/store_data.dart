@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
@@ -25,16 +26,16 @@ class StoreData extends ConsumerWidget {
               children: [
                 Text(
                   "追加日： ${getDateString(store.timeStamp)}",
-                  style: const TextStyle(fontSize: 15.0),
+                  style: TextStyle(fontSize: 15.0.sp),
                 ),
                 Text(
                   " 場所：${store.area}",
-                  style: const TextStyle(fontSize: 15.0),
+                  style: TextStyle(fontSize: 15.0.sp),
                 ),
               ],
             ),
             SizedBox(
-              height: 300.0,
+              height: 340.0.h,
               child: Stack(
                 children: [
                   Card(
@@ -51,7 +52,7 @@ class StoreData extends ConsumerWidget {
                               Stack(
                                 children: <Widget>[
                                   Ink(
-                                    height: 250.0,
+                                    height: 280.0.h,
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(5.0),
@@ -82,9 +83,9 @@ class StoreData extends ConsumerWidget {
                                       children: [
                                         Text(
                                           store.name,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 20.0),
+                                              fontSize: 20.0.sp),
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -92,9 +93,9 @@ class StoreData extends ConsumerWidget {
                                           children: [
                                             Text(
                                               "味分類： ${store.taste}",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   color: Colors.orange,
-                                                  fontSize: 15.0),
+                                                  fontSize: 15.0.sp),
                                             ),
                                             Container(
                                               decoration: BoxDecoration(
@@ -104,8 +105,8 @@ class StoreData extends ConsumerWidget {
                                                   color: Colors.black87),
                                               child: Text(
                                                 " 価格：${store.price}円",
-                                                style: const TextStyle(
-                                                  fontSize: 18.0,
+                                                style: TextStyle(
+                                                  fontSize: 18.0.sp,
                                                   color: Colors.white,
                                                 ),
                                               ),
@@ -118,7 +119,7 @@ class StoreData extends ConsumerWidget {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
+                                padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
                                   "一言メモ:${store.memo}",
                                   maxLines: 2,
@@ -137,7 +138,7 @@ class StoreData extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width: 100.0,
+                  width: 100.0.w,
                   child: MaterialButton(
                       color: Colors.blueAccent,
                       child: Row(
@@ -158,7 +159,7 @@ class StoreData extends ConsumerWidget {
                       }),
                 ),
                 SizedBox(
-                  width: 100.0,
+                  width: 100.0.w,
                   child: MaterialButton(
                       color: Colors.redAccent,
                       child: Row(
