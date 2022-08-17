@@ -4,7 +4,6 @@ import 'package:flutterfire_ui/firestore.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
-import 'package:ramen_map_app/store_list_page/components/area_dialog.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data.dart';
 
 class StoreAreaListPage extends ConsumerWidget {
