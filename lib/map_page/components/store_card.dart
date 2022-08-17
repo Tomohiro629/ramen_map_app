@@ -25,8 +25,10 @@ class StoreCard extends ConsumerWidget {
               Stack(children: [
                 InkWell(
                   onTap: () async {
-                    await ref.read(mapControllerProvider).moveStoreCamera(
-                        latitude: store!.latitude, longitude: store.longitude);
+                    //   await ref.read(mapControllerProvider).moveStoreCamera(
+                    //       latitude: store!.latitude!,
+                    //       longitude: store.longitude!);
+                    //
                   },
                   child: CircleAvatar(
                     radius: 200.0,
