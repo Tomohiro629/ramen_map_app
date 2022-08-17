@@ -80,7 +80,7 @@ class LoginPage extends ConsumerWidget {
                   },
                   child: InkWell(
                     child: Container(
-                      width: 170.0.w,
+                      width: 200.0,
                       decoration: BoxDecoration(
                           boxShadow: const [
                             BoxShadow(
@@ -92,8 +92,8 @@ class LoginPage extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(22.0)),
                       child: Row(children: <Widget>[
                         Container(
-                          height: 50.0.h,
-                          width: 120.0.w,
+                          height: 50.0,
+                          width: 120.0,
                           padding: const EdgeInsets.symmetric(
                               vertical: 15.0, horizontal: 40.0),
                           decoration: const BoxDecoration(
@@ -107,9 +107,9 @@ class LoginPage extends ConsumerWidget {
                             style: Theme.of(context).textTheme.button,
                           ),
                         ),
-                        SizedBox(
-                          width: 40.0.w,
-                          child: const Icon(
+                        const SizedBox(
+                          width: 40.0,
+                          child: Icon(
                             Icons.login_outlined,
                             color: Colors.orange,
                           ),
