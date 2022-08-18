@@ -10,6 +10,7 @@ final googleMapServiceProvider = Provider<GoogleMapService>((ref) {
 
 class GoogleMapService {
   final googlePlace = GooglePlace("AIzaSyBS_B-VRHZqZIXgItX6ylwU-cwsEZ7P94Y");
+  MapType currentMapType = MapType.hybrid;
 
   Completer<GoogleMapController> conpleter = Completer();
 }

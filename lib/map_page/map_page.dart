@@ -4,6 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/map_page/components/store_card.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
+import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class MapPage extends ConsumerWidget {
@@ -26,7 +27,7 @@ class MapPage extends ConsumerWidget {
           Expanded(
             child: mapController.initialPosition != null
                 ? GoogleMap(
-                    mapType: MapType.hybrid,
+                    mapType: ref.watch(googleMapServiceProvider).currentMapType,
                     myLocationEnabled: true,
                     initialCameraPosition: CameraPosition(
                         target: mapController.initialPosition!, zoom: 15.0),
@@ -37,7 +38,6 @@ class MapPage extends ConsumerWidget {
                     onLongPress: ((location) {
                       location = location;
                       // ignore: use_build_context_synchronously
-                      print(location);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -138,6 +138,45 @@ class MapPage extends ConsumerWidget {
                   ],
                 )
               : const Text(""),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 120.0,
+              right: 10.0,
+            ),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: FloatingActionButton(
+                    backgroundColor: const Color.fromARGB(154, 8, 0, 0),
+                    onPressed: () {
+                      mapController.changeMapType();
+                    },
+                    child: const Icon(
+                      Icons.map_outlined,
+                      color: Colors.deepOrange,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: FloatingActionButton(
+                      backgroundColor: const Color.fromARGB(154, 8, 0, 0),
+                      onPressed: () {
+                        mapController.resetAddress();
+                      },
+                      child: const Icon(
+                        Icons.autorenew_rounded,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -150,19 +189,7 @@ class MapPage extends ConsumerWidget {
                           storeId: storeId,
                         ),
                       )
-                    : Align(
-                        alignment: Alignment.bottomLeft,
-                        child: FloatingActionButton(
-                          backgroundColor: Colors.white,
-                          onPressed: () {
-                            mapController.resetAddress();
-                          },
-                          child: const Icon(
-                            Icons.autorenew_rounded,
-                            color: Colors.orange,
-                          ),
-                        ),
-                      )),
+                    : const Text("")),
           ),
         ],
       ),
