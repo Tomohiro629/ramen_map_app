@@ -35,7 +35,8 @@ class StoreListPage extends ConsumerWidget {
             ),
           ),
         ],
-        color: const Color.fromARGB(163, 238, 138, 7),
+        color: const LinearGradient(
+            colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
       ),
       body: Center(
         child: FirestoreListView<Store>(

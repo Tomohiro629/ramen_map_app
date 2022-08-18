@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Text title;
   final List<Widget> widgets;
-  final Color color;
+  final Gradient color;
   const BaseAppBar(
       {Key? key,
       required this.title,
@@ -15,15 +16,14 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(
     BuildContext context,
   ) {
-    return AppBar(
+    return NewGradientAppBar(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(50.0))),
       title: title,
       elevation: 5,
-      excludeHeaderSemantics: true,
       centerTitle: true,
       actions: widgets,
-      backgroundColor: color,
+      gradient: color,
     );
   }
 
