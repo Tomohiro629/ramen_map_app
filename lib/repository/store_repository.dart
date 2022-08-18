@@ -12,7 +12,7 @@ class StoreRepository {
 
   Future<void> addFavoriteStore(String storeId) async {
     await _firestore.collection('stores').doc(storeId).update({
-      "favorite": "ture",
+      "favorite": "true",
     });
   }
 
@@ -52,17 +52,6 @@ class StoreRepository {
     }
   }
 
-  Query<Store> queryStore({required String taste, required String userId}) {
-    final query = _firestore
-        .collection("stores")
-        .where('userId', isEqualTo: userId)
-        .where('taste', isEqualTo: taste)
-        .orderBy('timeStamp', descending: false);
-    return query.withConverter(
-        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
-        toFirestore: (store, _) => store.toJson());
-  }
-
   Query<Store> queryAreaStore(
       {required String taste, required String area, required String userId}) {
     final query = _firestore
@@ -70,6 +59,28 @@ class StoreRepository {
         .where('userId', isEqualTo: userId)
         .where('taste', isEqualTo: taste)
         .where('area', isEqualTo: area)
+        .orderBy('timeStamp', descending: false);
+    return query.withConverter(
+        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
+        toFirestore: (store, _) => store.toJson());
+  }
+
+  Query<Store> queryFavorite({required String userId}) {
+    final query = _firestore
+        .collection("stores")
+        .where('userId', isEqualTo: userId)
+        .where('favorite', isEqualTo: 'true')
+        .orderBy('timeStamp', descending: false);
+    return query.withConverter(
+        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
+        toFirestore: (store, _) => store.toJson());
+  }
+
+  Query<Store> queryStore({required String taste, required String userId}) {
+    final query = _firestore
+        .collection("stores")
+        .where('userId', isEqualTo: userId)
+        .where('taste', isEqualTo: taste)
         .orderBy('timeStamp', descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
