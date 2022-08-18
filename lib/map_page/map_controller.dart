@@ -60,6 +60,14 @@ class MapController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void changeMapType() {
+    reader(googleMapServiceProvider).currentMapType =
+        reader(googleMapServiceProvider).currentMapType == MapType.hybrid
+            ? MapType.normal
+            : MapType.hybrid;
+    notifyListeners();
+  }
+
   Future<void> getUserLocation() async {
     try {
       await Geolocator.requestPermission();
