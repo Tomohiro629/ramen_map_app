@@ -19,7 +19,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(50.0))),
       title: title,
-      elevation: 0,
+      elevation: 5,
       excludeHeaderSemantics: true,
       centerTitle: true,
       actions: widgets,
