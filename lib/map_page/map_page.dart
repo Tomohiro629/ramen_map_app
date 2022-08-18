@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ramen_map_app/map_page/components/store_card.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
@@ -176,20 +175,6 @@ class MapPage extends ConsumerWidget {
                 ),
               ],
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: storeId.isNotEmpty
-                    ? SizedBox(
-                        width: 200.0,
-                        height: 200.0,
-                        child: StoreCard(
-                          storeId: storeId,
-                        ),
-                      )
-                    : const Text("")),
           ),
         ],
       ),
