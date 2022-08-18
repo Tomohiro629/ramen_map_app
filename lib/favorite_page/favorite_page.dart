@@ -19,7 +19,7 @@ class FavoritePage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
-        color: Colors.orange,
+        color: Color.fromARGB(163, 238, 138, 7),
       ),
       body: Center(
         child: FirestoreListView<Store>(
