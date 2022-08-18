@@ -16,6 +16,13 @@ class StoreRepository {
     });
   }
 
+  Future<void> deleteFavoriteStore(String storeId) async {
+    await _firestore
+        .collection('stores')
+        .doc(storeId)
+        .update({"favorite": FieldValue.delete()});
+  }
+
   Future<void> deleteStore(String storeId) async {
     await _firestore.collection('stores').doc(storeId).delete();
   }

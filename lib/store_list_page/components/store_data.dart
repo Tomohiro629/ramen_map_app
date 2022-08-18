@@ -16,6 +16,7 @@ class StoreData extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = ref.watch(mapControllerProvider);
+    final storeRepository = ref.watch(storeRepositoryProvider);
 
     return SingleChildScrollView(
       child: Padding(
@@ -131,10 +132,8 @@ class StoreData extends ConsumerWidget {
                   IconButton(
                     onPressed: () {
                       store.favorite == null
-                          ? ref
-                              .watch(storeRepositoryProvider)
-                              .addFavoriteStore(store.storeId)
-                          : print("登録解除");
+                          ? storeRepository.addFavoriteStore(store.storeId)
+                          : storeRepository.deleteFavoriteStore(store.storeId);
                       ScaffoldMessenger.of(context)
                           .showSnackBar(store.favorite == null
                               ? SnackBar(
