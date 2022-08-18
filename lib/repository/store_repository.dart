@@ -10,6 +10,12 @@ final storeRepositoryProvider = Provider(((ref) {
 class StoreRepository {
   final _firestore = FirebaseFirestore.instance;
 
+  Future<void> addFavoriteStore(String storeId) async {
+    await _firestore.collection('stores').doc(storeId).update({
+      "favorite": "ture",
+    });
+  }
+
   Future<void> deleteStore(String storeId) async {
     await _firestore.collection('stores').doc(storeId).delete();
   }

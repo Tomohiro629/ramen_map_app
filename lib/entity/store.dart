@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 class Store {
@@ -15,6 +14,7 @@ class Store {
     required this.latitude,
     required this.longitude,
     required this.userId,
+    this.favorite = "",
   });
 
   factory Store.create({
@@ -45,18 +45,18 @@ class Store {
 
   factory Store.fromJson(Map<String, dynamic> map) {
     return Store(
-      storeId: map['id'],
-      name: map['name'],
-      price: map['price'],
-      memo: map['memo'],
-      area: map['area'],
-      taste: map['taste'],
-      latitude: map['latitude'],
-      longitude: map['longitude'],
-      timeStamp: (map['timeStamp']! as Timestamp).toDate(),
-      ramenImage: map['ramenImage'],
-      userId: map['userId'],
-    );
+        storeId: map['id'],
+        name: map['name'],
+        price: map['price'],
+        memo: map['memo'],
+        area: map['area'],
+        taste: map['taste'],
+        latitude: map['latitude'],
+        longitude: map['longitude'],
+        timeStamp: (map['timeStamp']! as Timestamp).toDate(),
+        ramenImage: map['ramenImage'],
+        userId: map['userId'],
+        favorite: map['favorite']);
   }
 
   Map<String, dynamic> toJson() {
@@ -72,6 +72,7 @@ class Store {
       'timeStamp': timeStamp,
       'ramenImage': ramenImage,
       'userId': userId,
+      'favorite': 'true'
     };
   }
 
@@ -86,4 +87,5 @@ class Store {
   final DateTime timeStamp;
   final String ramenImage;
   final String userId;
+  final String? favorite;
 }
