@@ -4,9 +4,7 @@ import 'package:ramen_map_app/bottom_bar/bottom_bar_controller.dart';
 import 'package:ramen_map_app/favorite_page/favorite_page.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/map_page/map_page.dart';
-
-import 'package:ramen_map_app/store_list_page/store_list_page.dart';
-import 'package:ramen_map_app/taste_list/components/taste_list.dart';
+import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/taste_list/taste_list_page.dart';
 
 class BottomBarPage extends ConsumerWidget {
@@ -52,7 +50,7 @@ class BottomBarPage extends ConsumerWidget {
           ],
           currentIndex: currentIndex,
           onTap: (int i) {
-            // mapContoroller.markers = {};
+            mapContoroller.markers = {};
             ref.watch(bottomBarControllerProvider.notifier).changeIndex(i);
           }),
     );

@@ -56,7 +56,7 @@ class StoreData extends ConsumerWidget {
                         child: InkWell(
                           splashColor: const Color.fromARGB(119, 255, 184, 77),
                           onTap: () {
-                            mapController.addMarker(store);
+                            mapController.addMarker(store: store);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

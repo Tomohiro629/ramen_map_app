@@ -35,7 +35,11 @@ class EditStorePage extends ConsumerWidget {
             style: TextStyle(color: Colors.white),
           ),
           widgets: [],
-          color: Colors.blueAccent,
+          color: LinearGradient(colors: [
+            Color.fromARGB(255, 47, 33, 243),
+            Color.fromARGB(207, 35, 69, 239),
+            Colors.lightBlue
+          ]),
         ),
         body: Center(
           child: SingleChildScrollView(

@@ -23,7 +23,8 @@ class StoreAreaListPage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
-        color: Colors.orange,
+        color: LinearGradient(
+            colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
       ),
       body: Center(
           child: FirestoreListView<Store>(

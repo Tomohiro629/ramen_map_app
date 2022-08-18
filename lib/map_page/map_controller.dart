@@ -8,6 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
+import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 
 final mapControllerProvider = ChangeNotifierProvider<MapController>((ref) {
@@ -30,11 +31,11 @@ class MapController extends ChangeNotifier {
   Set<Marker> markers = {};
   bool loading = true;
 
-  Future<void> addMarker(store) async {
+  Future<void> addMarker({required Store store}) async {
     markers = {};
     final marker = Marker(
       markerId: MarkerId(store.storeId),
-      position: LatLng(store.latitude, store.longitude),
+      position: LatLng(store.latitude!, store.longitude!),
       infoWindow: InfoWindow(
         title: store.name,
       ),

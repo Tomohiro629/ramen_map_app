@@ -41,8 +41,10 @@ dependencies:
   geolocator: ^9.0.1
   google_maps_flutter: ^2.1.10
   google_place: ^0.4.7
+  gradient_bottom_navigation_bar: ^1.0.0+4
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  new_gradient_app_bar: ^0.2.0
   uuid: 3.0.6
 
 
