@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
-import 'package:ramen_map_app/signup_page/components/signup_button.dart';
+import 'package:ramen_map_app/signup_page/components/button_design.dart';
 import 'package:ramen_map_app/signup_page/components/signup_input_form.dart';
+import 'package:ramen_map_app/signup_page/signup_controller.dart';
 
 class SignupPage extends ConsumerWidget {
   const SignupPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final signupController = ref.watch(signupControllerProvider);
     String newEmail = "";
     String newPassword = "";
 
@@ -48,10 +50,27 @@ class SignupPage extends ConsumerWidget {
                 )
               ],
             ),
-            SignupButton(
-              newEmail: newEmail,
-              newPassword: newPassword,
-            )
+            MaterialButton(
+              onPressed: () {
+                if (newEmail.isNotEmpty && newPassword.isNotEmpty) {
+                  signupController.signUpUser(
+                      newEmail: newEmail, newPassword: newPassword);
+                  Navigator.pop(context);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "登録エラー",
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                }
+              },
+              child: const ButtonDesign(),
+            ),
           ],
         ),
       ),

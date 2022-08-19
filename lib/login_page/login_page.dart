@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
-import 'package:ramen_map_app/login_page/components/login_button.dart';
+import 'package:ramen_map_app/login_page/components/button_design.dart';
 import 'package:ramen_map_app/login_page/components/login_input_form.dart';
 import 'package:ramen_map_app/login_page/login_page_controller.dart';
 
