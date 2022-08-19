@@ -298,7 +298,6 @@ class EditStorePage extends ConsumerWidget {
                           duration: Duration(seconds: 1),
                         ),
                       );
-                      print(e);
                     }
                   },
                   child: const EditButton(),

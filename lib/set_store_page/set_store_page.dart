@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_place/google_place.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/set_store_page/components/drop_down_menu.dart';
