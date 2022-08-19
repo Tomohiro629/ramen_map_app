@@ -62,6 +62,8 @@ class StoreData extends ConsumerWidget {
                                 MaterialPageRoute(
                                     builder: (context) => MapPage(
                                           storeId: store.storeId,
+                                          latitude: store.latitude,
+                                          longitude: store.longitude,
                                         )));
                           },
                         ),

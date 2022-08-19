@@ -82,8 +82,8 @@ class Store {
   final String memo;
   final String area;
   final String taste;
-  final double? latitude;
-  final double? longitude;
+  final double latitude;
+  final double longitude;
   final DateTime timeStamp;
   final String ramenImage;
   final String userId;
