@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_place/google_place.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
-import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
-import 'package:ramen_map_app/service/auth_service.dart';
-import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
+import 'package:ramen_map_app/set_store_page/components/drop_down_menu.dart';
 import 'package:ramen_map_app/set_store_page/components/set_button.dart';
-import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
+import 'package:ramen_map_app/set_store_page/components/take_image_button.dart';
+import 'package:ramen_map_app/set_store_page/components/text_input_form.dart';
 
 class SetStorePage extends ConsumerWidget {
   const SetStorePage({
@@ -21,9 +20,7 @@ class SetStorePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final storeSetController = ref.watch(setStoreControllerProvider);
     final imagePickerService = ref.watch(imagePickerServiceProvider);
-    final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
     final price = TextEditingController();
     final memo = TextEditingController();
@@ -46,20 +43,14 @@ class SetStorePage extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
-                  child: MaterialButton(
-                    shape: const CircleBorder(
-                        side: BorderSide(color: Colors.orange)),
-                    onPressed: () {
+                TakeImageButton(
+                    onTap: () {
                       imagePickerService.takeCamera();
                     },
-                    child: const Icon(
-                      Icons.camera_alt,
+                    icon: const Icon(
+                      Icons.camera_alt_outlined,
                       color: Colors.orange,
-                    ),
-                  ),
-                ),
+                    )),
                 imagePickerService.imagePath != null
                     ? Padding(
                         padding: const EdgeInsets.only(top: 20.0),
@@ -80,101 +71,56 @@ class SetStorePage extends ConsumerWidget {
                           ),
                         ),
                       ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
-                  child: MaterialButton(
-                    shape: const CircleBorder(
-                        side: BorderSide(color: Colors.orange)),
-                    onPressed: () {
-                      imagePickerService.takeGallery();
-                    },
-                    child: const Icon(
-                      Icons.photo,
-                      color: Colors.orange,
-                    ),
+                TakeImageButton(
+                  onTap: () {
+                    imagePickerService.takeGallery();
+                  },
+                  icon: const Icon(
+                    Icons.photo_outlined,
+                    color: Colors.orange,
                   ),
                 ),
               ],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
-              child: SizedBox(
-                width: 350.0,
-                child: TextFormField(
-                  controller: storeName,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.ramen_dining_outlined,
-                        color: Colors.orange,
-                      ),
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.orange,
-                        width: 2,
-                      )),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
-                      )),
-                      labelText: "店舗名"),
+              child: TextInputForm(
+                controller: storeName,
+                icon: const Icon(
+                  Icons.ramen_dining_outlined,
+                  color: Colors.orange,
                 ),
+                labelText: "店舗名",
+                keyboardType: TextInputType.number,
+                maxLength: 100,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
-              child: SizedBox(
-                width: 350.0,
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
+                padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
+                child: TextInputForm(
                   controller: price,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.money_outlined,
-                        color: Colors.orange,
-                      ),
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.orange,
-                        width: 2,
-                      )),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
-                      )),
-                      labelText: "価格"),
-                ),
-              ),
-            ),
+                  icon: const Icon(
+                    Icons.money_outlined,
+                    color: Colors.orange,
+                  ),
+                  labelText: "価格",
+                  keyboardType: TextInputType.number,
+                  maxLength: 8,
+                )),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 20.0,
-              ),
-              child: SizedBox(
-                width: 350.0,
-                child: TextFormField(
-                  controller: memo,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.note_outlined,
-                        color: Colors.orange,
-                      ),
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.orange,
-                        width: 2,
-                      )),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.deepOrange,
-                        width: 2,
-                      )),
-                      labelText: "一言メモ(30文字以内)"),
-                  maxLength: 30,
+                padding: const EdgeInsets.only(
+                  top: 20.0,
                 ),
-              ),
-            ),
+                child: TextInputForm(
+                  controller: memo,
+                  keyboardType: TextInputType.name,
+                  icon: const Icon(
+                    Icons.note_outlined,
+                    color: Colors.orange,
+                  ),
+                  labelText: "一言メモ",
+                  maxLength: 30,
+                )),
             Padding(
               padding: const EdgeInsets.only(
                 top: 20.0,
@@ -183,120 +129,60 @@ class SetStorePage extends ConsumerWidget {
               ),
               child: Row(
                 children: [
-                  SizedBox(
-                    width: 170.0,
-                    child: DropdownButtonFormField(
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.orange,
-                              width: 2,
-                            )),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.deepOrange,
-                              width: 2,
-                            )),
-                            hintText: "エリア選択",
-                            prefixIcon: Icon(
-                              Icons.map_outlined,
-                              color: Colors.orangeAccent,
-                            )),
-                        items: const [
-                          DropdownMenuItem(value: "北区", child: Text("北区")),
-                          DropdownMenuItem(value: "左京区", child: Text("左京区")),
-                          DropdownMenuItem(value: "右京区", child: Text("右京区")),
-                          DropdownMenuItem(value: "上京区", child: Text("上京区")),
-                          DropdownMenuItem(value: "中京区", child: Text("中京区")),
-                          DropdownMenuItem(value: "下京区", child: Text("下京区")),
-                          DropdownMenuItem(value: "南区", child: Text("南区")),
-                          DropdownMenuItem(value: "西京区", child: Text("西京区")),
-                          DropdownMenuItem(value: "東山区", child: Text("東山区")),
-                          DropdownMenuItem(value: "山科区", child: Text("山科区")),
-                          DropdownMenuItem(value: "伏見区", child: Text("伏見区")),
-                          DropdownMenuItem(value: "京都市外", child: Text("京都市外")),
-                        ],
-                        onChanged: (String? value) {
-                          area = value!;
-                        }),
-                  ),
+                  DropdownMenu(
+                      items: const [
+                        DropdownMenuItem(value: "北区", child: Text("北区")),
+                        DropdownMenuItem(value: "左京区", child: Text("左京区")),
+                        DropdownMenuItem(value: "右京区", child: Text("右京区")),
+                        DropdownMenuItem(value: "上京区", child: Text("上京区")),
+                        DropdownMenuItem(value: "中京区", child: Text("中京区")),
+                        DropdownMenuItem(value: "下京区", child: Text("下京区")),
+                        DropdownMenuItem(value: "南区", child: Text("南区")),
+                        DropdownMenuItem(value: "西京区", child: Text("西京区")),
+                        DropdownMenuItem(value: "東山区", child: Text("東山区")),
+                        DropdownMenuItem(value: "山科区", child: Text("山科区")),
+                        DropdownMenuItem(value: "伏見区", child: Text("伏見区")),
+                        DropdownMenuItem(value: "京都市外", child: Text("京都市外")),
+                      ],
+                      icon: const Icon(
+                        Icons.map_outlined,
+                        color: Colors.orangeAccent,
+                      ),
+                      hintText: "エリア選択",
+                      onChanged: (String? value) {
+                        area = value!;
+                      }),
                   const SizedBox(
                     width: 10.0,
                   ),
-                  SizedBox(
-                    width: 170.0,
-                    child: DropdownButtonFormField(
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.orange,
-                              width: 2,
-                            )),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.deepOrange,
-                              width: 2,
-                            )),
-                            hintText: "味",
-                            prefixIcon: Icon(
-                              Icons.map_outlined,
-                              color: Colors.orangeAccent,
-                            )),
-                        items: const [
-                          DropdownMenuItem(value: "醤油", child: Text("醤油")),
-                          DropdownMenuItem(value: "豚骨", child: Text("豚骨")),
-                          DropdownMenuItem(value: "豚骨醤油", child: Text("豚骨醤油")),
-                          DropdownMenuItem(value: "味噌", child: Text("味噌")),
-                          DropdownMenuItem(value: "塩", child: Text("塩")),
-                          DropdownMenuItem(value: "その他", child: Text("その他")),
-                        ],
-                        onChanged: (String? value) {
-                          taste = value!;
-                        }),
-                  ),
+                  DropdownMenu(
+                      items: const [
+                        DropdownMenuItem(value: "醤油", child: Text("醤油")),
+                        DropdownMenuItem(value: "豚骨", child: Text("豚骨")),
+                        DropdownMenuItem(value: "豚骨醤油", child: Text("豚骨醤油")),
+                        DropdownMenuItem(value: "味噌", child: Text("味噌")),
+                        DropdownMenuItem(value: "塩", child: Text("塩")),
+                        DropdownMenuItem(value: "その他", child: Text("その他")),
+                      ],
+                      icon: const Icon(
+                        Icons.map_outlined,
+                        color: Colors.orangeAccent,
+                      ),
+                      hintText: "味選択",
+                      onChanged: (String? value) {
+                        taste = value!;
+                      }),
                 ],
               ),
             ),
-            MaterialButton(
-              onPressed: () async {
-                await Future.delayed(
-                  const Duration(
-                    seconds: 3,
-                  ),
-                );
-                try {
-                  storageService.uploadPostImageAndGetUrl(
-                      file: imagePickerService.imagePath!);
-                  storeSetController.setStore(
-                      name: storeName.text,
-                      price: price.text,
-                      memo: memo.text,
-                      area: area,
-                      taste: taste,
-                      latitude: latitude,
-                      longitude: longitude,
-                      ramenImage: storageService.imageURL!,
-                      userId: ref.watch(authServiceProvider).userId);
-                  // ignore: use_build_context_synchronously
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => BottomBarPage()),
-                      (_) => false);
-                } catch (e) {
-                  // ignore: use_build_context_synchronously
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        "登録エラー\n再度試してください。",
-                        textAlign: TextAlign.center,
-                      ),
-                      backgroundColor: Colors.red,
-                      duration: Duration(seconds: 1),
-                    ),
-                  );
-                }
-              },
-              child: const SetButton(),
+            SetButton(
+              storeName: storeName.text,
+              price: price.text,
+              memo: memo.text,
+              area: area,
+              taste: taste,
+              latitude: latitude,
+              longitude: longitude,
             ),
           ],
         ),
