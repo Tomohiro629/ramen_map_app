@@ -17,6 +17,8 @@ class BottomBarPage extends ConsumerWidget {
     const FavoritePage(),
     const MapPage(
       storeId: "",
+      latitude: 0.0,
+      longitude: 0.0,
     )
   ];
   @override
