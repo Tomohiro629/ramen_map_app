@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
+import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
+import 'package:ramen_map_app/service/auth_service.dart';
+import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/set_store_page/components/drop_down_menu.dart';
-import 'package:ramen_map_app/set_store_page/components/set_button.dart';
+import 'package:ramen_map_app/set_store_page/components/set_button_design.dart';
 import 'package:ramen_map_app/set_store_page/components/take_image_button.dart';
 import 'package:ramen_map_app/set_store_page/components/text_input_form.dart';
+import 'package:ramen_map_app/set_store_page/set_store_controller.dart';
 
 class SetStorePage extends ConsumerWidget {
   const SetStorePage({
@@ -20,6 +24,8 @@ class SetStorePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imagePickerService = ref.watch(imagePickerServiceProvider);
+    final storeSetController = ref.watch(setStoreControllerProvider);
+    final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
     final price = TextEditingController();
     final memo = TextEditingController();
@@ -90,7 +96,7 @@ class SetStorePage extends ConsumerWidget {
                   color: Colors.orange,
                 ),
                 labelText: "店舗名",
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.name,
                 maxLength: 100,
               ),
             ),
@@ -154,15 +160,47 @@ class SetStorePage extends ConsumerWidget {
                 ],
               ),
             ),
-            SetButton(
-              storeName: storeName.text,
-              price: price.text,
-              memo: memo.text,
-              area: area,
-              taste: taste,
-              latitude: latitude,
-              longitude: longitude,
-            ),
+            MaterialButton(
+              onPressed: () async {
+                await Future.delayed(
+                  const Duration(
+                    seconds: 3,
+                  ),
+                );
+                try {
+                  storageService.uploadPostImageAndGetUrl(
+                      file: imagePickerService.imagePath!);
+                  storeSetController.setStore(
+                      name: storeName.text,
+                      price: price.text,
+                      memo: memo.text,
+                      area: area,
+                      taste: taste,
+                      latitude: latitude,
+                      longitude: longitude,
+                      ramenImage: storageService.imageURL!,
+                      userId: ref.watch(authServiceProvider).userId);
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => BottomBarPage()),
+                      (_) => false);
+                } catch (e) {
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "登録エラー\n再度試してください。",
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                }
+              },
+              child: const SetButtonDesign(),
+            )
           ],
         ),
       ),
