@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/login_page/components/login_button.dart';
 import 'package:ramen_map_app/login_page/components/login_input_form.dart';
+import 'package:ramen_map_app/login_page/login_page_controller.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
-    String email = "";
-    String password = "";
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginController = ref.watch(loginControllerProvider);
+    final email = TextEditingController();
+    final password = TextEditingController();
 
     return Scaffold(
       appBar: const BaseAppBar(
@@ -33,23 +34,35 @@ class LoginPage extends StatelessWidget {
                   LoginInputForm(
                     labelText: "メールアドレス",
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
-                      email = value!;
-                    },
+                    controller: email,
                   ),
                   LoginInputForm(
                     labelText: "パスワード",
                     keyboardType: TextInputType.visiblePassword,
-                    onChanged: (value) {
-                      password = value!;
-                    },
+                    controller: password,
                   )
                 ],
               ),
-              LoginButton(
-                email: email,
-                password: password,
-              )
+              MaterialButton(
+                  onPressed: () {
+                    if (email.text.isNotEmpty && password.text.isNotEmpty) {
+                      loginController.loginUser(
+                          email: email.text, password: password.text);
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            "ログインエラー",
+                            textAlign: TextAlign.center,
+                          ),
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                    }
+                  },
+                  child: const ButtonDesign())
             ]),
       ),
     );

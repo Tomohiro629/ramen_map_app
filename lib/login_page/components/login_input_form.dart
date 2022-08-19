@@ -5,11 +5,11 @@ class LoginInputForm extends StatelessWidget {
       {Key? key,
       required this.labelText,
       required this.keyboardType,
-      required this.onChanged})
+      required this.controller})
       : super(key: key);
   final String labelText;
   final TextInputType keyboardType;
-  final void Function(String?)? onChanged;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class LoginInputForm extends StatelessWidget {
           labelText: labelText,
           labelStyle: const TextStyle(color: Colors.orange),
         ),
-        onChanged: onChanged,
+        controller: controller,
       ),
     );
   }
