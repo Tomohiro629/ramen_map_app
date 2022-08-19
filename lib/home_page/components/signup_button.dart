@@ -32,9 +32,9 @@ class SignupButton extends StatelessWidget {
                       bottomLeft: Radius.circular(95.0),
                       topLeft: Radius.circular(95.0),
                       bottomRight: Radius.circular(200.0))),
-              child: Text(
+              child: const Text(
                 'アカウント作成',
-                style: Theme.of(context).textTheme.button,
+                style: TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(

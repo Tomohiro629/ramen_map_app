@@ -54,9 +54,9 @@ class LoginButton extends ConsumerWidget {
                         bottomLeft: Radius.circular(95.0),
                         topLeft: Radius.circular(95.0),
                         bottomRight: Radius.circular(200.0))),
-                child: Text(
+                child: const Text(
                   'ログイン',
-                  style: Theme.of(context).textTheme.button,
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
               const SizedBox(
