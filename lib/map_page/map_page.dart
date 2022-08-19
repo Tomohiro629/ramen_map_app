@@ -33,6 +33,11 @@ class MapPage extends ConsumerWidget {
                     onMapCreated: (GoogleMapController controller) {
                       controller = controller;
                     },
+                    minMaxZoomPreference: const MinMaxZoomPreference(10, 20),
+                    cameraTargetBounds: CameraTargetBounds(LatLngBounds(
+                      northeast: const LatLng(35.993758, 136.40452), //北・西
+                      southwest: const LatLng(33.382718, 134.15505), //南・東
+                    )),
                     markers: mapController.markers,
                     onLongPress: ((location) {
                       location = location;
