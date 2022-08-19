@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ramen_map_app/map_page/components/map_button.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
@@ -174,35 +175,28 @@ class MapPage extends ConsumerWidget {
             child: Column(
               children: [
                 Align(
-                  alignment: Alignment.topRight,
-                  child: MaterialButton(
-                    height: 50.0,
-                    color: const Color.fromARGB(154, 8, 0, 0),
-                    onPressed: () {
-                      mapController.changeMapType();
-                    },
-                    shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.map_outlined,
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                ),
+                    alignment: Alignment.topRight,
+                    child: MapButton(
+                      icon: const Icon(
+                        Icons.map_outlined,
+                        color: Colors.deepOrange,
+                      ),
+                      onTap: () {
+                        mapController.changeMapType();
+                      },
+                    )),
                 Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Align(
                     alignment: Alignment.topRight,
-                    child: MaterialButton(
-                      height: 50.0,
-                      color: const Color.fromARGB(154, 8, 0, 0),
-                      onPressed: () {
-                        mapController.resetAddress();
-                      },
-                      shape: const CircleBorder(),
-                      child: const Icon(
+                    child: MapButton(
+                      icon: const Icon(
                         Icons.autorenew_rounded,
                         color: Colors.deepOrange,
                       ),
+                      onTap: (() {
+                        mapController.resetAddress();
+                      }),
                     ),
                   ),
                 ),
