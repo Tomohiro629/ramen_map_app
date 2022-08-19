@@ -48,3 +48,30 @@ class TasteList extends StatelessWidget {
     );
   }
 }
+
+List<TasteList> tastes = [
+  const TasteList(
+    taste: "醤油",
+    imageURL: "images/syoyu.jpg",
+  ),
+  const TasteList(
+    taste: "豚骨",
+    imageURL: "images/tonkotu.jpg",
+  ),
+  const TasteList(
+    taste: "豚骨醤油",
+    imageURL: "images/tonkotusyoyu.jpg",
+  ),
+  const TasteList(
+    taste: "味噌",
+    imageURL: "images/miso.jpg",
+  ),
+  const TasteList(
+    taste: "塩",
+    imageURL: "images/sio.jpg",
+  ),
+  const TasteList(
+    taste: "その他",
+    imageURL: "images/sonota.jpg",
+  )
+];
