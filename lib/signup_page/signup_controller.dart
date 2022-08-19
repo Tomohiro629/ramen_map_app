@@ -21,7 +21,7 @@ class SignUpController extends ChangeNotifier {
         newPassword: newPassword,
       );
     } catch (e) {
-      print(e);
+      Text(e.toString());
     }
   }
 }
