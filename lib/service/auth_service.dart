@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutterfire_ui/auth.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) {
   return AuthService();
@@ -25,6 +24,7 @@ class AuthService {
         password: password,
       );
     } catch (e) {
+      // ignore: avoid_print
       print("ログイン失敗");
     }
   }
@@ -32,6 +32,7 @@ class AuthService {
   Future<void> logOut() async {
     await _auth.signOut();
     if (_auth.currentUser == null) {
+      // ignore: avoid_print
       print('ログアウト成功');
     }
   }

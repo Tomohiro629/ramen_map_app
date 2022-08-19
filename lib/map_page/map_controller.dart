@@ -1,16 +1,13 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:ramen_map_app/entity/store.dart';
-import 'package:ramen_map_app/map_page/components/custom_info_window_page.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 
 final mapControllerProvider = ChangeNotifierProvider<MapController>((ref) {
@@ -66,6 +63,7 @@ class MapController extends ChangeNotifier {
         predictions = address.predictions!;
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
     notifyListeners();

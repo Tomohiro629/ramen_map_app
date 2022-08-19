@@ -72,7 +72,6 @@ class Store {
       'timeStamp': timeStamp,
       'ramenImage': ramenImage,
       'userId': userId,
-      'favorite': 'true'
     };
   }
 

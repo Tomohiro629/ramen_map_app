@@ -4,8 +4,8 @@ import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
-import 'package:ramen_map_app/service/coloud_storage_service.dart';
-import 'package:ramen_map_app/service/image_picker_service.dart';
+// import 'package:ramen_map_app/service/coloud_storage_service.dart';
+// import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/store_list_page/components/edit_button.dart';
 
 class EditStorePage extends ConsumerWidget {
@@ -16,8 +16,8 @@ class EditStorePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storeEditController = ref.watch(storeRepositoryProvider);
-    final imagePickerService = ref.watch(imagePickerServiceProvider);
-    final storageService = ref.watch(storageServiceProvider);
+    // final imagePickerService = ref.watch(imagePickerServiceProvider);
+    // final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
     final price = TextEditingController();
     final memo = TextEditingController();
@@ -298,7 +298,6 @@ class EditStorePage extends ConsumerWidget {
                           duration: Duration(seconds: 1),
                         ),
                       );
-                      print(e);
                     }
                   },
                   child: const EditButton(),

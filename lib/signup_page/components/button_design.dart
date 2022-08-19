@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SetButton extends StatelessWidget {
-  const SetButton({
+class ButtonDesign extends StatelessWidget {
+  const ButtonDesign({
     Key? key,
   }) : super(key: key);
 
@@ -11,7 +11,7 @@ class SetButton extends StatelessWidget {
   ) {
     return InkWell(
       child: Container(
-        width: 160.0,
+        width: 200.0,
         decoration: BoxDecoration(boxShadow: const [
           BoxShadow(
               offset: Offset(0.0, 20.0),
@@ -21,25 +21,29 @@ class SetButton extends StatelessWidget {
         child: Row(children: <Widget>[
           Container(
             height: 50.0,
-            width: 120.0,
+            width: 150.0,
             padding:
-                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
             decoration: const BoxDecoration(
-                color: Colors.redAccent,
+                gradient: LinearGradient(colors: [
+                  Color.fromARGB(255, 16, 145, 20),
+                  Color.fromARGB(255, 4, 179, 94),
+                  Colors.greenAccent
+                ]),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(95.0),
                     topLeft: Radius.circular(95.0),
                     bottomRight: Radius.circular(200.0))),
-            child: Text(
-              '登録',
-              style: Theme.of(context).textTheme.button,
+            child: const Text(
+              'アカウント作成',
+              style: TextStyle(color: Colors.white),
             ),
           ),
           const SizedBox(
             width: 30.0,
             child: Icon(
-              Icons.add_outlined,
-              color: Colors.redAccent,
+              Icons.login_outlined,
+              color: Colors.greenAccent,
             ),
           )
         ]),

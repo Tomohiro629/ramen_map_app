@@ -15,23 +15,58 @@ class DeleteCheckDialog extends ConsumerWidget {
     final storeListController = ref.watch(storeListProvider);
 
     return AlertDialog(
+      backgroundColor: const Color.fromARGB(165, 0, 0, 0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      title: Text("『${store.name}』を削除しますか？"),
+      title: Text(
+        "『${store.name}』\nを削除しますか？",
+        style: const TextStyle(color: Colors.white),
+      ),
       actions: <Widget>[
-        MaterialButton(
-          color: Colors.redAccent,
-          child: const Text("はい"),
-          onPressed: () async {
-            storeListController.deleteStore(store.storeId);
-            Navigator.of(context).pop();
-          },
-        ),
-        MaterialButton(
-          color: Colors.blueAccent,
-          child: const Text("いいえ"),
-          onPressed: () async {
-            Navigator.of(context).pop();
-          },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            MaterialButton(
+              child: Container(
+                  height: 30.0,
+                  width: 60.0,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                    Color.fromARGB(255, 195, 14, 1),
+                    Color.fromARGB(255, 248, 55, 41),
+                    Color.fromARGB(255, 217, 81, 81)
+                  ])),
+                  child: const Center(
+                    child: Text(
+                      "はい",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )),
+              onPressed: () async {
+                storeListController.deleteStore(store.storeId);
+                Navigator.of(context).pop();
+              },
+            ),
+            MaterialButton(
+              child: Container(
+                  height: 30.0,
+                  width: 60.0,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                    Colors.blue,
+                    Colors.lightBlue,
+                    Colors.blueAccent
+                  ])),
+                  child: const Center(
+                    child: Text(
+                      "いいえ",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
         ),
       ],
     );
