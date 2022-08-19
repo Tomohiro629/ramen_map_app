@@ -24,7 +24,11 @@ class LoginButton extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     vertical: 15.0, horizontal: 40.0),
                 decoration: const BoxDecoration(
-                    color: Colors.orangeAccent,
+                    gradient: LinearGradient(colors: [
+                      Colors.red,
+                      Colors.deepOrange,
+                      Colors.orangeAccent
+                    ]),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(95.0),
                         topLeft: Radius.circular(95.0),

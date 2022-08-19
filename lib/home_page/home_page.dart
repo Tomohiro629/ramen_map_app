@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramen_map_app/home_page/components/login_button.dart';
-import 'package:ramen_map_app/home_page/components/signup_button%20copy.dart';
-import 'package:ramen_map_app/taste_list/taste_list_page.dart';
+import 'package:ramen_map_app/home_page/components/signup_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
