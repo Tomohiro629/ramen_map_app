@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
-import 'package:ramen_map_app/service/auth_service.dart';
+import 'package:ramen_map_app/taste_list/components/logout_dialog.dart';
 import 'package:ramen_map_app/taste_list/components/taste_list.dart';
 
 class TasteListPage extends ConsumerWidget {
@@ -9,7 +9,6 @@ class TasteListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authSevice = ref.watch(authServiceProvider);
     final tastesList = tastes;
 
     return Scaffold(
@@ -25,7 +24,11 @@ class TasteListPage extends ConsumerWidget {
               padding: const EdgeInsets.only(right: 10.0),
               child: IconButton(
                   onPressed: () {
-                    authSevice.logOut();
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const LogoutDialog();
+                        });
                   },
                   icon: const Icon(
                     Icons.logout_outlined,
