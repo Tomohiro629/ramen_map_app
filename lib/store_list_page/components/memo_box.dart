@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/store_list_page/components/delete_store_dialog.dart';
-import 'package:ramen_map_app/store_list_page/components/edit_store_page.dart';
+import 'package:ramen_map_app/edit_store/edit_store_page.dart';
 
 class MemoBox extends ConsumerWidget {
   const MemoBox({Key? key, required this.store}) : super(key: key);

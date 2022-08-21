@@ -25,7 +25,11 @@ class EditButton extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
             decoration: const BoxDecoration(
-                color: Colors.blueAccent,
+                gradient: LinearGradient(colors: [
+                  Color.fromARGB(255, 47, 33, 243),
+                  Color.fromARGB(207, 35, 69, 239),
+                  Colors.lightBlue
+                ]),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(95.0),
                     topLeft: Radius.circular(95.0),

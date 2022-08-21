@@ -6,7 +6,7 @@ import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 // import 'package:ramen_map_app/service/coloud_storage_service.dart';
 // import 'package:ramen_map_app/service/image_picker_service.dart';
-import 'package:ramen_map_app/store_list_page/components/edit_button.dart';
+import 'package:ramen_map_app/edit_store/edit_button.dart';
 
 class EditStorePage extends ConsumerWidget {
   const EditStorePage({Key? key, required this.store}) : super(key: key);
