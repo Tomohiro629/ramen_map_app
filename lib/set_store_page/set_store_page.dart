@@ -39,8 +39,11 @@ class SetStorePage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
-        color: LinearGradient(
-            colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
+        color: LinearGradient(colors: [
+          Color.fromARGB(255, 195, 14, 1),
+          Color.fromARGB(255, 248, 55, 41),
+          Color.fromARGB(255, 217, 81, 81)
+        ]),
       ),
       body: SingleChildScrollView(
         child: Column(
