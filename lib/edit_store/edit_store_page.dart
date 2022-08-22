@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/edit_store/components/edit_drop_down_menu.dart';
+import 'package:ramen_map_app/edit_store/components/edit_image_button.dart';
 import 'package:ramen_map_app/edit_store/components/edit_input_form.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
-// import 'package:ramen_map_app/service/coloud_storage_service.dart';
-// import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/edit_store/components/edit_button_desing.dart';
+import 'package:ramen_map_app/service/coloud_storage_service.dart';
+import 'package:ramen_map_app/service/image_picker_service.dart';
 
 class EditStorePage extends ConsumerWidget {
   const EditStorePage({Key? key, required this.store}) : super(key: key);
@@ -18,8 +19,8 @@ class EditStorePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storeEditController = ref.watch(storeRepositoryProvider);
-    // final imagePickerService = ref.watch(imagePickerServiceProvider);
-    // final storageService = ref.watch(storageServiceProvider);
+    final imagePickerService = ref.watch(imagePickerServiceProvider);
+    final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
     final price = TextEditingController();
     final memo = TextEditingController();
@@ -47,54 +48,44 @@ class EditStorePage extends ConsumerWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Padding(
-                //       padding: const EdgeInsets.only(top: 80.0),
-                //       child: MaterialButton(
-                //         shape: const CircleBorder(
-                //             side: BorderSide(color: Colors.blue)),
-                //         onPressed: () {
-                //           imagePickerService.takeCamera();
-                //         },
-                //         child: const Icon(
-                //           Icons.camera_alt,
-                //           color: Colors.blue,
-                //         ),
-                //       ),
-                //     ),
-                //     imagePickerService.imagePath != null
-                //         ? Image.file(
-                //             imagePickerService.imagePath!,
-                //             width: 220.0,
-                //             height: 120.0,
-                //           )
-                //         : Stack(alignment: Alignment.center, children: [
-                //             const CircularProgressIndicator(
-                //               color: Colors.blue,
-                //             ),
-                //             SizedBox(
-                //                 width: 220.0,
-                //                 height: 120.0,
-                //                 child: Image.network(store.ramenImage)),
-                //           ]),
-                //     Padding(
-                //       padding: const EdgeInsets.only(top: 80.0),
-                //       child: MaterialButton(
-                //         shape: const CircleBorder(
-                //             side: BorderSide(color: Colors.blue)),
-                //         onPressed: () {
-                //           imagePickerService.takeGallery();
-                //         },
-                //         child: const Icon(
-                //           Icons.photo,
-                //           color: Colors.blue,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    EditImageButton(
+                      onTap: () {
+                        imagePickerService.takeCamera();
+                      },
+                      icon: const Icon(
+                        Icons.camera_alt,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    imagePickerService.imagePath != null
+                        ? Image.file(
+                            imagePickerService.imagePath!,
+                            width: 220.0,
+                            height: 120.0,
+                          )
+                        : Stack(alignment: Alignment.center, children: [
+                            const CircularProgressIndicator(
+                              color: Colors.blue,
+                            ),
+                            SizedBox(
+                                width: 220.0,
+                                height: 120.0,
+                                child: Image.network(store.ramenImage)),
+                          ]),
+                    EditImageButton(
+                      onTap: () {
+                        imagePickerService.takeGallery();
+                      },
+                      icon: const Icon(
+                        Icons.photo_outlined,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
                 Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 60.0),
                     child: EditInputForm(
