@@ -184,6 +184,17 @@ class SetStorePage extends ConsumerWidget {
                       ramenImage: storageService.imageURL!,
                       userId: ref.watch(authServiceProvider).userId);
                   // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "${storeName.text}を登録しました！",
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                  // ignore: use_build_context_synchronously
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => BottomBarPage()),

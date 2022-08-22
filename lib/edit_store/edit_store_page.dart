@@ -5,8 +5,8 @@ import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/edit_store/components/edit_drop_down_menu.dart';
 import 'package:ramen_map_app/edit_store/components/edit_image_button.dart';
 import 'package:ramen_map_app/edit_store/components/edit_input_form.dart';
+import 'package:ramen_map_app/edit_store/edit_store_contrller.dart';
 import 'package:ramen_map_app/entity/store.dart';
-import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/edit_store/components/edit_button_desing.dart';
 import 'package:ramen_map_app/service/coloud_storage_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
@@ -18,7 +18,7 @@ class EditStorePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final storeEditController = ref.watch(storeRepositoryProvider);
+    final storeEditController = ref.watch(editStoreControllerProvider);
     final imagePickerService = ref.watch(imagePickerServiceProvider);
     final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
@@ -60,21 +60,12 @@ class EditStorePage extends ConsumerWidget {
                         color: Colors.blue,
                       ),
                     ),
-                    imagePickerService.imagePath != null
-                        ? Image.file(
-                            imagePickerService.imagePath!,
-                            width: 220.0,
-                            height: 120.0,
-                          )
-                        : Stack(alignment: Alignment.center, children: [
-                            const CircularProgressIndicator(
-                              color: Colors.blue,
-                            ),
-                            SizedBox(
-                                width: 220.0,
-                                height: 120.0,
-                                child: Image.network(store.ramenImage)),
-                          ]),
+                    SizedBox(
+                        width: 220.0,
+                        height: 120.0,
+                        child: imagePickerService.imagePath == null
+                            ? Image.network(store.ramenImage)
+                            : Image.file(imagePickerService.imagePath!)),
                     EditImageButton(
                       onTap: () {
                         imagePickerService.takeGallery();
@@ -159,6 +150,10 @@ class EditStorePage extends ConsumerWidget {
                 MaterialButton(
                   onPressed: () async {
                     try {
+                      if (imagePickerService.imagePath != null) {
+                        storageService.uploadPostImageAndGetUrl(
+                            file: imagePickerService.imagePath!);
+                      }
                       storeEditController.updateStore(
                         storeId: store.storeId,
                         editStoreName: storeName.text,
@@ -166,6 +161,20 @@ class EditStorePage extends ConsumerWidget {
                         editMemo: memo.text,
                         editArea: area.isEmpty ? store.area : area,
                         editTaste: taste.isEmpty ? store.taste : taste,
+                        editRamenImage: imagePickerService.imagePath == null
+                            ? store.ramenImage
+                            : storageService.imageURL!,
+                      );
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            "変更しました！",
+                            textAlign: TextAlign.center,
+                          ),
+                          backgroundColor: Colors.lightBlue,
+                          duration: Duration(seconds: 2),
+                        ),
                       );
                       Navigator.pushAndRemoveUntil(
                           context,
