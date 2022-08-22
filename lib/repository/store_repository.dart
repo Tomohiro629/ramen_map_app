@@ -87,20 +87,21 @@ class StoreRepository {
         toFirestore: (store, _) => store.toJson());
   }
 
-  Future<void> updateStore({
-    required String storeId,
-    required String editStoreName,
-    required String editPrice,
-    required String editMemo,
-    required String editArea,
-    required String editTaste,
-  }) async {
+  Future<void> updateStore(
+      {required String storeId,
+      required String editStoreName,
+      required String editPrice,
+      required String editMemo,
+      required String editArea,
+      required String editTaste,
+      required String editRamenImage}) async {
     _firestore.collection('stores').doc(storeId).update({
       "name": editStoreName,
       "price": editPrice,
       "memo": editMemo,
       "area": editArea,
       "taste": editTaste,
+      "ramenImage": editRamenImage,
     });
   }
 }

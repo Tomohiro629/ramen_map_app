@@ -39,8 +39,11 @@ class SetStorePage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         widgets: [],
-        color: LinearGradient(
-            colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
+        color: LinearGradient(colors: [
+          Color.fromARGB(255, 195, 14, 1),
+          Color.fromARGB(255, 248, 55, 41),
+          Color.fromARGB(255, 217, 81, 81)
+        ]),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -180,6 +183,17 @@ class SetStorePage extends ConsumerWidget {
                       longitude: longitude,
                       ramenImage: storageService.imageURL!,
                       userId: ref.watch(authServiceProvider).userId);
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "${storeName.text}を登録しました！",
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
                   // ignore: use_build_context_synchronously
                   Navigator.pushAndRemoveUntil(
                       context,
