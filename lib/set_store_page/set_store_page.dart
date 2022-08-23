@@ -91,7 +91,9 @@ class SetStorePage extends ConsumerWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
+              padding: const EdgeInsets.only(
+                top: 30.0,
+              ),
               child: TextInputForm(
                 controller: storeName,
                 icon: const Icon(
@@ -104,7 +106,9 @@ class SetStorePage extends ConsumerWidget {
               ),
             ),
             Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
+                padding: const EdgeInsets.only(
+                  top: 20.0,
+                ),
                 child: TextInputForm(
                   controller: price,
                   icon: const Icon(
@@ -165,11 +169,6 @@ class SetStorePage extends ConsumerWidget {
             ),
             MaterialButton(
               onPressed: () async {
-                await Future.delayed(
-                  const Duration(
-                    seconds: 3,
-                  ),
-                );
                 try {
                   storageService.uploadPostImageAndGetUrl(
                       file: imagePickerService.imagePath!);
@@ -183,6 +182,7 @@ class SetStorePage extends ConsumerWidget {
                       longitude: longitude,
                       ramenImage: storageService.imageURL!,
                       userId: ref.watch(authServiceProvider).userId);
+                  imagePickerService.imagePath = null;
                   // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
