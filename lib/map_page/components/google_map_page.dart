@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ramen_map_app/map_page/components/set_location_snack_bar.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
-import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class GoogleMapPage extends ConsumerWidget {
   const GoogleMapPage(
@@ -30,22 +30,17 @@ class GoogleMapPage extends ConsumerWidget {
       },
       minMaxZoomPreference: const MinMaxZoomPreference(10, 20),
       cameraTargetBounds: CameraTargetBounds(LatLngBounds(
-        northeast: const LatLng(35.993758, 136.40452), //北・西
-        southwest: const LatLng(33.382718, 134.15505), //南・東
+        northeast: const LatLng(35.993758, 136.40452),
+        southwest: const LatLng(33.382718, 134.15505),
       )),
       markers: mapController.markers,
       onLongPress: ((location) {
         location = location;
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SetStorePage(
-              latitude: location.latitude,
-              longitude: location.longitude,
-            ),
-          ),
-        );
+        //setMarker
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: SetLocationSnackBar(location: location),
+          backgroundColor: const Color.fromARGB(165, 0, 0, 0),
+        ));
       }),
     );
   }
