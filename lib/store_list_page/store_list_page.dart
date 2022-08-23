@@ -4,7 +4,7 @@ import 'package:flutterfire_ui/firestore.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/store_list_page/components/area_dialog.dart';
-import 'package:ramen_map_app/store_list_page/components/store_data.dart';
+import 'package:ramen_map_app/store_list_page/components/store_image.dart';
 import 'package:ramen_map_app/store_list_page/store_list_controller.dart';
 
 class StoreListPage extends ConsumerWidget {
@@ -43,7 +43,7 @@ class StoreListPage extends ConsumerWidget {
           query: storeListController.storeQuery(taste),
           itemBuilder: (context, snapshot) {
             final store = snapshot.data();
-            return StoreData(store: store);
+            return StoreImage(store: store);
           },
         ),
       ),

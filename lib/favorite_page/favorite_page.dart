@@ -4,7 +4,7 @@ import 'package:flutterfire_ui/firestore.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/favorite_page/favorite_controller.dart';
-import 'package:ramen_map_app/store_list_page/components/store_data.dart';
+import 'package:ramen_map_app/store_list_page/components/store_image.dart';
 
 class FavoritePage extends ConsumerWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class FavoritePage extends ConsumerWidget {
           query: favoriteController.favoriteQuery(),
           itemBuilder: (context, snapshot) {
             final store = snapshot.data();
-            return StoreData(store: store);
+            return StoreImage(store: store);
           },
         ),
       ),
