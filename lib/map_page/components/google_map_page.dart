@@ -36,10 +36,11 @@ class GoogleMapPage extends ConsumerWidget {
       markers: mapController.markers,
       onLongPress: ((location) {
         location = location;
-        //setMarker
+        mapController.setMarker(location: location);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: SetLocationSnackBar(location: location),
           backgroundColor: const Color.fromARGB(165, 0, 0, 0),
+          duration: const Duration(seconds: 10),
         ));
       }),
     );

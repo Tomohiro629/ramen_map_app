@@ -8,8 +8,11 @@ class SetLocationSnackBar extends ConsumerWidget {
   const SetLocationSnackBar({Key? key, required this.location})
       : super(key: key);
   final LatLng location;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final mapController = ref.watch(mapControllerProvider);
+
     return SizedBox(
       height: 80.0,
       child: Column(
@@ -50,6 +53,7 @@ class SetLocationSnackBar extends ConsumerWidget {
                       ),
                     ),
                   );
+                  mapController.resetMarker();
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 },
               ),
@@ -73,7 +77,7 @@ class SetLocationSnackBar extends ConsumerWidget {
                 ),
                 onPressed: () {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ref.read(mapControllerProvider).resetAddress();
+                  mapController.resetMarker();
                 },
               )
             ],

@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
+import 'package:uuid/uuid.dart';
 
 final mapControllerProvider = ChangeNotifierProvider<MapController>((ref) {
   return MapController(ref.read);
@@ -93,6 +94,22 @@ class MapController extends ChangeNotifier {
 
   void resetAddress() {
     predictions = [];
+    notifyListeners();
+  }
+
+  void resetMarker() {
+    markers = {};
+    notifyListeners();
+  }
+
+  Future<void> setMarker({required LatLng location}) async {
+    final id = const Uuid().v4();
+    markers = {};
+    final marker = Marker(
+        markerId: MarkerId(id),
+        position: LatLng(location.latitude, location.longitude),
+        infoWindow: InfoWindow(title: location.toString()));
+    markers.add(marker);
     notifyListeners();
   }
 
