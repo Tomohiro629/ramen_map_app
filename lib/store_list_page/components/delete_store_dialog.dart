@@ -44,6 +44,7 @@ class DeleteCheckDialog extends ConsumerWidget {
               onPressed: () async {
                 storeListController.deleteStore(store.storeId);
                 Navigator.of(context).pop();
+                Navigator.of(context, rootNavigator: true).pop();
               },
             ),
             MaterialButton(
