@@ -5,7 +5,7 @@ import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/service/auth_service.dart';
-import 'package:ramen_map_app/store_list_page/components/store_data.dart';
+import 'package:ramen_map_app/store_list_page/components/store_image.dart';
 
 class StoreAreaListPage extends ConsumerWidget {
   const StoreAreaListPage({Key? key, required this.taste, required this.area})
@@ -34,7 +34,7 @@ class StoreAreaListPage extends ConsumerWidget {
             userId: ref.watch(authServiceProvider).userId),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
-          return StoreData(store: store);
+          return StoreImage(store: store);
         },
       )),
     );

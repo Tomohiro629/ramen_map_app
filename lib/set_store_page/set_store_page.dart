@@ -153,7 +153,7 @@ class SetStorePage extends ConsumerWidget {
                   DropdownMenu(
                       items: tastes,
                       icon: const Icon(
-                        Icons.map_outlined,
+                        Icons.dining_outlined,
                         color: Colors.orangeAccent,
                       ),
                       hintText: "味選択",
