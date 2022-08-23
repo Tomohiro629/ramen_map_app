@@ -11,93 +11,94 @@ class StoreDataBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300.0,
+      height: 400.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
+            height: 70.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
-                color: Colors.orangeAccent),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Text(
-                  "店舗詳細",
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                        color: Colors.blueAccent,
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      EditStorePage(store: store)));
-                        }),
-                    IconButton(
-                        color: Colors.redAccent,
-                        icon: const Icon(Icons.delete_outline),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (childContext) {
-                                return DeleteCheckDialog(store: store);
-                              });
-                        }),
-                  ],
-                ),
-              ],
+                gradient: const LinearGradient(colors: [
+                  Colors.red,
+                  Colors.deepOrange,
+                  Colors.orangeAccent
+                ]),
+                border: Border.all(color: Colors.white, width: 3.0)),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    store.name,
+                    style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                            color: Colors.blueAccent,
+                            icon: const Icon(Icons.edit_outlined),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          EditStorePage(store: store)));
+                            }),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                            color: Colors.redAccent,
+                            icon: const Icon(Icons.delete_outline),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (childContext) {
+                                    return DeleteCheckDialog(store: store);
+                                  });
+                            }),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
             children: [
-              GridView.count(
-                childAspectRatio: 5.0,
-                crossAxisSpacing: 5.0,
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                children: [
-                  ListTile(
-                    title: Text(
-                      "店舗名:\n${store.name}",
-                    ),
-                    leading: const Icon(
-                      Icons.ramen_dining_outlined,
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      "価格:${store.price}円",
-                    ),
-                    leading: const Icon(
-                      Icons.money_outlined,
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      "エリア:${store.area}",
-                    ),
-                    leading: const Icon(
-                      Icons.map_outlined,
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      "味:${store.taste}",
-                    ),
-                    leading: const Icon(
-                      Icons.dining_outlined,
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                ],
+              ListTile(
+                title: Text(
+                  "価格:${store.price}円",
+                ),
+                leading: const Icon(
+                  Icons.money_outlined,
+                  color: Colors.deepOrange,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "エリア:${store.area}",
+                ),
+                leading: const Icon(
+                  Icons.map_outlined,
+                  color: Colors.deepOrange,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "味:${store.taste}",
+                ),
+                leading: const Icon(
+                  Icons.dining_outlined,
+                  color: Colors.deepOrange,
+                ),
               ),
               ListTile(
                 title: Text(
