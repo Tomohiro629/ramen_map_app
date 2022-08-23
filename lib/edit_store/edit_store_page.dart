@@ -60,12 +60,23 @@ class EditStorePage extends ConsumerWidget {
                         color: Colors.blue,
                       ),
                     ),
-                    SizedBox(
-                        width: 220.0,
-                        height: 120.0,
-                        child: imagePickerService.imagePath == null
-                            ? Image.network(store.ramenImage)
-                            : Image.file(imagePickerService.imagePath!)),
+                    imagePickerService.imagePath == null
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Image.network(
+                              store.ramenImage,
+                              width: 200.0,
+                              height: 150.0,
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Image.file(
+                              imagePickerService.imagePath!,
+                              width: 200.0,
+                              height: 150.0,
+                            ),
+                          ),
                     EditImageButton(
                       onTap: () {
                         imagePickerService.takeGallery();
@@ -78,7 +89,9 @@ class EditStorePage extends ConsumerWidget {
                   ],
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 20.0, bottom: 60.0),
+                    padding: const EdgeInsets.only(
+                      top: 30.0,
+                    ),
                     child: EditInputForm(
                       controller: storeName,
                       icon: const Icon(
@@ -90,7 +103,7 @@ class EditStorePage extends ConsumerWidget {
                       maxLength: 100,
                     )),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 60.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: EditInputForm(
                     controller: price,
                     icon: const Icon(
@@ -102,18 +115,21 @@ class EditStorePage extends ConsumerWidget {
                     maxLength: 8,
                   ),
                 ),
-                EditInputForm(
-                    controller: memo,
-                    labelText: "メモ",
-                    keyboardType: TextInputType.name,
-                    icon: const Icon(
-                      Icons.note_outlined,
-                      color: Colors.lightBlue,
-                    ),
-                    maxLength: 30),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: EditInputForm(
+                      controller: memo,
+                      labelText: "一言メモ",
+                      keyboardType: TextInputType.name,
+                      icon: const Icon(
+                        Icons.note_outlined,
+                        color: Colors.lightBlue,
+                      ),
+                      maxLength: 30),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 40.0,
+                    top: 20.0,
                     left: 30.0,
                     bottom: 60.0,
                   ),
