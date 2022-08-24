@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ramen_map_app/map_page/components/set_location_snack_bar.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
@@ -67,24 +69,40 @@ class SearchAddress extends ConsumerWidget {
                         return Card(
                           color: Colors.white,
                           child: ListTile(
-                              title: Text(mapController
-                                  .predictions[index].description
-                                  .toString()),
-                              onTap: () async {
+                            title: Text(mapController
+                                .predictions[index].description
+                                .toString()),
+                            onTap: () async {
+                              try {
                                 List location = await locationFromAddress(
                                     mapController.predictions[index].description
                                         .toString());
+                                mapController.setMarker(
+                                    location: LatLng(location.first.latitude,
+                                        location.first.longitude));
+                                // mapController.moveStoreCamera(
+                                //     latitude: location.first.latitude,
+                                //     longitude: location.first.longitude);
                                 // ignore: use_build_context_synchronously
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SetStorePage(
-                                      latitude: location.first.latitude,
-                                      longitude: location.first.longitude,
-                                    ),
-                                  ),
-                                );
-                              }),
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: SetLocationSnackBar(
+                                      location: LatLng(location.first.latitude,
+                                          location.first.longitude)),
+                                  backgroundColor:
+                                      const Color.fromARGB(165, 0, 0, 0),
+                                  duration: const Duration(seconds: 10),
+                                ));
+                              } catch (e) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("検索エラー\n再度お試しください。"),
+                                  backgroundColor: Color.fromARGB(165, 0, 0, 0),
+                                  duration: Duration(seconds: 10),
+                                ));
+                              }
+                            },
+                          ),
                         );
                       })),
                 ),
