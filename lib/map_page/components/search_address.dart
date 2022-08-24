@@ -4,7 +4,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/map_page/components/set_location_snack_bar.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
-import 'package:ramen_map_app/set_store_page/set_store_page.dart';
 
 class SearchAddress extends ConsumerWidget {
   const SearchAddress({

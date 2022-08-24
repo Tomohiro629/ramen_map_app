@@ -4,6 +4,7 @@ import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/bottom_bar/bottom_bar_page.dart';
 import 'package:ramen_map_app/service/auth_service.dart';
 import 'package:ramen_map_app/service/coloud_storage_service.dart';
+import 'package:ramen_map_app/service/image_cropper_service.dart';
 import 'package:ramen_map_app/service/image_picker_service.dart';
 import 'package:ramen_map_app/set_store_page/components/drop_down_menu.dart';
 import 'package:ramen_map_app/set_store_page/components/set_button_design.dart';
@@ -24,6 +25,7 @@ class SetStorePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final imagePickerService = ref.watch(imagePickerServiceProvider);
+    final imageCropperService = ref.watch(imageCropperServiceProvider);
     final storeSetController = ref.watch(setStoreControllerProvider);
     final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
@@ -54,6 +56,10 @@ class SetStorePage extends ConsumerWidget {
                 TakeImageButton(
                     onTap: () {
                       imagePickerService.takeCamera();
+                      if (imagePickerService.imagePath != null) {
+                        imageCropperService.cropImage(
+                            imageFile: imagePickerService.imagePath!);
+                      }
                     },
                     icon: const Icon(
                       Icons.camera_alt_outlined,
@@ -82,6 +88,10 @@ class SetStorePage extends ConsumerWidget {
                 TakeImageButton(
                   onTap: () {
                     imagePickerService.takeGallery();
+                    if (imagePickerService.imagePath != null) {
+                      imageCropperService.cropImage(
+                          imageFile: imagePickerService.imagePath!);
+                    }
                   },
                   icon: const Icon(
                     Icons.photo_outlined,
