@@ -42,25 +42,39 @@ class SignupPage extends ConsumerWidget {
                   },
                 ),
                 SignupInputForm(
-                  labelText: "パスワード",
+                  labelText: "パスワード(8文字以上)",
                   keyboardType: TextInputType.visiblePassword,
                   onChanged: (value) {
-                    newPassword = value!;
+                    if (value!.length < 8) {
+                      newPassword = value;
+                    }
                   },
                 )
               ],
             ),
             MaterialButton(
               onPressed: () {
-                if (newEmail.isNotEmpty && newPassword.isNotEmpty) {
+                if (newEmail.isNotEmpty || newPassword.isNotEmpty) {
                   signupController.signUpUser(
                       newEmail: newEmail, newPassword: newPassword);
-                  Navigator.pop(context);
+                } else if (newPassword.length < 8) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "パスワードは8文字以上です。",
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
                         "登録エラー",
+                        style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                       backgroundColor: Colors.red,
