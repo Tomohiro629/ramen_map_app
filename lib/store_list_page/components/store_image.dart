@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramen_map_app/entity/store.dart';
-import 'package:ramen_map_app/map_page/map_controller.dart';
-import 'package:ramen_map_app/map_page/map_page.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data_bottom_sheet.dart';
 
@@ -13,7 +11,6 @@ class StoreImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mapController = ref.watch(mapControllerProvider);
     final storeRepository = ref.watch(storeRepositoryProvider);
 
     return SingleChildScrollView(
@@ -49,19 +46,6 @@ class StoreImage extends ConsumerWidget {
                             builder: (BuildContext context) {
                               return StoreDataBottomSheet(store: store);
                             });
-                      },
-                      onLongPress: () {
-                        mapController.addMarker(store: store);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MapPage(
-                              storeId: store.storeId,
-                              latitude: store.latitude,
-                              longitude: store.longitude,
-                            ),
-                          ),
-                        );
                       },
                     ),
                   ),
