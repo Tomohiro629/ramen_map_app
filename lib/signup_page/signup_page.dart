@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
+import 'package:ramen_map_app/auth_gate/auth_gate_page.dart';
 import 'package:ramen_map_app/signup_page/components/button_design.dart';
 import 'package:ramen_map_app/signup_page/components/signup_input_form.dart';
 import 'package:ramen_map_app/signup_page/signup_controller.dart';
@@ -57,6 +58,11 @@ class SignupPage extends ConsumerWidget {
                 if (newEmail.isNotEmpty || newPassword.isNotEmpty) {
                   signupController.signUpUser(
                       newEmail: newEmail, newPassword: newPassword);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AuthGatePage()),
+                      (_) => false);
                 } else if (newPassword.length < 8) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

@@ -20,6 +20,8 @@ class SignUpController extends ChangeNotifier {
         newEmail: newEmail,
         newPassword: newPassword,
       );
+      await _reader(authServiceProvider)
+          .loginUser(email: newEmail, password: newPassword);
     } catch (e) {
       Text(e.toString());
     }
