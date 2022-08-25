@@ -141,7 +141,7 @@ class StoreDataBottomSheet extends ConsumerWidget {
                         "メモ",
                       ),
                       SizedBox(
-                        height: 50.0,
+                        height: 60.0,
                         width: 200.0,
                         child: Align(
                           alignment: Alignment.centerRight,
