@@ -47,6 +47,7 @@ dependencies:
   image_cropper: ^3.0.0
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  introduction_screen: ^3.0.1
   new_gradient_app_bar: ^0.2.0
   uuid: 3.0.6
 

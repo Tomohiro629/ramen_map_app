@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ramen_map_app/home_page/components/login_button.dart';
-import 'package:ramen_map_app/home_page/components/signup_button.dart';
+import 'package:ramen_map_app/tutorial_page/tutorial_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -23,12 +23,20 @@ class HomePage extends StatelessWidget {
               style: const TextStyle(fontSize: 30.0, color: Colors.orange),
             ),
             Column(
-              children: const [
-                LoginButton(),
-                SizedBox(
+              children: [
+                const LoginButton(),
+                const SizedBox(
                   height: 10.0,
                 ),
-                SignupButton()
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TutorialPage()));
+                  },
+                  child: const Text("初めて利用の方はこちら"),
+                )
               ],
             ),
           ],
