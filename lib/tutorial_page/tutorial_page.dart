@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/home_page/components/signup_button.dart';
-import 'package:ramen_map_app/home_page/home_page.dart';
 
 class TutorialPage extends StatelessWidget {
   const TutorialPage({Key? key}) : super(key: key);
@@ -24,26 +23,28 @@ class TutorialPage extends StatelessWidget {
       body: IntroductionScreen(
         pages: [
           PageViewModel(
-            title: "ステップ1",
-            body: "住所検索 or 登録したい地点を\n長押しして場所を決定。",
-            image: Row(
-              children: [
+              title: "ステップ1",
+              body: "住所検索 or 登録したい地点を\n長押しして場所を決定。",
+              image: ListView(children: <Widget>[
                 Image.asset("images/map.jpg"),
-              ],
-            ),
-          ),
+              ]),
+              decoration: const PageDecoration(imageFlex: 3)),
           PageViewModel(
               title: "ステップ2",
               body: "お店登録画面で各項目を入力し登録。",
-              image: Center(
-                child: Image.asset("images/set.jpg"),
-              )),
+              image: ListView(children: <Widget>[
+                Image.asset(
+                  "images/set.jpg",
+                ),
+              ]),
+              decoration: const PageDecoration(imageFlex: 3)),
           PageViewModel(
               title: "ステップ3",
               body: "登録したお店を味別の一覧で表示\n地域で絞り込みも可能。",
-              image: Center(
-                child: Image.asset("images/list.jpg"),
-              )),
+              image: ListView(children: <Widget>[
+                Image.asset("images/list1.jpg"),
+              ]),
+              decoration: const PageDecoration(imageFlex: 3)),
           PageViewModel(
               title: "自分だけのラーメンリストを\n作ってみよう！",
               bodyWidget: Align(
