@@ -31,9 +31,10 @@ class HomePage extends StatelessWidget {
                 MaterialButton(
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const TutorialPage()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TutorialPage()),
+                    );
                   },
                   child: const Text("初めて利用の方はこちら"),
                 )

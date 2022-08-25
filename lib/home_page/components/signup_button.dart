@@ -45,8 +45,10 @@ class SignupButton extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SignupPage()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const SignupPage()),
+            (_) => false);
       },
     );
   }

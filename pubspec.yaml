@@ -83,6 +83,10 @@ flutter:
   - images/sio.jpg
   - images/miso.jpg
   - images/sonota.jpg
+  - images/map.jpg
+  - images/set.jpg
+  - images/list.jpg
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
