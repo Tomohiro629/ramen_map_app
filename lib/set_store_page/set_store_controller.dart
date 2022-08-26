@@ -33,6 +33,7 @@ class SetStoreController extends ChangeNotifier {
       longitude: longitude,
       ramenImage: ramenImage,
       userId: userId,
+      addCheck: 1,
     );
     await _reader(storeRepositoryProvider).setStore(store: store);
   }
