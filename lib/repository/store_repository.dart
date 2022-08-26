@@ -23,6 +23,13 @@ class StoreRepository {
         .update({"favorite": FieldValue.delete()});
   }
 
+  Future<void> deleteAddCheck(String storeId) async {
+    await _firestore
+        .collection('stores')
+        .doc(storeId)
+        .update({"addCheck": FieldValue.delete()});
+  }
+
   Future<void> deleteStore(String storeId) async {
     await _firestore.collection('stores').doc(storeId).delete();
   }
