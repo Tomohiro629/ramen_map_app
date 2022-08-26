@@ -14,6 +14,7 @@ class Store {
     required this.latitude,
     required this.longitude,
     required this.userId,
+    required this.addCheck,
     this.favorite = "",
   });
 
@@ -27,6 +28,7 @@ class Store {
     required double longitude,
     required String ramenImage,
     required String userId,
+    required int addCheck,
   }) {
     return Store(
       storeId: const Uuid().v4(),
@@ -40,6 +42,7 @@ class Store {
       timeStamp: DateTime.now(),
       ramenImage: ramenImage,
       userId: userId,
+      addCheck: addCheck,
     );
   }
 
@@ -56,6 +59,7 @@ class Store {
         timeStamp: (map['timeStamp']! as Timestamp).toDate(),
         ramenImage: map['ramenImage'],
         userId: map['userId'],
+        addCheck: map['addCheck'],
         favorite: map['favorite']);
   }
 
@@ -72,6 +76,7 @@ class Store {
       'timeStamp': timeStamp,
       'ramenImage': ramenImage,
       'userId': userId,
+      'addCheck': addCheck,
     };
   }
 
@@ -86,5 +91,6 @@ class Store {
   final DateTime timeStamp;
   final String ramenImage;
   final String userId;
+  final int? addCheck;
   final String? favorite;
 }
