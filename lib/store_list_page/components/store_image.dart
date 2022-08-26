@@ -46,6 +46,9 @@ class StoreImage extends ConsumerWidget {
                             builder: (BuildContext context) {
                               return StoreDataBottomSheet(store: store);
                             });
+                        ref
+                            .watch(storeRepositoryProvider)
+                            .deleteAddCheck(store.storeId);
                       },
                     ),
                   ),
@@ -55,6 +58,20 @@ class StoreImage extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: store.addCheck != null
+                                ? Text(
+                                    "new",
+                                    style: TextStyle(
+                                        color: const Color.fromARGB(
+                                            255, 251, 1, 159),
+                                        fontSize: 20.0.sp),
+                                  )
+                                : null,
+                          ),
+                        ),
                         const Align(
                           alignment: Alignment.bottomLeft,
                         ),
