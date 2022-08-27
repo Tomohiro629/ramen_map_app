@@ -35,11 +35,13 @@ class LoginPage extends ConsumerWidget {
                     labelText: "メールアドレス",
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
+                    isObscure: false,
                   ),
                   LoginInputForm(
                     labelText: "パスワード",
                     keyboardType: TextInputType.visiblePassword,
                     controller: password,
+                    isObscure: true,
                   )
                 ],
               ),

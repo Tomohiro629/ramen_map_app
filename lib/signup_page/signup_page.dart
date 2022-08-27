@@ -45,6 +45,7 @@ class SignupPage extends ConsumerWidget {
                     }
                     return null;
                   },
+                  isObscure: false,
                 ),
                 SignupInputForm(
                   labelText: "パスワード(8文字以上)",
@@ -57,6 +58,7 @@ class SignupPage extends ConsumerWidget {
                       return null;
                     }
                   },
+                  isObscure: true,
                 )
               ],
             ),
