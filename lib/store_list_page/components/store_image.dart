@@ -98,13 +98,13 @@ class StoreImage extends ConsumerWidget {
                                 ),
                                 child: IconButton(
                                   onPressed: () {
-                                    store.favorite == null
-                                        ? storeRepository
-                                            .addFavoriteStore(store.storeId)
-                                        : storeRepository
-                                            .deleteFavoriteStore(store.storeId);
+                                    !store.isFavorite
+                                        ? storeRepository.setStore(
+                                            store: store.addFavorite())
+                                        : storeRepository.setStore(
+                                            store: store.deleteFavorite());
                                     ScaffoldMessenger.of(context)
-                                        .showSnackBar(store.favorite == null
+                                        .showSnackBar(!store.isFavorite
                                             ? SnackBar(
                                                 content: Text(
                                                   "${store.name}を\nお気に入りに登録しました！",
@@ -132,7 +132,7 @@ class StoreImage extends ConsumerWidget {
                                                     const Duration(seconds: 1),
                                               ));
                                   },
-                                  icon: store.favorite == null
+                                  icon: !store.isFavorite
                                       ? const Icon(
                                           Icons.favorite_outline,
                                           size: 20.0,

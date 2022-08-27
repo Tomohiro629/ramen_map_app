@@ -10,19 +10,7 @@ final storeRepositoryProvider = Provider(((ref) {
 class StoreRepository {
   final _firestore = FirebaseFirestore.instance;
 
-  Future<void> addFavoriteStore(String storeId) async {
-    await _firestore.collection('stores').doc(storeId).update({
-      "favorite": "true",
-    });
-  }
-
-  Future<void> deleteFavoriteStore(String storeId) async {
-    await _firestore
-        .collection('stores')
-        .doc(storeId)
-        .update({"favorite": FieldValue.delete()});
-  }
-
+  // TODO: setStore()使う
   Future<void> deleteAddCheck(String storeId) async {
     await _firestore
         .collection('stores')
@@ -92,23 +80,5 @@ class StoreRepository {
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
         toFirestore: (store, _) => store.toJson());
-  }
-
-  Future<void> updateStore(
-      {required String storeId,
-      required String editStoreName,
-      required String editPrice,
-      required String editMemo,
-      required String editArea,
-      required String editTaste,
-      required String editRamenImage}) async {
-    _firestore.collection('stores').doc(storeId).update({
-      "name": editStoreName,
-      "price": editPrice,
-      "memo": editMemo,
-      "area": editArea,
-      "taste": editTaste,
-      "ramenImage": editRamenImage,
-    });
   }
 }

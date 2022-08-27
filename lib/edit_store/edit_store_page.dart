@@ -18,7 +18,7 @@ class EditStorePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final storeEditController = ref.watch(editStoreControllerProvider);
+    final storeEditController = ref.watch(editStoreControllerProvider(store));
     final imagePickerService = ref.watch(imagePickerServiceProvider);
     final storageService = ref.watch(storageServiceProvider);
     final storeName = TextEditingController();
@@ -171,7 +171,6 @@ class EditStorePage extends ConsumerWidget {
                             file: imagePickerService.imagePath!);
                       }
                       storeEditController.updateStore(
-                        storeId: store.storeId,
                         editStoreName: storeName.text,
                         editPrice: price.text,
                         editMemo: memo.text,
