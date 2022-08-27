@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SignupInputForm extends StatelessWidget {
-  const SignupInputForm(
+  SignupInputForm(
       {Key? key,
       required this.labelText,
       required this.keyboardType,
-      required this.onChanged})
+      required this.controller,
+      required this.validator})
       : super(key: key);
   final String labelText;
   final TextInputType keyboardType;
-  final void Function(String?)? onChanged;
+  final TextEditingController controller;
+  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,8 @@ class SignupInputForm extends StatelessWidget {
             ),
           ),
         ),
-        onChanged: onChanged,
+        controller: controller,
+        validator: validator,
       ),
     );
   }
