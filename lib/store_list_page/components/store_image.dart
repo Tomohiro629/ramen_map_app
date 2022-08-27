@@ -99,10 +99,10 @@ class StoreImage extends ConsumerWidget {
                                 child: IconButton(
                                   onPressed: () {
                                     !store.isFavorite
-                                        ? storeRepository
-                                            .addFavoriteStore(store.storeId)
-                                        : storeRepository
-                                            .deleteFavoriteStore(store.storeId);
+                                        ? storeRepository.setStore(
+                                            store: store.addFavorite())
+                                        : storeRepository.setStore(
+                                            store: store.deleteFavorite());
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(!store.isFavorite
                                             ? SnackBar(

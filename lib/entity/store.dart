@@ -83,6 +83,14 @@ class Store {
     );
   }
 
+  Store addFavorite() {
+    return _copyWith(isFavorite: true);
+  }
+
+  Store deleteFavorite() {
+    return _copyWith(isFavorite: false);
+  }
+
   Store _copyWith({
     String? name,
     String? price,
