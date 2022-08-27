@@ -15,7 +15,7 @@ class Store {
     required this.longitude,
     required this.userId,
     required this.addCheck,
-    this.favorite = "",
+    required this.isFavorite,
   });
 
   factory Store.create({
@@ -43,24 +43,26 @@ class Store {
       ramenImage: ramenImage,
       userId: userId,
       addCheck: addCheck,
+      isFavorite: false, // 最初はfalse
     );
   }
 
   factory Store.fromJson(Map<String, dynamic> map) {
     return Store(
-        storeId: map['id'],
-        name: map['name'],
-        price: map['price'],
-        memo: map['memo'],
-        area: map['area'],
-        taste: map['taste'],
-        latitude: map['latitude'],
-        longitude: map['longitude'],
-        timeStamp: (map['timeStamp']! as Timestamp).toDate(),
-        ramenImage: map['ramenImage'],
-        userId: map['userId'],
-        addCheck: map['addCheck'],
-        favorite: map['favorite']);
+      storeId: map['id'],
+      name: map['name'],
+      price: map['price'],
+      memo: map['memo'],
+      area: map['area'],
+      taste: map['taste'],
+      latitude: map['latitude'],
+      longitude: map['longitude'],
+      timeStamp: (map['timeStamp']! as Timestamp).toDate(),
+      ramenImage: map['ramenImage'],
+      userId: map['userId'],
+      addCheck: map['addCheck'],
+      isFavorite: map['isFavorite'],
+    );
   }
 
   Store update({
@@ -88,6 +90,7 @@ class Store {
     String? area,
     String? taste,
     String? ramenImage,
+    bool? isFavorite,
   }) {
     return Store(
       storeId: storeId,
@@ -102,6 +105,7 @@ class Store {
       longitude: longitude,
       userId: userId,
       addCheck: addCheck,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
@@ -119,6 +123,7 @@ class Store {
       'ramenImage': ramenImage,
       'userId': userId,
       'addCheck': addCheck,
+      'isFavorite': isFavorite,
     };
   }
 
@@ -134,5 +139,5 @@ class Store {
   final String ramenImage;
   final String userId;
   final int? addCheck;
-  final String? favorite;
+  final bool isFavorite;
 }
