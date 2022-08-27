@@ -12,8 +12,8 @@ class SignupPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final signupController = ref.watch(signupControllerProvider);
-    String newEmail = "";
-    String newPassword = "";
+    final newEmailController = TextEditingController();
+    final newPasswordController = TextEditingController();
 
     return Scaffold(
       appBar: const BaseAppBar(
@@ -38,16 +38,23 @@ class SignupPage extends ConsumerWidget {
                 SignupInputForm(
                   labelText: "メールアドレス",
                   keyboardType: TextInputType.emailAddress,
-                  onChanged: (value) {
-                    newEmail = value!;
+                  controller: newEmailController,
+                  validator: (newEmailController) {
+                    if (newEmailController == null) {
+                      return 'メールアドレスが未入力です。';
+                    }
+                    return null;
                   },
                 ),
                 SignupInputForm(
                   labelText: "パスワード(8文字以上)",
                   keyboardType: TextInputType.visiblePassword,
-                  onChanged: (value) {
-                    if (value!.length < 8) {
-                      newPassword = value;
+                  controller: newPasswordController,
+                  validator: (newPasswordController) {
+                    if (newPasswordController!.length < 8) {
+                      return 'パスワードは8文字以上です。';
+                    } else {
+                      return null;
                     }
                   },
                 )
@@ -55,36 +62,27 @@ class SignupPage extends ConsumerWidget {
             ),
             MaterialButton(
               onPressed: () {
-                if (newEmail.isNotEmpty || newPassword.isNotEmpty) {
+                String errorText = '';
+                if (newEmailController.text.isNotEmpty ||
+                    newPasswordController.text.isNotEmpty) {
                   signupController.signUpUser(
-                      newEmail: newEmail, newPassword: newPassword);
+                      newEmail: newEmailController.text,
+                      newPassword: newPasswordController.text);
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const AuthGatePage()),
                       (_) => false);
-                } else if (newPassword.length < 8) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        "パスワードは8文字以上です。",
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                      backgroundColor: Colors.red,
-                      duration: Duration(seconds: 1),
-                    ),
-                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text(
-                        "登録エラー",
-                        style: TextStyle(color: Colors.white),
+                        errorText,
+                        style: const TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                       backgroundColor: Colors.red,
-                      duration: Duration(seconds: 1),
+                      duration: const Duration(seconds: 1),
                     ),
                   );
                 }
