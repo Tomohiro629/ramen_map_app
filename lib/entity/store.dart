@@ -63,6 +63,48 @@ class Store {
         favorite: map['favorite']);
   }
 
+  Store update({
+    required String name,
+    required String price,
+    required String memo,
+    required String area,
+    required String taste,
+    required String ramenImage,
+  }) {
+    return _copyWith(
+      name: name,
+      price: price,
+      memo: memo,
+      area: area,
+      taste: taste,
+      ramenImage: ramenImage,
+    );
+  }
+
+  Store _copyWith({
+    String? name,
+    String? price,
+    String? memo,
+    String? area,
+    String? taste,
+    String? ramenImage,
+  }) {
+    return Store(
+      storeId: storeId,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      memo: memo ?? this.memo,
+      area: area ?? this.area,
+      taste: taste ?? this.taste,
+      timeStamp: timeStamp,
+      ramenImage: ramenImage ?? this.ramenImage,
+      latitude: latitude,
+      longitude: longitude,
+      userId: userId,
+      addCheck: addCheck,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': storeId,
