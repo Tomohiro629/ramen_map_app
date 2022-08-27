@@ -46,9 +46,7 @@ class StoreImage extends ConsumerWidget {
                             builder: (BuildContext context) {
                               return StoreDataBottomSheet(store: store);
                             });
-                        ref
-                            .watch(storeRepositoryProvider)
-                            .deleteAddCheck(store.storeId);
+                        storeRepository.setStore(store: store.deleteCheck());
                       },
                     ),
                   ),
@@ -61,7 +59,7 @@ class StoreImage extends ConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Container(
-                            child: store.addCheck != null
+                            child: !store.isAddCheck
                                 ? Text(
                                     "new",
                                     style: TextStyle(

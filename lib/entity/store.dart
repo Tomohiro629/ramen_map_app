@@ -14,7 +14,7 @@ class Store {
     required this.latitude,
     required this.longitude,
     required this.userId,
-    required this.addCheck,
+    required this.isAddCheck,
     required this.isFavorite,
   });
 
@@ -28,7 +28,6 @@ class Store {
     required double longitude,
     required String ramenImage,
     required String userId,
-    required int addCheck,
   }) {
     return Store(
       storeId: const Uuid().v4(),
@@ -42,7 +41,7 @@ class Store {
       timeStamp: DateTime.now(),
       ramenImage: ramenImage,
       userId: userId,
-      addCheck: addCheck,
+      isAddCheck: false,
       isFavorite: false, // 最初はfalse
     );
   }
@@ -60,7 +59,7 @@ class Store {
       timeStamp: (map['timeStamp']! as Timestamp).toDate(),
       ramenImage: map['ramenImage'],
       userId: map['userId'],
-      addCheck: map['addCheck'],
+      isAddCheck: map['isAddCheck'],
       isFavorite: map['isFavorite'],
     );
   }
@@ -91,6 +90,10 @@ class Store {
     return _copyWith(isFavorite: false);
   }
 
+  Store deleteCheck() {
+    return _copyWith(isAddCheck: true);
+  }
+
   Store _copyWith({
     String? name,
     String? price,
@@ -98,6 +101,7 @@ class Store {
     String? area,
     String? taste,
     String? ramenImage,
+    bool? isAddCheck,
     bool? isFavorite,
   }) {
     return Store(
@@ -112,7 +116,7 @@ class Store {
       latitude: latitude,
       longitude: longitude,
       userId: userId,
-      addCheck: addCheck,
+      isAddCheck: isAddCheck ?? this.isAddCheck,
       isFavorite: isFavorite ?? this.isFavorite,
     );
   }
@@ -130,7 +134,7 @@ class Store {
       'timeStamp': timeStamp,
       'ramenImage': ramenImage,
       'userId': userId,
-      'addCheck': addCheck,
+      'isAddCheck': isAddCheck,
       'isFavorite': isFavorite,
     };
   }
@@ -146,6 +150,6 @@ class Store {
   final DateTime timeStamp;
   final String ramenImage;
   final String userId;
-  final int? addCheck;
+  final bool isAddCheck;
   final bool isFavorite;
 }
