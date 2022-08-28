@@ -39,52 +39,55 @@ class SignupPage extends ConsumerWidget {
                   labelText: "メールアドレス",
                   keyboardType: TextInputType.emailAddress,
                   controller: newEmailController,
-                  validator: (newEmailController) {
-                    if (newEmailController == null) {
-                      return 'メールアドレスが未入力です。';
-                    }
-                    return null;
-                  },
                   isObscure: false,
                 ),
                 SignupInputForm(
                   labelText: "パスワード(8文字以上)",
                   keyboardType: TextInputType.visiblePassword,
                   controller: newPasswordController,
-                  validator: (newPasswordController) {
-                    if (newPasswordController!.length < 8) {
-                      return 'パスワードは8文字以上です。';
-                    } else {
-                      return null;
-                    }
-                  },
                   isObscure: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 15.0),
+                  child: SizedBox(
+                    width: 300,
+                    child: Text(
+                      signupController.error,
+                      style: const TextStyle(color: Colors.red, fontSize: 10.0),
+                    ),
+                  ),
                 )
               ],
             ),
             MaterialButton(
-              onPressed: () {
-                String errorText = '';
-                if (newEmailController.text.isNotEmpty ||
-                    newPasswordController.text.isNotEmpty) {
-                  signupController.signUpUser(
-                      newEmail: newEmailController.text,
-                      newPassword: newPasswordController.text);
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AuthGatePage()),
-                      (_) => false);
-                } else {
+              onPressed: () async {
+                try {
+                  if (newEmailController.text.isNotEmpty &&
+                      newPasswordController.text.isNotEmpty) {
+                    await signupController.signUpUser(
+                        newEmail: newEmailController.text,
+                        newPassword: newPasswordController.text);
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AuthGatePage()),
+                        (_) => false);
+                  }
+                } catch (e) {
+                  if (newPasswordController.text.length <= 8) {
+                    signupController.setErrorText("パスワードは8文字以上です。");
+                  }
+
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text(
-                        errorText,
-                        style: const TextStyle(color: Colors.white),
+                        '登録エラー\n再度お試しください。',
+                        style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                       backgroundColor: Colors.red,
-                      duration: const Duration(seconds: 1),
+                      duration: Duration(seconds: 1),
                     ),
                   );
                 }

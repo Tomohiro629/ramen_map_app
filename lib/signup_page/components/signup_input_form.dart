@@ -7,14 +7,12 @@ class SignupInputForm extends StatelessWidget {
       required this.labelText,
       required this.keyboardType,
       required this.controller,
-      required this.validator,
       required this.isObscure})
       : super(key: key);
   final String labelText;
   final TextInputType keyboardType;
   final TextEditingController controller;
   final bool isObscure;
-  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,6 @@ class SignupInputForm extends StatelessWidget {
           ),
         ),
         controller: controller,
-        validator: validator,
         obscureText: isObscure,
       ),
     );
