@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/auth_gate/auth_gate_page.dart';
+import 'package:ramen_map_app/home_page/home_page.dart';
 import 'package:ramen_map_app/signup_page/components/button_design.dart';
 import 'package:ramen_map_app/signup_page/components/signup_input_form.dart';
 import 'package:ramen_map_app/signup_page/signup_controller.dart';
@@ -94,6 +95,16 @@ class SignupPage extends ConsumerWidget {
               },
               child: const ButtonDesign(),
             ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                  (_) => false,
+                );
+              },
+              child: const Text("アカウント作成済の方はこちら"),
+            )
           ],
         ),
       ),
