@@ -42,27 +42,36 @@ class LoginPage extends ConsumerWidget {
                     keyboardType: TextInputType.visiblePassword,
                     controller: password,
                     isObscure: true,
-                  )
+                  ),
                 ],
               ),
               MaterialButton(
                   onPressed: () async {
                     try {
-                      if (email.text.isNotEmpty && password.text.isNotEmpty) {
+                      {
                         await loginController.loginUser(
                             email: email.text, password: password.text);
                         // ignore: use_build_context_synchronously
                         Navigator.pop(context);
                       }
                     } catch (e) {
+                      if (e.toString() ==
+                          "[firebase_auth/unknown] Given String is empty or null") {
+                        loginController.setErrorText("メールアドレス又はパスワード未入力です。");
+                      } else if (e.toString() ==
+                          "[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.") {
+                        loginController.setErrorText("登録のないメールアドレスです。");
+                      } else {
+                        loginController.setErrorText("ログインエラー\n再度お試しください。");
+                      }
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text(
-                            "ログインエラー",
+                            loginController.errorMessage,
                             textAlign: TextAlign.center,
                           ),
                           backgroundColor: Colors.red,
-                          duration: Duration(seconds: 1),
+                          duration: const Duration(seconds: 2),
                         ),
                       );
                       print(e);
