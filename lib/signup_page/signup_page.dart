@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/auth_gate/auth_gate_page.dart';
+import 'package:ramen_map_app/home_page/home_page.dart';
 import 'package:ramen_map_app/signup_page/components/button_design.dart';
 import 'package:ramen_map_app/signup_page/components/signup_input_form.dart';
 import 'package:ramen_map_app/signup_page/signup_controller.dart';
@@ -39,58 +40,68 @@ class SignupPage extends ConsumerWidget {
                   labelText: "メールアドレス",
                   keyboardType: TextInputType.emailAddress,
                   controller: newEmailController,
-                  validator: (newEmailController) {
-                    if (newEmailController == null) {
-                      return 'メールアドレスが未入力です。';
-                    }
-                    return null;
-                  },
                   isObscure: false,
                 ),
                 SignupInputForm(
                   labelText: "パスワード(8文字以上)",
                   keyboardType: TextInputType.visiblePassword,
                   controller: newPasswordController,
-                  validator: (newPasswordController) {
-                    if (newPasswordController!.length < 8) {
-                      return 'パスワードは8文字以上です。';
-                    } else {
-                      return null;
-                    }
-                  },
                   isObscure: true,
-                )
+                ),
               ],
             ),
             MaterialButton(
-              onPressed: () {
-                String errorText = '';
-                if (newEmailController.text.isNotEmpty ||
-                    newPasswordController.text.isNotEmpty) {
-                  signupController.signUpUser(
-                      newEmail: newEmailController.text,
-                      newPassword: newPasswordController.text);
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AuthGatePage()),
-                      (_) => false);
-                } else {
+              onPressed: () async {
+                try {
+                  {
+                    await signupController.signUpUser(
+                        newEmail: newEmailController.text,
+                        newPassword: newPasswordController.text);
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AuthGatePage()),
+                        (_) => false);
+                  }
+                } catch (e) {
+                  if (e.toString() ==
+                      "[firebase_auth/unknown] Given String is empty or null") {
+                    signupController.setErrorText("メールアドレス又はパスワード未入力です。");
+                  } else if (newPasswordController.text.length < 8) {
+                    signupController.setErrorText("パスワードは8文字以上です。");
+                    // ignore: unrelated_type_equality_checks
+                  } else if (e.toString() ==
+                      "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
+                    signupController.setErrorText('既にこのメールアドレスは利用されてます。');
+                  } else {
+                    signupController.setErrorText("登録エラー\n再度お試しください。");
+                  }
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        errorText,
+                        signupController.errorMessage,
                         style: const TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                       backgroundColor: Colors.red,
-                      duration: const Duration(seconds: 1),
+                      duration: const Duration(seconds: 2),
                     ),
                   );
                 }
               },
               child: const ButtonDesign(),
             ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                  (_) => false,
+                );
+              },
+              child: const Text("アカウント作成済の方はこちら"),
+            )
           ],
         ),
       ),

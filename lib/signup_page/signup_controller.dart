@@ -9,21 +9,23 @@ final signupControllerProvider =
 
 class SignUpController extends ChangeNotifier {
   final Reader _reader;
+  String errorMessage = "";
   SignUpController(this._reader);
+
+  void setErrorText(String errorText) {
+    errorMessage = errorText;
+    notifyListeners();
+  }
 
   Future<void> signUpUser({
     required String newEmail,
     required String newPassword,
   }) async {
-    try {
-      await _reader(authServiceProvider).signupUser(
-        newEmail: newEmail,
-        newPassword: newPassword,
-      );
-      await _reader(authServiceProvider)
-          .loginUser(email: newEmail, password: newPassword);
-    } catch (e) {
-      Text(e.toString());
-    }
+    await _reader(authServiceProvider).signupUser(
+      newEmail: newEmail,
+      newPassword: newPassword,
+    );
+    await _reader(authServiceProvider)
+        .loginUser(email: newEmail, password: newPassword);
   }
 }

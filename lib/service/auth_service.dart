@@ -18,15 +18,10 @@ class AuthService {
 
   Future<void> loginUser(
       {required String email, required String password}) async {
-    try {
-      await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } catch (e) {
-      // ignore: avoid_print
-      print("ログイン失敗");
-    }
+    await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
   Future<void> logOut() async {
