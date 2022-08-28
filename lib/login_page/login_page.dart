@@ -46,12 +46,15 @@ class LoginPage extends ConsumerWidget {
                 ],
               ),
               MaterialButton(
-                  onPressed: () {
-                    if (email.text.isNotEmpty && password.text.isNotEmpty) {
-                      loginController.loginUser(
-                          email: email.text, password: password.text);
-                      Navigator.pop(context);
-                    } else {
+                  onPressed: () async {
+                    try {
+                      if (email.text.isNotEmpty && password.text.isNotEmpty) {
+                        await loginController.loginUser(
+                            email: email.text, password: password.text);
+                        // ignore: use_build_context_synchronously
+                        Navigator.pop(context);
+                      }
+                    } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
@@ -62,6 +65,7 @@ class LoginPage extends ConsumerWidget {
                           duration: Duration(seconds: 1),
                         ),
                       );
+                      print(e);
                     }
                   },
                   child: const ButtonDesign())

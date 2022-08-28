@@ -63,8 +63,7 @@ class SignupPage extends ConsumerWidget {
             MaterialButton(
               onPressed: () async {
                 try {
-                  if (newEmailController.text.isNotEmpty &&
-                      newPasswordController.text.isNotEmpty) {
+                  {
                     await signupController.signUpUser(
                         newEmail: newEmailController.text,
                         newPassword: newPasswordController.text);
@@ -76,8 +75,14 @@ class SignupPage extends ConsumerWidget {
                         (_) => false);
                   }
                 } catch (e) {
-                  if (newPasswordController.text.length <= 8) {
+                  if (newEmailController.text.isEmpty &&
+                      newPasswordController.text.isEmpty) {
+                    signupController.setErrorText("メールアドレス又はパスワード未入力です。");
+                  } else if (newPasswordController.text.length < 8) {
                     signupController.setErrorText("パスワードは8文字以上です。");
+                    // ignore: unrelated_type_equality_checks
+                  } else if (e.hashCode == 455200916) {
+                    signupController.setErrorText('既にこのメールアドレスは利用されてます。');
                   }
 
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -91,6 +96,7 @@ class SignupPage extends ConsumerWidget {
                       duration: Duration(seconds: 1),
                     ),
                   );
+                  print(e.hashCode);
                 }
               },
               child: const ButtonDesign(),

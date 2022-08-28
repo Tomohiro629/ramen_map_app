@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class SignupInputForm extends StatelessWidget {
-  SignupInputForm(
+  const SignupInputForm(
       {Key? key,
       required this.labelText,
       required this.keyboardType,
