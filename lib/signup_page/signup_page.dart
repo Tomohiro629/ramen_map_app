@@ -48,16 +48,6 @@ class SignupPage extends ConsumerWidget {
                   controller: newPasswordController,
                   isObscure: true,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 0.0, bottom: 15.0),
-                  child: SizedBox(
-                    width: 300,
-                    child: Text(
-                      signupController.errorMessage,
-                      style: const TextStyle(color: Colors.red, fontSize: 10.0),
-                    ),
-                  ),
-                )
               ],
             ),
             MaterialButton(
@@ -75,8 +65,8 @@ class SignupPage extends ConsumerWidget {
                         (_) => false);
                   }
                 } catch (e) {
-                  if (newEmailController.text.isEmpty &&
-                      newPasswordController.text.isEmpty) {
+                  if (e.toString() ==
+                      "[firebase_auth/unknown] Given String is empty or null") {
                     signupController.setErrorText("メールアドレス又はパスワード未入力です。");
                   } else if (newPasswordController.text.length < 8) {
                     signupController.setErrorText("パスワードは8文字以上です。");
@@ -84,20 +74,20 @@ class SignupPage extends ConsumerWidget {
                   } else if (e.toString() ==
                       "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
                     signupController.setErrorText('既にこのメールアドレスは利用されてます。');
+                  } else {
+                    signupController.setErrorText("登録エラー\n再度お試しください。");
                   }
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text(
-                        '登録エラー\n再度お試しください。',
-                        style: TextStyle(color: Colors.white),
+                        signupController.errorMessage,
+                        style: const TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                       backgroundColor: Colors.red,
-                      duration: Duration(seconds: 1),
+                      duration: const Duration(seconds: 2),
                     ),
                   );
-                  print("エラー");
-                  print(e.toString());
                 }
               },
               child: const ButtonDesign(),
