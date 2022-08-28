@@ -53,7 +53,7 @@ class SignupPage extends ConsumerWidget {
                   child: SizedBox(
                     width: 300,
                     child: Text(
-                      signupController.error,
+                      signupController.errorMessage,
                       style: const TextStyle(color: Colors.red, fontSize: 10.0),
                     ),
                   ),
@@ -81,10 +81,10 @@ class SignupPage extends ConsumerWidget {
                   } else if (newPasswordController.text.length < 8) {
                     signupController.setErrorText("パスワードは8文字以上です。");
                     // ignore: unrelated_type_equality_checks
-                  } else if (e.hashCode == 455200916) {
+                  } else if (e.toString() ==
+                      "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
                     signupController.setErrorText('既にこのメールアドレスは利用されてます。');
                   }
-
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
@@ -96,7 +96,8 @@ class SignupPage extends ConsumerWidget {
                       duration: Duration(seconds: 1),
                     ),
                   );
-                  print(e.hashCode);
+                  print("エラー");
+                  print(e.toString());
                 }
               },
               child: const ButtonDesign(),

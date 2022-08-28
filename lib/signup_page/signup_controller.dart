@@ -9,11 +9,11 @@ final signupControllerProvider =
 
 class SignUpController extends ChangeNotifier {
   final Reader _reader;
-  String error = "";
+  String errorMessage = "";
   SignUpController(this._reader);
 
   void setErrorText(String errorText) {
-    error = errorText;
+    errorMessage = errorText;
     notifyListeners();
   }
 
