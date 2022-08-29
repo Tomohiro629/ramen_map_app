@@ -180,9 +180,22 @@ class SetStorePage extends ConsumerWidget {
             MaterialButton(
               onPressed: () async {
                 try {
-                  storageService.uploadPostImageAndGetUrl(
+                  showGeneralDialog(
+                      context: context,
+                      barrierColor: Colors.black.withOpacity(0.5),
+                      pageBuilder: (BuildContext context, animation,
+                          secondaryAnimation) {
+                        return Center(
+                          child: Stack(
+                            children: const [
+                              CircularProgressIndicator(),
+                            ],
+                          ),
+                        );
+                      });
+                  await storageService.uploadPostImageAndGetUrl(
                       file: imagePickerService.imagePath!);
-                  storeSetController.setStore(
+                  await storeSetController.setStore(
                       name: storeName.text,
                       price: price.text,
                       memo: memo.text,
@@ -194,13 +207,15 @@ class SetStorePage extends ConsumerWidget {
                       userId: ref.watch(authServiceProvider).userId);
                   imagePickerService.imagePath = null;
                   // ignore: use_build_context_synchronously
+                  Navigator.pop(context);
+                  // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
                         "${storeName.text}を登録しました！",
                         textAlign: TextAlign.center,
                       ),
-                      backgroundColor: Colors.red,
+                      backgroundColor: const Color.fromARGB(143, 105, 240, 175),
                       duration: const Duration(seconds: 2),
                     ),
                   );
