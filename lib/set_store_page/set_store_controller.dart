@@ -11,6 +11,12 @@ final setStoreControllerProvider =
 class SetStoreController extends ChangeNotifier {
   final Reader _reader;
   SetStoreController(this._reader);
+  bool isLoading = false;
+
+  void loadingScreen() {
+    isLoading = true;
+    notifyListeners();
+  }
 
   Future<void> setStore({
     required String name,
