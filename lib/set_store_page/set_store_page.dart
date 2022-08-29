@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
@@ -180,50 +182,70 @@ class SetStorePage extends ConsumerWidget {
             MaterialButton(
               onPressed: () async {
                 try {
-                  showGeneralDialog(
-                      context: context,
-                      barrierColor: Colors.black.withOpacity(0.5),
-                      pageBuilder: (BuildContext context, animation,
-                          secondaryAnimation) {
-                        return Center(
-                          child: Stack(
-                            children: const [
-                              CircularProgressIndicator(),
-                            ],
-                          ),
-                        );
-                      });
-                  await storageService.uploadPostImageAndGetUrl(
-                      file: imagePickerService.imagePath!);
-                  await storeSetController.setStore(
-                      name: storeName.text,
-                      price: price.text,
-                      memo: memo.text,
-                      area: area,
-                      taste: taste,
-                      latitude: latitude,
-                      longitude: longitude,
-                      ramenImage: storageService.imageURL!,
-                      userId: ref.watch(authServiceProvider).userId);
-                  imagePickerService.imagePath = null;
-                  // ignore: use_build_context_synchronously
-                  Navigator.pop(context);
-                  // ignore: use_build_context_synchronously
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        "${storeName.text}を登録しました！",
-                        textAlign: TextAlign.center,
+                  if (storeName.text.isNotEmpty &&
+                      price.text.isNotEmpty &&
+                      memo.text.isNotEmpty &&
+                      area.isNotEmpty &&
+                      taste.isNotEmpty) {
+                    showGeneralDialog(
+                        context: context,
+                        barrierColor: Colors.black.withOpacity(0.5),
+                        pageBuilder: (BuildContext context, animation,
+                            secondaryAnimation) {
+                          return Center(
+                            child: Stack(
+                              children: const [
+                                CircularProgressIndicator(),
+                              ],
+                            ),
+                          );
+                        });
+
+                    await storageService.uploadPostImageAndGetUrl(
+                        file: imagePickerService.imagePath!);
+                    await storeSetController.setStore(
+                        name: storeName.text,
+                        price: price.text,
+                        memo: memo.text,
+                        area: area,
+                        taste: taste,
+                        latitude: latitude,
+                        longitude: longitude,
+                        ramenImage: storageService.imageURL!,
+                        userId: ref.watch(authServiceProvider).userId);
+                    imagePickerService.imagePath = null;
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                    // ignore: use_build_context_synchronously
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          "${storeName.text}を登録しました！",
+                          textAlign: TextAlign.center,
+                        ),
+                        backgroundColor:
+                            const Color.fromARGB(143, 105, 240, 175),
+                        duration: const Duration(seconds: 2),
                       ),
-                      backgroundColor: const Color.fromARGB(143, 105, 240, 175),
-                      duration: const Duration(seconds: 2),
-                    ),
-                  );
-                  // ignore: use_build_context_synchronously
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => BottomBarPage()),
-                      (_) => false);
+                    );
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BottomBarPage()),
+                        (_) => false);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "登録エラー\n未入力の項目があります。",
+                          textAlign: TextAlign.center,
+                        ),
+                        backgroundColor: Colors.red,
+                        duration: Duration(seconds: 1),
+                      ),
+                    );
+                  }
                 } catch (e) {
                   // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
