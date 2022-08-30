@@ -49,6 +49,7 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   loader_overlay: ^2.0.10
+  lottie: ^1.4.2
   new_gradient_app_bar: ^0.2.0
   uuid: 3.0.6
 
@@ -78,19 +79,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - images/syoyu.jpg
-  - images/tonkotusyoyu.jpg
-  - images/tonkotu.jpg
-  - images/sio.jpg
-  - images/miso.jpg
-  - images/sonota.jpg
-  - images/map.jpg
-  - images/set.jpg
-  - images/list1.jpg
-  - images/list2.jpg
-  - images/home-image.jpg
-  - images/home-image1.jpg
-  - images/home-image2.jpg
+  - assets/images/syoyu.jpg
+  - assets/images/tonkotusyoyu.jpg
+  - assets/images/tonkotu.jpg
+  - assets/images/sio.jpg
+  - assets/images/miso.jpg
+  - assets/images/sonota.jpg
+  - assets/images/map.jpg
+  - assets/images/set.jpg
+  - assets/images/list1.jpg
+  - assets/images/list2.jpg
+  - assets/images/home-image.jpg
+  - assets/images/home-image1.jpg
+  - assets/images/home-image2.jpg
+  - assets/lotties/6692-like.json
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
@@ -109,7 +111,7 @@ flutter:
   fonts:
       - family: Yuji_Syuku
         fonts:
-          - asset: fonts/Yuji_Syuku/YujiSyuku-Regular.ttf
+          - asset: assets/fonts/Yuji_Syuku/YujiSyuku-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

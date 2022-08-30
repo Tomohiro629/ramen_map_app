@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data_bottom_sheet.dart';
@@ -107,53 +108,65 @@ class StoreImage extends ConsumerWidget {
                                 color: const Color.fromARGB(224, 48, 46, 46),
                               ),
                               child: IconButton(
-                                onPressed: () {
-                                  !store.isFavorite
-                                      ? storeRepository.setStore(
-                                          store: store.addFavorite())
-                                      : storeRepository.setStore(
-                                          store: store.deleteFavorite());
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(!store.isFavorite
-                                          ? SnackBar(
-                                              content: Text(
-                                                "${store.name}を\nお気に入りに登録しました！",
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              backgroundColor:
-                                                  const Color.fromARGB(
-                                                      219, 209, 67, 186),
-                                              duration:
-                                                  const Duration(seconds: 1),
-                                            )
-                                          : SnackBar(
-                                              content: Text(
-                                                "${store.name}を\nお気に入りから削除しました。",
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              backgroundColor:
-                                                  const Color.fromARGB(
-                                                      219, 67, 209, 140),
-                                              duration:
-                                                  const Duration(seconds: 1),
-                                            ));
-                                },
-                                icon: !store.isFavorite
-                                    ? const Icon(
-                                        Icons.favorite_outline,
-                                        size: 20.0,
-                                      )
-                                    : const Icon(
-                                        Icons.favorite_outline_outlined,
-                                        color:
-                                            Color.fromARGB(179, 246, 14, 173),
-                                        size: 20.0,
-                                      ),
-                              ),
+                                  onPressed: () {
+                                    !store.isFavorite
+                                        ? storeRepository.setStore(
+                                            store: store.addFavorite())
+                                        : storeRepository.setStore(
+                                            store: store.deleteFavorite());
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(!store.isFavorite
+                                            ? SnackBar(
+                                                content: Text(
+                                                  "${store.name}を\nお気に入りに登録しました！",
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                backgroundColor:
+                                                    const Color.fromARGB(
+                                                        219, 209, 67, 186),
+                                                duration:
+                                                    const Duration(seconds: 1),
+                                              )
+                                            : SnackBar(
+                                                content: Text(
+                                                  "${store.name}を\nお気に入りから削除しました。",
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                backgroundColor:
+                                                    const Color.fromARGB(
+                                                        219, 67, 209, 140),
+                                                duration:
+                                                    const Duration(seconds: 1),
+                                              ));
+                                  },
+                                  icon: !store.isFavorite
+                                      ? const Icon(
+                                          Icons.favorite_outline,
+                                          size: 20.0,
+                                        )
+                                      : ShaderMask(
+                                          shaderCallback: (Rect rect) {
+                                            return const LinearGradient(
+                                              colors: [
+                                                Color.fromARGB(
+                                                    255, 250, 36, 107),
+                                                Color.fromARGB(
+                                                    255, 245, 68, 127),
+                                                Color.fromARGB(
+                                                    255, 243, 126, 165),
+                                              ],
+                                            ).createShader(rect);
+                                          },
+                                          child: const Icon(
+                                            Icons.favorite_outline,
+                                            size: 20.0,
+                                            color: Colors.white,
+                                          ),
+                                        )),
                             ),
                           ],
                         ),
