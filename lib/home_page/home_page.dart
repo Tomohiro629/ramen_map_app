@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           SizedBox(
             height: 410.0,
-            width: 410.0,
             child: Stack(
               children: [
                 Column(
@@ -38,11 +37,33 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.center,
                   child: CircleAvatar(
+                    backgroundColor: Colors.white,
                     radius: 80,
-                    backgroundImage: AssetImage("assets/images/icon.png"),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          "道\n中",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: "Yuji_Syuku",
+                              fontSize: 20.0),
+                        ),
+                        Text("ら\nぁ\n麺",
+                            style: TextStyle(
+                                color: Colors.orange,
+                                fontFamily: "Yuji_Syuku",
+                                fontSize: 25.0)),
+                        Text("京\n都",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Yuji_Syuku",
+                                fontSize: 20.0)),
+                      ],
+                    ),
                   ),
                 ),
               ],
