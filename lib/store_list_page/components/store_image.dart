@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data_bottom_sheet.dart';
@@ -161,6 +162,10 @@ class StoreImage extends ConsumerWidget {
                     ],
                   ),
                 ),
+                Container(
+                    width: 30.0,
+                    height: 30.0,
+                    child: Lottie.asset("assets/lotties/6692-like.json"))
               ],
             ),
           ],
