@@ -63,8 +63,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
    
-flutter_native_splash:        
-  color: "#ff6347"            # 追加
+flutter_native_splash:   
+  color: "#FFFFFF"            # 追加
   fullscreen: true  
 
 flutter_icons:   # 追加

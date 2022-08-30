@@ -5,15 +5,17 @@ class HomePageImages extends StatelessWidget {
   final String imageURL;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200.0,
-      width: 200.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          image: DecorationImage(
-            image: AssetImage(imageURL),
-            fit: BoxFit.cover,
-          )),
+    return Expanded(
+      child: Container(
+        height: 200.0,
+        width: 200.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            image: DecorationImage(
+              image: AssetImage(imageURL),
+              fit: BoxFit.cover,
+            )),
+      ),
     );
   }
 }
