@@ -104,22 +104,21 @@ class MapController extends ChangeNotifier {
 
   Future<void> setMarker({required LatLng location}) async {
     final id = const Uuid().v4();
-    final GoogleMapController mapController = await googleMapController.future;
-    final zoomLevel = await mapController.getZoomLevel();
+    // final GoogleMapController mapController = await googleMapController.future;
+    // final zoomLevel = await mapController.getZoomLevel();
     markers = {};
     final marker = Marker(
         markerId: MarkerId(id),
         position: LatLng(location.latitude, location.longitude),
         infoWindow: InfoWindow(title: location.toString()));
     markers.add(marker);
-
-    mapController.moveCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-            target: LatLng(location.latitude, location.longitude),
-            zoom: zoomLevel),
-      ),
-    );
+    // mapController.moveCamera(
+    //   CameraUpdate.newCameraPosition(
+    //     CameraPosition(
+    //         target: LatLng(location.latitude, location.longitude),
+    //         zoom: zoomLevel),
+    //   ),
+    // );
     notifyListeners();
   }
 }
