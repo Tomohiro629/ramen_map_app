@@ -26,7 +26,7 @@ class TutorialPage extends StatelessWidget {
               title: "ステップ1",
               body: "住所検索 or 登録したい地点を\n長押しして場所を決定。",
               image: ListView(children: <Widget>[
-                Image.asset("images/map.jpg"),
+                Image.asset("assets/images/map.jpg"),
               ]),
               decoration: const PageDecoration(imageFlex: 3)),
           PageViewModel(
@@ -34,7 +34,7 @@ class TutorialPage extends StatelessWidget {
               body: "お店登録画面で各項目を入力し登録。",
               image: ListView(children: <Widget>[
                 Image.asset(
-                  "images/set.jpg",
+                  "assets/images/set.jpg",
                 ),
               ]),
               decoration: const PageDecoration(imageFlex: 3)),
@@ -42,7 +42,7 @@ class TutorialPage extends StatelessWidget {
               title: "ステップ3",
               body: "登録したお店を味別の一覧で表示\n地域で絞り込みも可能。",
               image: ListView(children: <Widget>[
-                Image.asset("images/list1.jpg"),
+                Image.asset("assets/images/list1.jpg"),
               ]),
               decoration: const PageDecoration(imageFlex: 3)),
           PageViewModel(
