@@ -56,7 +56,7 @@ class StoreRepository {
     final query = _firestore
         .collection("stores")
         .where('userId', isEqualTo: userId)
-        .where('isFavorite', isEqualTo: 'true')
+        .where('isFavorite', isEqualTo: true)
         .orderBy('timeStamp', descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
