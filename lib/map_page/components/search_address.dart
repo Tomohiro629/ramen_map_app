@@ -105,8 +105,6 @@ class SearchAddress extends ConsumerWidget {
                                   backgroundColor: Colors.red,
                                   duration: Duration(seconds: 2),
                                 ));
-                                print("エラー");
-                                print(e);
                               }
                             },
                           ),

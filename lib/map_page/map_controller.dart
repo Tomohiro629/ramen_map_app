@@ -120,7 +120,6 @@ class MapController extends ChangeNotifier {
             zoom: zoomLevel),
       ),
     );
-    print(location);
     notifyListeners();
   }
 }
