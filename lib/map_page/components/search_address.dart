@@ -39,8 +39,13 @@ class SearchAddress extends ConsumerWidget {
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("住所を入力してください"),
+                        content: Text(
+                          "住所を入力してください",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
                         backgroundColor: Colors.red,
+                        duration: Duration(seconds: 2),
                       ),
                     );
                   }
@@ -53,7 +58,7 @@ class SearchAddress extends ConsumerWidget {
               ),
             ),
             maxLength: 50,
-            maxLines: null,
+            maxLines: 1,
           ),
         ),
         mapController.predictions.isNotEmpty
@@ -79,9 +84,6 @@ class SearchAddress extends ConsumerWidget {
                                 mapController.setMarker(
                                     location: LatLng(location.first.latitude,
                                         location.first.longitude));
-                                // mapController.moveStoreCamera(
-                                //     latitude: location.first.latitude,
-                                //     longitude: location.first.longitude);
                                 // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
@@ -95,10 +97,16 @@ class SearchAddress extends ConsumerWidget {
                               } catch (e) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
-                                  content: Text("検索エラー\n再度お試しください。"),
-                                  backgroundColor: Color.fromARGB(165, 0, 0, 0),
-                                  duration: Duration(seconds: 10),
+                                  content: Text(
+                                    "検索エラー\n再度お試しください。",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  duration: Duration(seconds: 2),
                                 ));
+                                print("エラー");
+                                print(e);
                               }
                             },
                           ),
