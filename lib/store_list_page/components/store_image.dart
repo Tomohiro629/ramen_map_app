@@ -70,6 +70,25 @@ class StoreImage extends ConsumerWidget {
                 ),
               ),
             ),
+            currentPosition != const LatLng(0.0, 0.0)
+                ? Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: const Color.fromARGB(173, 48, 46, 46),
+                        ),
+                        child: Text(
+                          "お店まで${distanceInMeters.toInt()}m",
+                          style: TextStyle(
+                              color: Colors.greenAccent, fontSize: 15.0.sp),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
             Stack(
               children: [
                 SizedBox(
