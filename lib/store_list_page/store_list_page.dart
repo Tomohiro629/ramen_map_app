@@ -39,13 +39,21 @@ class StoreListPage extends ConsumerWidget {
             colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
       ),
       body: Center(
-        child: FirestoreListView<Store>(
-          query: storeListController.tasteStoreQuery(taste),
-          itemBuilder: (context, snapshot) {
-            final store = snapshot.data();
-            return StoreImage(store: store);
-          },
-        ),
+        child: taste.isEmpty
+            ? FirestoreListView<Store>(
+                query: storeListController.storeQuery(taste),
+                itemBuilder: (context, snapshot) {
+                  final store = snapshot.data();
+                  return StoreImage(store: store);
+                },
+              )
+            : FirestoreListView<Store>(
+                query: storeListController.tasteStoreQuery(taste),
+                itemBuilder: (context, snapshot) {
+                  final store = snapshot.data();
+                  return StoreImage(store: store);
+                },
+              ),
       ),
     );
   }
