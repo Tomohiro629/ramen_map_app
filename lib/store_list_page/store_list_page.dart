@@ -40,7 +40,7 @@ class StoreListPage extends ConsumerWidget {
       ),
       body: Center(
         child: FirestoreListView<Store>(
-          query: storeListController.storeQuery(taste),
+          query: storeListController.tasteStoreQuery(taste),
           itemBuilder: (context, snapshot) {
             final store = snapshot.data();
             return StoreImage(store: store);

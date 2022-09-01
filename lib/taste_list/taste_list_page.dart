@@ -12,35 +12,47 @@ class TasteListPage extends ConsumerWidget {
     final tastesList = tastes;
 
     return Scaffold(
-        appBar: BaseAppBar(
-          title: const Text(
-            "味一覧",
-            style: TextStyle(color: Colors.white),
-          ),
-          color: const LinearGradient(
-              colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
-          widgets: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: IconButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const LogoutDialog();
-                        });
-                  },
-                  icon: const Icon(
-                    Icons.logout_outlined,
-                    color: Colors.white,
-                  )),
-            )
-          ],
+      appBar: BaseAppBar(
+        title: const Text(
+          "味一覧",
+          style: TextStyle(color: Colors.white),
         ),
-        body: Center(
+        color: const LinearGradient(
+            colors: [Colors.red, Colors.deepOrange, Colors.orangeAccent]),
+        widgets: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const LogoutDialog();
+                      });
+                },
+                icon: const Icon(
+                  Icons.logout_outlined,
+                  color: Colors.white,
+                )),
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          Center(
             child: GridView.count(
-          crossAxisCount: 2,
-          children: tastesList,
-        )));
+              crossAxisCount: 2,
+              children: tastesList,
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () {},
+              child: const Text(
+                "全てのお店",
+                textAlign: TextAlign.center,
+              ))
+        ],
+      ),
+    );
   }
 }

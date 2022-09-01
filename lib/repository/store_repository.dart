@@ -39,6 +39,14 @@ class StoreRepository {
     }
   }
 
+  Query<Store> queryStore({required String userId}) {
+    final query =
+        _firestore.collection("stores").orderBy('timeStamp', descending: false);
+    return query.withConverter(
+        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
+        toFirestore: (store, _) => store.toJson());
+  }
+
   Query<Store> queryAreaStore(
       {required String taste, required String area, required String userId}) {
     final query = _firestore
@@ -63,7 +71,8 @@ class StoreRepository {
         toFirestore: (store, _) => store.toJson());
   }
 
-  Query<Store> queryStore({required String taste, required String userId}) {
+  Query<Store> queryTasteStore(
+      {required String taste, required String userId}) {
     final query = _firestore
         .collection("stores")
         .where('userId', isEqualTo: userId)
