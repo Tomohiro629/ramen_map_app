@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterfire_ui/firestore.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
@@ -34,7 +35,10 @@ class StoreAreaListPage extends ConsumerWidget {
             userId: ref.watch(authServiceProvider).userId),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
-          return StoreImage(store: store);
+          return StoreImage(
+            store: store,
+            currentPosition: const LatLng(0.0, 0.0),
+          );
         },
       )),
     );

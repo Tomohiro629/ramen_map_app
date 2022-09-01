@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data_bottom_sheet.dart';
 
 class StoreImage extends ConsumerWidget {
-  const StoreImage({Key? key, required this.store}) : super(key: key);
+  const StoreImage(
+      {Key? key, required this.store, required this.currentPosition})
+      : super(key: key);
   final Store store;
+  final LatLng currentPosition;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storeRepository = ref.watch(storeRepositoryProvider);
+    final double distanceInMeters = Geolocator.distanceBetween(
+        currentPosition.latitude,
+        currentPosition.longitude,
+        store.latitude,
+        store.longitude);
 
     return SingleChildScrollView(
       child: Padding(
@@ -60,6 +70,25 @@ class StoreImage extends ConsumerWidget {
                 ),
               ),
             ),
+            currentPosition != const LatLng(0.0, 0.0)
+                ? Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: const Color.fromARGB(173, 48, 46, 46),
+                        ),
+                        child: Text(
+                          "お店まで${distanceInMeters.toInt()}m",
+                          style: TextStyle(
+                              color: Colors.greenAccent, fontSize: 15.0.sp),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
             Stack(
               children: [
                 SizedBox(
@@ -117,7 +146,7 @@ class StoreImage extends ConsumerWidget {
                                         .showSnackBar(!store.isFavorite
                                             ? SnackBar(
                                                 content: Text(
-                                                  "${store.name}を\nお気に入りに登録しました！",
+                                                  "${store.name}を\nお気に入りに登録しました!",
                                                   textAlign: TextAlign.center,
                                                   style: const TextStyle(
                                                       color: Colors.white),
