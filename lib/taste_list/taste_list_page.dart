@@ -60,19 +60,20 @@ class TasteListPage extends ConsumerWidget {
                   ),
                   width: 200.0,
                   child: MaterialButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const StoreListPage(
-                                      taste: "",
-                                    ))));
-                      },
-                      child: const Text(
-                        "全てのお店",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      )),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const StoreListPage(
+                                    taste: "",
+                                  ))));
+                    },
+                    child: const Text(
+                      "全てのお店",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
             ),

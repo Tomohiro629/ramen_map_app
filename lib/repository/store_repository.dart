@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/entity/store.dart';
 
 final storeRepositoryProvider = Provider(((ref) {
@@ -59,6 +57,18 @@ class StoreRepository {
         .where('taste', isEqualTo: taste)
         .where('area', isEqualTo: area)
         .orderBy('timeStamp', descending: false);
+    return query.withConverter(
+        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
+        toFirestore: (store, _) => store.toJson());
+  }
+
+  Query<Store> queryDistanceStore(
+      {required int inputNumber, required String userId}) {
+    final query = _firestore
+        .collection("stores")
+        .where('userId', isEqualTo: userId)
+        .limit(inputNumber) //1～10件で取得
+        .orderBy('storeDistance', descending: false); //現在地より近い順
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
         toFirestore: (store, _) => store.toJson());

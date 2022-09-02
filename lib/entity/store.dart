@@ -16,6 +16,7 @@ class Store {
     required this.userId,
     required this.isAddCheck,
     required this.isFavorite,
+    this.storeDistance = (0.0),
   });
 
   factory Store.create({
@@ -61,6 +62,7 @@ class Store {
       userId: map['userId'],
       isAddCheck: map['isAddCheck'],
       isFavorite: map['isFavorite'],
+      storeDistance: map['storeDistance'],
     );
   }
 
@@ -86,6 +88,10 @@ class Store {
     return _copyWith(isFavorite: true);
   }
 
+  Store addStoreDistance(double storeDistance) {
+    return _copyWith(storeDistance: storeDistance);
+  }
+
   Store deleteFavorite() {
     return _copyWith(isFavorite: false);
   }
@@ -103,22 +109,23 @@ class Store {
     String? ramenImage,
     bool? isAddCheck,
     bool? isFavorite,
+    double? storeDistance,
   }) {
     return Store(
-      storeId: storeId,
-      name: name ?? this.name,
-      price: price ?? this.price,
-      memo: memo ?? this.memo,
-      area: area ?? this.area,
-      taste: taste ?? this.taste,
-      timeStamp: timeStamp,
-      ramenImage: ramenImage ?? this.ramenImage,
-      latitude: latitude,
-      longitude: longitude,
-      userId: userId,
-      isAddCheck: isAddCheck ?? this.isAddCheck,
-      isFavorite: isFavorite ?? this.isFavorite,
-    );
+        storeId: storeId,
+        name: name ?? this.name,
+        price: price ?? this.price,
+        memo: memo ?? this.memo,
+        area: area ?? this.area,
+        taste: taste ?? this.taste,
+        timeStamp: timeStamp,
+        ramenImage: ramenImage ?? this.ramenImage,
+        latitude: latitude,
+        longitude: longitude,
+        userId: userId,
+        isAddCheck: isAddCheck ?? this.isAddCheck,
+        isFavorite: isFavorite ?? this.isFavorite,
+        storeDistance: storeDistance ?? (0.0));
   }
 
   Map<String, dynamic> toJson() {
@@ -136,6 +143,7 @@ class Store {
       'userId': userId,
       'isAddCheck': isAddCheck,
       'isFavorite': isFavorite,
+      'storeDistance': storeDistance,
     };
   }
 
@@ -152,4 +160,5 @@ class Store {
   final String userId;
   final bool isAddCheck;
   final bool isFavorite;
+  final double? storeDistance;
 }

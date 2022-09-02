@@ -12,7 +12,7 @@ class DeleteCheckDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final storeListController = ref.watch(storeListProvider);
+    final storeListController = ref.watch(storeListProvider(store));
 
     return AlertDialog(
       backgroundColor: const Color.fromARGB(165, 0, 0, 0),

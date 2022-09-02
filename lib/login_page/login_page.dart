@@ -74,7 +74,6 @@ class LoginPage extends ConsumerWidget {
                           duration: const Duration(seconds: 2),
                         ),
                       );
-                      print(e);
                     }
                   },
                   child: const ButtonDesign())

@@ -5,9 +5,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/app_bar/base_app_bar.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
+import 'package:ramen_map_app/repository/store_repository.dart';
+import 'package:ramen_map_app/service/auth_service.dart';
 import 'package:ramen_map_app/store_list_page/components/area_dialog.dart';
+import 'package:ramen_map_app/store_list_page/components/store_distance_button.dart';
 import 'package:ramen_map_app/store_list_page/components/store_image.dart';
-import 'package:ramen_map_app/store_list_page/store_list_controller.dart';
 
 class StoreListPage extends ConsumerWidget {
   const StoreListPage({
@@ -18,7 +20,9 @@ class StoreListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final storeListController = ref.watch(storeListProvider);
+    final storeListController = ref.watch(storeRepositoryProvider);
+    final currentPosition = ref.watch(mapControllerProvider).initialPosition;
+    final userId = ref.watch(authServiceProvider).userId;
 
     return Scaffold(
       appBar: BaseAppBar(
@@ -48,18 +52,22 @@ class StoreListPage extends ConsumerWidget {
       ),
       body: Center(
         child: taste.isEmpty
-            ? FirestoreListView<Store>(
-                query: storeListController.storeQuery(taste),
-                itemBuilder: (context, snapshot) {
-                  final currentPosition =
-                      ref.watch(mapControllerProvider).initialPosition;
-                  final store = snapshot.data();
-                  return StoreImage(
-                      store: store, currentPosition: currentPosition!);
-                },
+            ? Stack(
+                children: [
+                  FirestoreListView<Store>(
+                    query: storeListController.queryStore(userId: userId),
+                    itemBuilder: (context, snapshot) {
+                      final store = snapshot.data();
+                      return StoreImage(
+                          store: store, currentPosition: currentPosition!);
+                    },
+                  ),
+                  const StoreDistaceButton(),
+                ],
               )
             : FirestoreListView<Store>(
-                query: storeListController.tasteStoreQuery(taste),
+                query: storeListController.queryTasteStore(
+                    taste: taste, userId: userId),
                 itemBuilder: (context, snapshot) {
                   final store = snapshot.data();
                   return StoreImage(
