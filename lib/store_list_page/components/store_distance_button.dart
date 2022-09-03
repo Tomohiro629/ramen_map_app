@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramen_map_app/store_list_page/components/store_limit_dialog.dart';
 
 class StoreDistaceButton extends ConsumerWidget {
   const StoreDistaceButton({
@@ -21,12 +22,11 @@ class StoreDistaceButton extends ConsumerWidget {
           width: 200.0,
           child: MaterialButton(
               onPressed: () {
-                // showDialog(
-                //     context: context,
-                //     builder: (BuildContext context) {
-                //       return StoreLimitDiarog(
-                //           store: store, storeDistance: storeDistance);
-                //     });
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const StoreLimitDialog();
+                    });
               },
               child: const Text(
                 "近いお店を探す",

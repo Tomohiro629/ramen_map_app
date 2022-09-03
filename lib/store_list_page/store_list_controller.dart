@@ -16,7 +16,7 @@ class StoreListController extends ChangeNotifier {
   final Reader reader;
   final Store store;
   StoreListController(this.reader, this.store) {
-    setStoreDistance();
+    setStoreDistance(store);
     notifyListeners();
   }
 
@@ -24,15 +24,17 @@ class StoreListController extends ChangeNotifier {
     reader(storeRepositoryProvider).deleteStore(storeId);
   }
 
-  Future<void> setStoreDistance() async {
+  Future<void> setStoreDistance(Store store) async {
     final currentPosition = reader(mapControllerProvider).initialPosition!;
     final double distanceInMeters = Geolocator.distanceBetween(
         currentPosition.latitude,
         currentPosition.longitude,
         store.latitude,
         store.longitude);
+    notifyListeners();
     await reader(storeRepositoryProvider)
         .setStore(store: store.addStoreDistance(distanceInMeters));
+    notifyListeners();
   }
 
   Query<Store> storeQuery(String taste) {
