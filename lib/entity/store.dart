@@ -125,7 +125,7 @@ class Store {
         userId: userId,
         isAddCheck: isAddCheck ?? this.isAddCheck,
         isFavorite: isFavorite ?? this.isFavorite,
-        storeDistance: storeDistance ?? (0.0));
+        storeDistance: storeDistance ?? this.storeDistance);
   }
 
   Map<String, dynamic> toJson() {
