@@ -29,12 +29,12 @@ class StoreLimitPage extends ConsumerWidget {
       body: Center(
           child: FirestoreListView<Store>(
         query: storeRepository.queryDistanceStore(
-            inputNumber: number, userId: ref.watch(authServiceProvider).userId),
+            userId: ref.watch(authServiceProvider).userId),
         itemBuilder: (context, snapshot) {
           final store = snapshot.data();
           return StoreImage(
             store: store,
-            currentPosition: const LatLng(0.0, 0.0),
+            currentPosition: LatLng(store.latitude, store.longitude),
           );
         },
       )),

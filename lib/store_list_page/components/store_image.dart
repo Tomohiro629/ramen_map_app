@@ -84,7 +84,7 @@ class StoreImage extends ConsumerWidget {
                           color: const Color.fromARGB(173, 48, 46, 46),
                         ),
                         child: Text(
-                          "お店までおよそ${(distanceInMeters / 1000).toStringAsFixed(1)}km",
+                          "お店までおよそ${(store.storeDistance! / 1000).toStringAsFixed(1)}km",
                           style: TextStyle(
                               color: Colors.greenAccent, fontSize: 15.0.sp),
                         ),

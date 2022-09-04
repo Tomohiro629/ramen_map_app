@@ -8,7 +8,6 @@ import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/service/auth_service.dart';
 import 'package:ramen_map_app/store_list_page/components/area_dialog.dart';
-import 'package:ramen_map_app/store_list_page/components/store_distance_button.dart';
 import 'package:ramen_map_app/store_list_page/components/store_image.dart';
 
 class StoreListPage extends ConsumerWidget {
@@ -55,14 +54,14 @@ class StoreListPage extends ConsumerWidget {
             ? Stack(
                 children: [
                   FirestoreListView<Store>(
-                    query: storeListController.queryStore(userId: userId),
+                    query:
+                        storeListController.queryDistanceStore(userId: userId),
                     itemBuilder: (context, snapshot) {
                       final store = snapshot.data();
                       return StoreImage(
                           store: store, currentPosition: currentPosition!);
                     },
                   ),
-                  const StoreDistaceButton(),
                 ],
               )
             : FirestoreListView<Store>(
