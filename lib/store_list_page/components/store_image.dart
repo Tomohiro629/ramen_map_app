@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
 import 'package:ramen_map_app/store_list_page/components/store_data_bottom_sheet.dart';
+import 'package:ramen_map_app/store_list_page/store_list_controller.dart';
 
 class StoreImage extends ConsumerWidget {
   const StoreImage(
@@ -22,6 +23,8 @@ class StoreImage extends ConsumerWidget {
         currentPosition.longitude,
         store.latitude,
         store.longitude);
+
+    ref.watch(storeListProvider(store)).setStoreDistance(store);
 
     return SingleChildScrollView(
       child: Padding(
@@ -81,7 +84,7 @@ class StoreImage extends ConsumerWidget {
                           color: const Color.fromARGB(173, 48, 46, 46),
                         ),
                         child: Text(
-                          "お店までおよそ${(distanceInMeters / 1000).toStringAsFixed(1)}km",
+                          "お店までおよそ${(store.storeDistance! / 1000).toStringAsFixed(1)}km",
                           style: TextStyle(
                               color: Colors.greenAccent, fontSize: 15.0.sp),
                         ),

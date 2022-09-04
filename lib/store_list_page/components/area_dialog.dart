@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ramen_map_app/store_list_page/components/store_area_list_page.dart';
 
@@ -56,30 +58,43 @@ class AreaDialog extends StatelessWidget {
               ),
               color: Colors.white,
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) {
-                      return StoreAreaListPage(
-                        area: area,
-                        taste: taste,
-                      );
-                    },
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      const double begin = 0.0;
-                      const double end = 1.0;
-                      final Animatable<double> tween =
-                          Tween(begin: begin, end: end)
-                              .chain(CurveTween(curve: Curves.easeInOut));
-                      final Animation<double> doubleAnimation =
-                          animation.drive(tween);
-                      return FadeTransition(
-                        opacity: doubleAnimation,
-                        child: child,
-                      );
-                    },
-                  ),
-                );
+                if (area.isNotEmpty) {
+                  Navigator.of(context).pushReplacement(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return StoreAreaListPage(
+                          area: area,
+                          taste: taste,
+                        );
+                      },
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        const double begin = 0.0;
+                        const double end = 1.0;
+                        final Animatable<double> tween =
+                            Tween(begin: begin, end: end)
+                                .chain(CurveTween(curve: Curves.easeInOut));
+                        final Animation<double> doubleAnimation =
+                            animation.drive(tween);
+                        return FadeTransition(
+                          opacity: doubleAnimation,
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "エリアを選択してください。",
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
               },
               child: const Text("検索"),
             ))

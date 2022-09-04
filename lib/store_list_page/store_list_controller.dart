@@ -26,23 +26,16 @@ class StoreListController extends ChangeNotifier {
 
   Future<void> setStoreDistance(Store store) async {
     final currentPosition = reader(mapControllerProvider).initialPosition!;
-    final double distanceInMeters = Geolocator.distanceBetween(
-        currentPosition.latitude,
-        currentPosition.longitude,
-        store.latitude,
-        store.longitude);
-    notifyListeners();
+    final int distanceInMeters = Geolocator.distanceBetween(
+            currentPosition.latitude,
+            currentPosition.longitude,
+            store.latitude,
+            store.longitude)
+        .toInt();
+
     await reader(storeRepositoryProvider)
         .setStore(store: store.addStoreDistance(distanceInMeters));
     notifyListeners();
-  }
-
-  Query<Store> storeQuery(String taste) {
-    final userId = reader(authServiceProvider).userId;
-
-    return reader(storeRepositoryProvider).queryStore(
-      userId: userId,
-    );
   }
 
   Query<Store> tasteStoreQuery(String taste) {

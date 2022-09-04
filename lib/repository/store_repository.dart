@@ -39,16 +39,6 @@ class StoreRepository {
     }
   }
 
-  Query<Store> queryStore({
-    required String userId,
-  }) {
-    final query =
-        _firestore.collection("stores").orderBy('timeStamp', descending: false);
-    return query.withConverter(
-        fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
-        toFirestore: (store, _) => store.toJson());
-  }
-
   Query<Store> queryAreaStore(
       {required String taste, required String area, required String userId}) {
     final query = _firestore
@@ -62,12 +52,10 @@ class StoreRepository {
         toFirestore: (store, _) => store.toJson());
   }
 
-  Query<Store> queryDistanceStore(
-      {required int inputNumber, required String userId}) {
+  Query<Store> queryDistanceStore({required String userId}) {
     final query = _firestore
         .collection("stores")
         .where('userId', isEqualTo: userId)
-        .limit(inputNumber) //1～10件で取得
         .orderBy('storeDistance', descending: false); //現在地より近い順
     return query.withConverter(
         fromFirestore: (snapshot, _) => Store.fromJson(snapshot.data()!),
