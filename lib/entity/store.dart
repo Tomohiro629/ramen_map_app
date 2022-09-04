@@ -16,7 +16,7 @@ class Store {
     required this.userId,
     required this.isAddCheck,
     required this.isFavorite,
-    this.storeDistance = (0.0),
+    this.storeDistance = (0),
   });
 
   factory Store.create({
@@ -88,7 +88,7 @@ class Store {
     return _copyWith(isFavorite: true);
   }
 
-  Store addStoreDistance(double storeDistance) {
+  Store addStoreDistance(int storeDistance) {
     return _copyWith(storeDistance: storeDistance);
   }
 
@@ -109,7 +109,7 @@ class Store {
     String? ramenImage,
     bool? isAddCheck,
     bool? isFavorite,
-    double? storeDistance,
+    int? storeDistance,
   }) {
     return Store(
         storeId: storeId,
@@ -160,5 +160,5 @@ class Store {
   final String userId;
   final bool isAddCheck;
   final bool isFavorite;
-  final double? storeDistance;
+  final int? storeDistance;
 }
