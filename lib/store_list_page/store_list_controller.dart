@@ -38,14 +38,6 @@ class StoreListController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Query<Store> storeQuery(String taste) {
-    final userId = reader(authServiceProvider).userId;
-
-    return reader(storeRepositoryProvider).queryStore(
-      userId: userId,
-    );
-  }
-
   Query<Store> tasteStoreQuery(String taste) {
     final userId = reader(authServiceProvider).userId;
     return reader(storeRepositoryProvider)
