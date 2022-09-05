@@ -31,74 +31,61 @@ class MapPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      body: FirestoreListView<Store>(
-          query: ref
-              .watch(storeRepositoryProvider)
-              .queryDistanceStore(userId: userId),
-          itemBuilder: (context, snapshot) {
-            final store = snapshot.data();
-
-            return Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Expanded(
-                  child: mapController.initialPosition != null
-                      ? Stack(
-                          children: <Widget>[
-                            GoogleMapPage(
-                                store: store,
-                                latitude: latitude,
-                                longitude: longitude),
-                            CustomInfoWindow(
-                              controller:
-                                  mapController.customInfoWindowController,
-                              height: 100.0,
-                              width: 100.0,
-                              offset: 50.0,
-                            )
-                          ],
-                        )
-                      : Container(),
-                ),
-                storeId.isEmpty ? const SearchAddress() : const Text(""),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 120.0,
-                  ),
-                  child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.topRight,
-                          child: MapButton(
-                            icon: const Icon(
-                              Icons.map_outlined,
-                              color: Colors.deepOrange,
-                            ),
-                            onTap: () {
-                              mapController.changeMapType();
-                            },
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: MapButton(
-                            icon: const Icon(
-                              Icons.autorenew_rounded,
-                              color: Colors.deepOrange,
-                            ),
-                            onTap: (() {
-                              mapController.resetAddress();
-                            }),
-                          ),
-                        ),
-                      ),
-                    ],
+        body: Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Expanded(
+          child: mapController.initialPosition != null
+              ? Stack(
+                  children: <Widget>[
+                    GoogleMapPage(latitude: latitude, longitude: longitude),
+                    CustomInfoWindow(
+                      controller: mapController.customInfoWindowController,
+                      height: 100.0,
+                      width: 100.0,
+                      offset: 50.0,
+                    )
+                  ],
+                )
+              : Container(),
+        ),
+        storeId.isEmpty ? const SearchAddress() : const Text(""),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 120.0,
+          ),
+          child: Column(
+            children: [
+              Align(
+                  alignment: Alignment.topRight,
+                  child: MapButton(
+                    icon: const Icon(
+                      Icons.map_outlined,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: () {
+                      mapController.changeMapType();
+                    },
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: MapButton(
+                    icon: const Icon(
+                      Icons.autorenew_rounded,
+                      color: Colors.deepOrange,
+                    ),
+                    onTap: (() {
+                      mapController.resetAddress();
+                    }),
                   ),
                 ),
-              ],
-            );
-          }),
-    );
+              ),
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }

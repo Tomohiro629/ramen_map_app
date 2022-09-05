@@ -8,19 +8,15 @@ import 'package:ramen_map_app/service/google_map_service.dart';
 
 class GoogleMapPage extends ConsumerWidget {
   const GoogleMapPage(
-      {Key? key,
-      required this.store,
-      required this.latitude,
-      required this.longitude})
+      {Key? key, required this.latitude, required this.longitude})
       : super(key: key);
-  final Store store;
+
   final double latitude;
   final double longitude;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = ref.watch(mapControllerProvider);
-    mapController.addMarker(store: store);
 
     return GoogleMap(
       mapType: ref.watch(googleMapServiceProvider).currentMapType,
