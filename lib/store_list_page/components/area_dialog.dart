@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:ramen_map_app/store_list_page/components/store_area_list_page.dart';
 

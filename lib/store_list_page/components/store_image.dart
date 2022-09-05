@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/repository/store_repository.dart';
@@ -18,11 +17,6 @@ class StoreImage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storeRepository = ref.watch(storeRepositoryProvider);
-    final double distanceInMeters = Geolocator.distanceBetween(
-        currentPosition.latitude,
-        currentPosition.longitude,
-        store.latitude,
-        store.longitude);
 
     ref.watch(storeListProvider(store)).setStoreDistance(store);
 

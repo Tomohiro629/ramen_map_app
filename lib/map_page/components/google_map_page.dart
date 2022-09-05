@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/map_page/components/set_location_snack_bar.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
 import 'package:ramen_map_app/service/google_map_service.dart';
 
 class GoogleMapPage extends ConsumerWidget {
   const GoogleMapPage(
-      {Key? key, required this.latitude, required this.longitude})
+      {Key? key,
+      required this.store,
+      required this.latitude,
+      required this.longitude})
       : super(key: key);
+  final Store store;
   final double latitude;
   final double longitude;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = ref.watch(mapControllerProvider);
+    mapController.addMarker(store: store);
 
     return GoogleMap(
       mapType: ref.watch(googleMapServiceProvider).currentMapType,
