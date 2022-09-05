@@ -42,7 +42,6 @@ class MapController extends ChangeNotifier {
       infoWindow: InfoWindow(title: store.name),
     );
     markers.add(marker);
-    notifyListeners();
   }
 
   Future<void> autoCompleteSearch(String inputAddress) async {
