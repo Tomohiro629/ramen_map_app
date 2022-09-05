@@ -40,17 +40,9 @@ class MapController extends ChangeNotifier {
       markerId: MarkerId(store.storeId),
       position: LatLng(store.latitude, store.longitude),
       infoWindow: InfoWindow(title: store.name),
-      // onTap: () {
-      //   customInfoWindowController.addInfoWindow!(
-      //     CustomInfoWindowPage(
-      //       store: store,
-      //     ),
-      //     LatLng(store.latitude, store.longitude),
-      //   );
-      //   notifyListeners();
-      // },
     );
     markers.add(marker);
+    notifyListeners();
   }
 
   Future<void> autoCompleteSearch(String inputAddress) async {
