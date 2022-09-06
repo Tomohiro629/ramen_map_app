@@ -1,14 +1,10 @@
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterfire_ui/firestore.dart';
-import 'package:ramen_map_app/entity/store.dart';
 import 'package:ramen_map_app/map_page/components/google_map_page.dart';
 import 'package:ramen_map_app/map_page/components/map_button.dart';
 import 'package:ramen_map_app/map_page/components/search_address.dart';
 import 'package:ramen_map_app/map_page/map_controller.dart';
-import 'package:ramen_map_app/repository/store_repository.dart';
-import 'package:ramen_map_app/service/auth_service.dart';
 
 class MapPage extends ConsumerWidget {
   const MapPage(
@@ -24,7 +20,6 @@ class MapPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = ref.watch(mapControllerProvider);
-    final userId = ref.watch(authServiceProvider).userId;
 
     if (mapController.loading) {
       const Center(child: CircularProgressIndicator());
