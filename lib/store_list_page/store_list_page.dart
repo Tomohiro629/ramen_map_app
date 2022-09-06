@@ -59,7 +59,9 @@ class StoreListPage extends ConsumerWidget {
                     itemBuilder: (context, snapshot) {
                       final store = snapshot.data();
                       return StoreImage(
-                          store: store, currentPosition: currentPosition!);
+                          store: store,
+                          currentPosition: currentPosition ??
+                              LatLng(store.latitude, store.longitude));
                     },
                   ),
                 ],
