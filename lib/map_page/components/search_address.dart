@@ -65,52 +65,50 @@ class SearchAddress extends ConsumerWidget {
             ? SizedBox(
                 height: 150.0,
                 width: 300.0,
-                child: Flexible(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: mapController.predictions.length,
-                      itemBuilder: ((context, index) {
-                        return Card(
-                          color: Colors.white,
-                          child: ListTile(
-                            title: Text(mapController
-                                .predictions[index].description
-                                .toString()),
-                            onTap: () async {
-                              try {
-                                List location = await locationFromAddress(
-                                    mapController.predictions[index].description
-                                        .toString());
-                                mapController.setMarker(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: mapController.predictions.length,
+                    itemBuilder: ((context, index) {
+                      return Card(
+                        color: Colors.white,
+                        child: ListTile(
+                          title: Text(mapController
+                              .predictions[index].description
+                              .toString()),
+                          onTap: () async {
+                            try {
+                              List location = await locationFromAddress(
+                                  mapController.predictions[index].description
+                                      .toString());
+                              mapController.setMarker(
+                                  location: LatLng(location.first.latitude,
+                                      location.first.longitude));
+                              // ignore: use_build_context_synchronously
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: SetLocationSnackBar(
                                     location: LatLng(location.first.latitude,
-                                        location.first.longitude));
-                                // ignore: use_build_context_synchronously
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: SetLocationSnackBar(
-                                      location: LatLng(location.first.latitude,
-                                          location.first.longitude)),
-                                  backgroundColor:
-                                      const Color.fromARGB(165, 0, 0, 0),
-                                  duration: const Duration(seconds: 10),
-                                ));
-                              } catch (e) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text(
-                                    "検索エラー\n再度お試しください。",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: Colors.red,
-                                  duration: Duration(seconds: 2),
-                                ));
-                              }
-                            },
-                          ),
-                        );
-                      })),
-                ),
+                                        location.first.longitude)),
+                                backgroundColor:
+                                    const Color.fromARGB(165, 0, 0, 0),
+                                duration: const Duration(seconds: 10),
+                              ));
+                            } catch (e) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text(
+                                  "検索エラー\n再度お試しください。",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: Colors.red,
+                                duration: Duration(seconds: 2),
+                              ));
+                            }
+                          },
+                        ),
+                      );
+                    })),
               )
             : const Text(""),
       ],

@@ -29,7 +29,7 @@ class MapPage extends ConsumerWidget {
         body: Stack(
       alignment: Alignment.topCenter,
       children: [
-        Expanded(
+        Container(
           child: mapController.initialPosition != null
               ? Stack(
                   children: <Widget>[
