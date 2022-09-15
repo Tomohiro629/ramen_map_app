@@ -15,8 +15,13 @@ class LoginController extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    await _reader(authServiceProvider)
-        .loginUser(email: email, password: password);
+    try {
+      await _reader(authServiceProvider)
+          .loginUser(email: email, password: password);
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+    notifyListeners();
   }
 
   void setErrorText(String errorText) {

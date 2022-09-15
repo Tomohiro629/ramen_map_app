@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:849922676924:android:f00d50636f045415bed8b9",
         "android_client_info": {
-          "package_name": "com.ramen_map_app"
+          "package_name": "com.example.ramen_map_app"
         }
       },
       "oauth_client": [
@@ -20,7 +20,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBS_B-VRHZqZIXgItX6ylwU-cwsEZ7P94Y"
+          "current_key": "AIzaSyCqzZdzqeIOmQZq4SmWzj9csal_hEQZqYU"
         }
       ],
       "services": {
