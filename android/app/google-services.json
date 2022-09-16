@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:849922676924:android:f00d50636f045415bed8b9",
+        "mobilesdk_app_id": "1:849922676924:android:68365b7ca36d764bbed8b9",
         "android_client_info": {
-          "package_name": "com.example.ramen_map_app"
+          "package_name": "com.ramen_map_app"
         }
       },
       "oauth_client": [

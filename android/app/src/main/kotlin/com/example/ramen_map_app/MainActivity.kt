@@ -1,4 +1,4 @@
-package com.example.ramen_map_app
+package com.ramen_map_app
 
 import io.flutter.embedding.android.FlutterActivity
 
